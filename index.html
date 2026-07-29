@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Freehold</title>
+<meta name="description" content="Freehold builds the layer on which organisations reach a shared answer they will never hand each other. The algorithms travel to the source, and only the insight leaves.">
+
+<link rel="canonical" href="https://freehold.works/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Freehold">
+<meta property="og:description" content="The algorithms travel to the source, and only the insight leaves. The person behind the insight holds what is theirs.">
+<meta property="og:url" content="https://freehold.works/">
+<meta property="og:image" content="https://freehold.works/freehold-share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Freehold. Insights, never data.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F5F3EE">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314181D'/%3E%3Cg stroke='%23F5F3EE' stroke-linecap='round' stroke-width='1.8' fill='none'%3E%3Cline x1='14' y1='27' x2='14' y2='37' opacity='0.3'/%3E%3Cline x1='20' y1='21' x2='20' y2='43' opacity='0.42'/%3E%3Cline x1='26' y1='28' x2='26' y2='36' opacity='0.24'/%3E%3C/g%3E%3Cpath d='M20,31 C27,31 32,31 40,32' stroke='%232FA891' stroke-width='1.4' stroke-linecap='round' fill='none' opacity='0.5'/%3E%3Cpath d='M26,34 C32,34 36,32 44,33' stroke='%232FA891' stroke-width='1.4' stroke-linecap='round' fill='none' opacity='0.34'/%3E%3Cpath d='M34,14 C37,23 37,41 34,50' stroke='%232FA891' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3Cg stroke='%232FA891' stroke-linecap='round' stroke-width='4'%3E%3Cline x1='44' y1='24' x2='44' y2='40'/%3E%3Cline x1='52' y1='28' x2='52' y2='36'/%3E%3C/g%3E%3C/svg%3E" type="image/svg+xml">
+
+<link rel="preload" href="fonts/source-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-tight-400.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+  /* Fonts are served from this origin, not from Google. Both families are
+     under the SIL Open Font License, subset to Latin and Latin Extended.
+     A company whose proposition is that data does not leave should not make
+     every visitor's browser announce itself to a third party to read a
+     hundred words. */
+  @font-face{
+    font-family:'Inter Tight';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/inter-tight-400.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Inter Tight';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/inter-tight-500.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Inter Tight';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/inter-tight-700.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/source-serif-400.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;
+    src:url('fonts/source-serif-600.woff2') format('woff2');
+  }
+
+  :root{
+    --basalt:#14181D;
+    --basalt-light:#2A3138;
+    --verdigris:#14796A;
+    --verdigris-deep:#0C5347;
+    --chalk:#F5F3EE;
+    --line:#D9D4CA;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+
+  body{
+    margin:0;
+    background:var(--chalk);
+    color:var(--basalt);
+    font-family:'Inter Tight',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  .page{
+    position:relative;
+    min-height:100vh;
+    min-height:100svh;
+    display:flex;
+    padding:clamp(30px,4.4vw,64px) clamp(24px,5vw,72px) clamp(24px,3vw,44px);
+    overflow:hidden;
+  }
+
+  /* The Membrane as a watermark, sized so it still reads as the mark and
+     bled off the lower right corner, the same placement the report template
+     gives the membraanstreek. Kept off the prose column. Decorative
+     repetition of the mark, so it is hidden from assistive technology. */
+  .backdrop{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    overflow:hidden;
+  }
+  .backdrop svg{
+    position:absolute;
+    right:1%;
+    bottom:47%;
+    width:min(38%,545px);
+    height:auto;
+    display:block;
+  }
+  .backdrop .mark-curve{
+    stroke-dasharray:340;
+    stroke-dashoffset:340;
+    animation:draw 3s cubic-bezier(.22,.61,.36,1) .35s forwards;
+  }
+  @keyframes draw{to{stroke-dashoffset:0}}
+
+  .shell{
+    position:relative;
+    z-index:1;
+    width:100%;
+    max-width:1080px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .lockup{
+    width:clamp(224px,22vw,296px);
+    height:auto;
+    display:block;
+  }
+
+  .cols{
+    flex:1;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,0.66fr);
+    column-gap:clamp(48px,7vw,110px);
+    align-items:stretch;
+    margin:clamp(40px,7vh,84px) 0 clamp(32px,5vh,60px);
+  }
+
+  .prose{max-width:62ch}
+
+  .prose p{
+    font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+    font-size:clamp(16.5px,0.42vw + 15px,19.5px);
+    line-height:1.58;
+    margin:0 0 1.15em;
+    color:var(--basalt-light);
+  }
+  .prose p:last-child{margin-bottom:0}
+
+  .prose p.lead{
+    color:var(--basalt);
+    font-size:clamp(18px,0.58vw + 16px,22px);
+    line-height:1.5;
+  }
+
+  .claim{
+    align-self:end;
+    padding-bottom:.2em;
+  }
+
+  .prose p.harvest{
+    font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+    font-weight:600;
+    font-size:clamp(19px,0.7vw + 16.5px,24px);
+    line-height:1.3;
+    color:var(--basalt);
+    margin:1.7em 0 0;
+  }
+
+  .claim p{margin:0}
+
+  .claim .closing-lines{
+    font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+    font-size:clamp(21px,1.4vw + 11px,30px);
+    line-height:1.28;
+    letter-spacing:-.008em;
+    color:var(--basalt);
+  }
+
+  .claim .signoff{
+    font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+    font-weight:600;
+    font-size:clamp(21px,1.4vw + 11px,30px);
+    line-height:1.28;
+    letter-spacing:-.008em;
+    color:var(--verdigris);
+    margin-top:.85em;
+  }
+
+  /* Verdigris rule on the left, the same device the brand book uses for a note. */
+  .pull{
+    margin:clamp(26px,3.4vh,40px) 0 0;
+    padding:2px 0 2px 15px;
+    border-left:2px solid var(--verdigris);
+    max-width:34ch;
+  }
+  .pull blockquote{
+    margin:0;
+    font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+    font-size:clamp(15.5px,0.34vw + 14.2px,17.5px);
+    line-height:1.45;
+    color:var(--basalt-light);
+  }
+  .pull blockquote::before{content:'\201C'}
+  .pull blockquote::after{content:'\201D'}
+  .pull figcaption{
+    margin-top:7px;
+    font-size:12px;
+    line-height:1.5;
+    color:var(--basalt-light);
+    opacity:.78;
+  }
+  .pull cite{font-style:normal}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding-top:16px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--basalt-light);
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px clamp(20px,4vw,52px);
+  }
+  footer .entity{font-weight:500}
+
+  a{
+    color:var(--verdigris);
+    text-decoration:none;
+    border-bottom:1px solid rgba(20,121,106,.34);
+    padding-bottom:1px;
+    transition:color .18s ease,border-color .18s ease;
+  }
+  a:hover{color:var(--verdigris-deep);border-bottom-color:var(--verdigris-deep)}
+  a:focus-visible{
+    outline:2px solid var(--verdigris);
+    outline-offset:3px;
+    border-radius:2px;
+    border-bottom-color:transparent;
+  }
+
+  @media (max-width:820px){
+    .cols{
+      grid-template-columns:1fr;
+      row-gap:clamp(30px,5vh,48px);
+      margin:clamp(34px,5vh,56px) 0 clamp(28px,4vh,44px);
+    }
+    .prose{max-width:none}
+    .claim{align-self:start;padding-bottom:0}
+    /* On a narrow screen the mark cannot avoid the closing text, so it steps
+       back further and reads as a watermark behind it. */
+    .backdrop{opacity:.48}
+    .backdrop svg{width:min(60%,240px);right:-13%;bottom:2%}
+    .pull{max-width:none}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .backdrop .mark-curve{animation:none;stroke-dashoffset:0}
+    a{transition:none}
+  }
+
+  @media print{
+    .backdrop{display:none}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="backdrop" aria-hidden="true">
+    <svg viewBox="0 0 128 100" xmlns="http://www.w3.org/2000/svg" role="presentation" focusable="false">
+      <g stroke="#14181D" stroke-linecap="round" stroke-width="2.0" fill="none" opacity="0.16">
+        <line x1="15" y1="42" x2="15" y2="58" opacity="0.62"/>
+        <line x1="22" y1="34" x2="22" y2="68" opacity="0.74"/>
+        <line x1="29" y1="46" x2="29" y2="54" opacity="0.56"/>
+        <line x1="36" y1="26" x2="36" y2="76" opacity="0.88"/>
+        <line x1="43" y1="43" x2="43" y2="59" opacity="0.62"/>
+        <line x1="50" y1="31" x2="50" y2="71" opacity="0.74"/>
+        <line x1="57" y1="47" x2="57" y2="53" opacity="0.56"/>
+        <line x1="64" y1="28" x2="64" y2="74" opacity="0.8"/>
+      </g>
+      <!-- The two passages. Redrawn for display at size: they now start deep
+           inside the noise field so the caps do not read as stubs, they carry
+           real curvature instead of lying flat on top of one another, they
+           cross the membrane at two different heights, and each one lands on
+           the centre of a signal stroke instead of stopping in mid air. -->
+      <path d="M30,44.5 C50,44 66,46.5 90,47.5" stroke="#14796A" stroke-width="1.05" stroke-linecap="round" fill="none" opacity="0.30"/>
+      <path d="M44,57.5 C62,57 80,55 101,54" stroke="#14796A" stroke-width="1.05" stroke-linecap="round" fill="none" opacity="0.24"/>
+      <path class="mark-curve" d="M75,13 C80,32 80,68 75,87" stroke="#14796A" stroke-width="3.0" stroke-linecap="round" fill="none" opacity="0.30"/>
+      <g stroke="#14796A" stroke-linecap="round" stroke-width="5.0" opacity="0.17">
+        <line x1="90" y1="38" x2="90" y2="62"/>
+        <line x1="101" y1="28" x2="101" y2="72"/>
+        <line x1="112" y1="43" x2="112" y2="57"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="shell">
+
+    <header>
+      <svg class="lockup" viewBox="0 0 280 86" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Freehold. Insights, never data.">
+        <title>Freehold</title>
+        <desc>The Membrane, with the Freehold wordmark and the baseline Insights, never data.</desc>
+        <g stroke="#14181D" stroke-linecap="round" stroke-width="2.0" fill="none">
+          <line x1="15" y1="42" x2="15" y2="58" opacity="0.22"/>
+          <line x1="22" y1="34" x2="22" y2="68" opacity="0.3"/>
+          <line x1="29" y1="46" x2="29" y2="54" opacity="0.18"/>
+          <line x1="36" y1="26" x2="36" y2="76" opacity="0.38"/>
+          <line x1="43" y1="43" x2="43" y2="59" opacity="0.22"/>
+          <line x1="50" y1="31" x2="50" y2="71" opacity="0.3"/>
+          <line x1="57" y1="47" x2="57" y2="53" opacity="0.18"/>
+          <line x1="64" y1="28" x2="64" y2="74" opacity="0.34"/>
+        </g>
+        <path d="M36,50 C50,50 62,50 88,51" stroke="#14796A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.42"/>
+        <path d="M50,52 C62,52 72,49 100,51" stroke="#14796A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.3"/>
+        <path d="M75,13 C80,32 80,68 75,87" stroke="#14796A" stroke-width="3.0" stroke-linecap="round" fill="none"/>
+        <g stroke="#14796A" stroke-linecap="round" stroke-width="5.0">
+          <line x1="90" y1="38" x2="90" y2="62"/>
+          <line x1="101" y1="28" x2="101" y2="72"/>
+          <line x1="112" y1="43" x2="112" y2="57"/>
+        </g>
+        <text x="140" y="53" font-family="Inter Tight, Inter, Helvetica, Arial, sans-serif" font-size="29" letter-spacing="-0.6" fill="#14181D"><tspan font-weight="400">Free</tspan><tspan font-weight="700">hold</tspan></text>
+        <text x="141" y="73" font-family="Inter Tight, Inter, Helvetica, Arial, sans-serif" font-size="7.55" font-weight="500" letter-spacing="1.0" fill="#14181D" opacity="0.55">INSIGHTS, NEVER DATA</text>
+      </svg>
+    </header>
+
+    <div class="cols">
+
+      <main class="prose">
+        <p class="lead">Land in Europe was held one of two ways for a thousand years. Under feudal tenure you worked the ground but never held it, and you paid for the right to stay. Under freehold you held it outright, and owed no one.</p>
+
+        <p>Every online platform runs on the first arrangement. You get access, and pay with what you are.</p>
+
+        <p>Freehold builds the other one. Organisations reach a shared answer they will never hand each other, and they pay for that answer. The algorithms travel to the source, and only the insight leaves, with its provenance attached. The person behind the insight holds what is theirs, and owes nothing for the right to take part.</p>
+
+        <p class="harvest">You trade the harvest, not the field.</p>
+      </main>
+
+      <aside class="claim">
+        <p class="closing-lines">This is not the way the world is right now. It is the way the world should be, and if it is up to us, the way it will be.</p>
+        <p class="signoff">Freehold Works.</p>
+
+        <figure class="pull">
+          <blockquote>There must be some kind of way out of here.</blockquote>
+          <figcaption>Ruben Verborgh</figcaption>
+        </figure>
+      </aside>
+
+    </div>
+
+    <footer>
+      <span><a href="mailto:hello@freehold.works">hello@freehold.works</a></span>
+    </footer>
+
+  </div>
+</div>
+
+</body>
+</html>
