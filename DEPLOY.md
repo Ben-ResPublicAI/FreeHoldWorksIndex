@@ -9,6 +9,9 @@ Primary domain: **freehold.works**. Every other domain redirects to it, 301, pat
 | `index.html` | The page. Self contained apart from the fonts. | everything |
 | `fonts/` | Five woff2 files, Inter Tight 400, 500, 700 and Source Serif 4 400, 600 | `index.html` |
 | `freehold-share.png` | Link preview image, 1200 by 630 | social platforms |
+| `assets/audio-toggle.js` | The sound control, the only script on the page | `index.html` |
+| `assets/audio/freehold-bed.ogg` | The audio bed, Opus 80k, 0.9 MB, first choice | `index.html` |
+| `assets/audio/freehold-bed.mp3` | The same bed, MP3 128k, 1.3 MB, fallback for Safari | `index.html` |
 | `robots.txt`, `sitemap.xml` | Crawling | search engines |
 | `_headers` | Security headers and cache policy | Netlify, Cloudflare Pages |
 | `_redirects` | Path fallback to the page | Netlify, Cloudflare Pages |
@@ -20,6 +23,45 @@ Every platform ignores the config files meant for the others, so the folder can 
 ## Fonts are served from this origin
 
 Both families are under the SIL Open Font License, subset to Latin and Latin Extended, 226 KB in total. There is no request to Google Fonts and no third party request of any kind on this page. For a company whose proposition is that data does not leave, a page that announces every visitor to an American font server would have been an odd first impression. Keep it that way if the page grows.
+
+## The audio bed
+
+Eighty seconds of piano, written for this page, so no composition and no recording is licensed from anyone. It is served from this origin for the same reason the fonts are.
+
+Four properties are deliberate and none of them should be traded away for convenience.
+
+**It is silent until asked.** No autoplay, and not muted autoplay either. The control carries the label Listen, and the page makes no sound before it is pressed. Every current browser blocks unmuted autoplay anyway, but the point here is the choice rather than the constraint.
+
+**It remembers nothing.** No cookie, no `localStorage`, no `sessionStorage`. A visitor who turns the sound on and comes back tomorrow starts from silence. This keeps the page outside the consent conversation entirely, which is the right posture for a company whose proposition is that nothing leaves.
+
+**It downloads nothing until asked.** `preload="none"` on the audio element, so the 0.9 MB is fetched on the click and not on the visit.
+
+**The control appears only if it can work.** `assets/audio-toggle.js` checks `canPlayType` and unhides the button only on a browser that can play one of the two files. The button ships with the `hidden` attribute set, so a visitor with JavaScript off sees the page exactly as it was before, with no dead control in the footer.
+
+### What the Content Security Policy has to allow
+
+This matters, and it fails silently in a way local testing will not show, because `file://` does not enforce the header.
+
+GitHub Pages cannot set response headers at all, so on this deployment there is no policy and the audio simply works. **On any of the three routes below there is one, and as written it blocks this feature completely.** The policy in `_headers` and in `.htaccess` starts `default-src 'none'` and names no `media-src` and no `script-src`, so the browser refuses to fetch the audio file and refuses to run the toggle.
+
+Before deploying anywhere other than GitHub Pages, extend the policy in **both** files, they each carry their own copy:
+
+```
+default-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline';
+font-src 'self'; media-src 'self'; script-src 'self'; base-uri 'none';
+form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+```
+
+Only `media-src 'self'` and `script-src 'self'` are added. Do not add `'unsafe-inline'` to `script-src`. The script is an external file precisely so that it never has to be, and the page is otherwise script free.
+
+While there, give the audio a cache policy alongside the fonts, one week rather than a year, because the filename carries no content hash:
+
+```
+/assets/audio/*
+  Cache-Control: public, max-age=604800
+```
+
+Neither file exists in the GitHub Pages repository, so this is a step for the day the site moves, not for today.
 
 ## Route A, bunny.net, Slovenia
 
