@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Freehold arrangement</title>
+<meta name="description" content="Under feudal tenure you worked the ground but never held it. Under freehold you held it outright. Freehold applies the second arrangement to data: the algorithms travel to the data, the data stays where it is, and only the insight leaves.">
+
+<link rel="canonical" href="https://freehold.works/more.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Freehold arrangement">
+<meta property="og:description" content="The algorithms travel to the data, the data stays where it is, and only the insight leaves, with its provenance attached.">
+<meta property="og:url" content="https://freehold.works/more.html">
+<meta property="og:image" content="https://freehold.works/freehold-share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Freehold. Insights, never data.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F5F3EE">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314181D'/%3E%3Cg stroke='%23F5F3EE' stroke-linecap='round' stroke-width='1.8' fill='none'%3E%3Cline x1='14' y1='27' x2='14' y2='37' opacity='0.3'/%3E%3Cline x1='20' y1='21' x2='20' y2='43' opacity='0.42'/%3E%3Cline x1='26' y1='28' x2='26' y2='36' opacity='0.24'/%3E%3C/g%3E%3Cpath d='M20,31 C27,31 32,31 40,32' stroke='%232FA891' stroke-width='1.4' stroke-linecap='round' fill='none' opacity='0.5'/%3E%3Cpath d='M26,34 C32,34 36,32 44,33' stroke='%232FA891' stroke-width='1.4' stroke-linecap='round' fill='none' opacity='0.34'/%3E%3Cpath d='M34,14 C37,23 37,41 34,50' stroke='%232FA891' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3Cg stroke='%232FA891' stroke-linecap='round' stroke-width='4'%3E%3Cline x1='44' y1='24' x2='44' y2='40'/%3E%3Cline x1='52' y1='28' x2='52' y2='36'/%3E%3C/g%3E%3C/svg%3E" type="image/svg+xml">
+
+<link rel="preload" href="fonts/source-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-tight-400.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+  /* Same five faces as the holding page, served from this origin, both
+     families under the SIL Open Font License. No third party request on this
+     page either, for the reason set out in DEPLOY.md. */
+  @font-face{
+    font-family:'Inter Tight';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/inter-tight-400.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Inter Tight';font-style:normal;font-weight:500;font-display:swap;
+    src:url('fonts/inter-tight-500.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Inter Tight';font-style:normal;font-weight:700;font-display:swap;
+    src:url('fonts/inter-tight-700.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;
+    src:url('fonts/source-serif-400.woff2') format('woff2');
+  }
+  @font-face{
+    font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;
+    src:url('fonts/source-serif-600.woff2') format('woff2');
+  }
+
+  :root{
+    --basalt:#14181D;
+    --basalt-light:#2A3138;
+    --verdigris:#14796A;
+    --verdigris-deep:#0C5347;
+    --chalk:#F5F3EE;
+    --line:#D9D4CA;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+
+  body{
+    margin:0;
+    background:var(--chalk);
+    color:var(--basalt);
+    font-family:'Inter Tight',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    font-size:16px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    font-variant-numeric:tabular-nums;
+  }
+
+  .shell{
+    width:100%;
+    max-width:1080px;
+    margin:0 auto;
+    padding:clamp(30px,4.4vw,64px) clamp(24px,5vw,72px) clamp(28px,3vw,48px);
+  }
+
+  /* The lock-up doubles as the way back. It is the only navigation on the
+     page, which is why there is no bar above it. */
+  .lockup{
+    width:clamp(200px,20vw,264px);
+    height:auto;
+    display:block;
+  }
+  .home{
+    display:inline-block;
+    border-bottom:0;
+    padding:0;
+    border-radius:2px;
+  }
+  .home:focus-visible{outline:2px solid var(--verdigris);outline-offset:6px}
+
+  h1{
+    font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+    font-weight:600;
+    font-size:clamp(28px,2.4vw + 18px,46px);
+    line-height:1.16;
+    letter-spacing:-.01em;
+    margin:clamp(38px,6vh,72px) 0 0;
+    max-width:18ch;
+  }
+
+  .standfirst{
+    font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+    font-size:clamp(17.5px,0.5vw + 15.5px,21px);
+    line-height:1.5;
+    color:var(--basalt-light);
+    max-width:56ch;
+    margin:.75em 0 0;
+  }
+
+  main{margin-top:clamp(34px,5vh,58px)}
+
+  section{max-width:68ch}
+  section + section{margin-top:clamp(34px,4.6vh,54px)}
+
+  h2{
+    font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+    font-weight:600;
+    font-size:clamp(20px,0.7vw + 17px,25px);
+    line-height:1.24;
+    margin:0 0 .55em;
+    display:flex;
+    align-items:baseline;
+    gap:.7em;
+  }
+  /* The section numeral is set in the interface face, so it reads as an
+     index rather than as part of the sentence. */
+  h2 .n{
+    font-family:'Inter Tight',Helvetica,Arial,sans-serif;
+    font-weight:500;
+    font-size:12px;
+    letter-spacing:.09em;
+    color:var(--verdigris);
+    flex:0 0 auto;
+    position:relative;
+    top:-.15em;
+  }
+
+  p{
+    font-family:'Source Serif 4',Georgia,'Times New Roman',serif;
+    font-size:clamp(16.5px,0.42vw + 15px,19px);
+    line-height:1.58;
+    margin:0 0 1.1em;
+    color:var(--basalt-light);
+  }
+  p:last-child{margin-bottom:0}
+
+  p.line{
+    font-weight:600;
+    font-size:clamp(19px,0.7vw + 16.5px,24px);
+    line-height:1.3;
+    color:var(--basalt);
+    margin:1.5em 0 1.1em;
+  }
+
+  strong{font-weight:600;color:var(--basalt)}
+
+  /* The membrane stroke lifted out of the mark and turned on its side, used
+     as the section rule. Twice on the page, no more, otherwise it becomes
+     decoration. Decorative repetition of the mark, so it is hidden from
+     assistive technology. */
+  .rule{
+    margin:clamp(40px,6vh,66px) 0;
+    max-width:68ch;
+  }
+  .rule svg{display:block;width:100%;max-width:340px;height:auto}
+
+  .aside{
+    margin:clamp(26px,3.4vh,38px) 0 0;
+    padding:2px 0 2px 15px;
+    border-left:2px solid var(--verdigris);
+    max-width:46ch;
+  }
+  .aside p{
+    font-size:clamp(15.5px,0.34vw + 14.2px,17px);
+    line-height:1.45;
+    margin:0;
+  }
+
+  footer{
+    max-width:68ch;
+    margin-top:clamp(44px,6vh,72px);
+    border-top:1px solid var(--line);
+    padding-top:16px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--basalt-light);
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px clamp(20px,4vw,52px);
+  }
+  footer .entity{font-weight:500}
+
+  a{
+    color:var(--verdigris);
+    text-decoration:none;
+    border-bottom:1px solid rgba(20,121,106,.34);
+    padding-bottom:1px;
+    transition:color .18s ease,border-color .18s ease;
+  }
+  a:hover{color:var(--verdigris-deep);border-bottom-color:var(--verdigris-deep)}
+  a:focus-visible{
+    outline:2px solid var(--verdigris);
+    outline-offset:3px;
+    border-radius:2px;
+    border-bottom-color:transparent;
+  }
+
+  @media (max-width:820px){
+    h1{max-width:none}
+    .rule svg{width:min(100%,260px)}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    a{transition:none}
+  }
+
+  @media print{
+    body{background:#fff}
+    .rule{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <header>
+    <a class="home" href="/" aria-label="Freehold, back to the front page">
+      <!-- The lock-up without the baseline. The brand book allows this variant
+           where the baseline already stands elsewhere, and here it stands in
+           section 04, where it is the subject rather than a slogan. -->
+      <svg class="lockup" viewBox="0 0 280 86" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Freehold">
+        <title>Freehold</title>
+        <desc>The Membrane, with the Freehold wordmark.</desc>
+        <g stroke="#14181D" stroke-linecap="round" stroke-width="2.0" fill="none">
+          <line x1="15" y1="42" x2="15" y2="58" opacity="0.22"/>
+          <line x1="22" y1="34" x2="22" y2="68" opacity="0.3"/>
+          <line x1="29" y1="46" x2="29" y2="54" opacity="0.18"/>
+          <line x1="36" y1="26" x2="36" y2="76" opacity="0.38"/>
+          <line x1="43" y1="43" x2="43" y2="59" opacity="0.22"/>
+          <line x1="50" y1="31" x2="50" y2="71" opacity="0.3"/>
+          <line x1="57" y1="47" x2="57" y2="53" opacity="0.18"/>
+          <line x1="64" y1="28" x2="64" y2="74" opacity="0.34"/>
+        </g>
+        <path d="M36,50 C50,50 62,50 88,51" stroke="#14796A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.42"/>
+        <path d="M50,52 C62,52 72,49 100,51" stroke="#14796A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.3"/>
+        <path d="M75,13 C80,32 80,68 75,87" stroke="#14796A" stroke-width="3.0" stroke-linecap="round" fill="none"/>
+        <g stroke="#14796A" stroke-linecap="round" stroke-width="5.0">
+          <line x1="90" y1="38" x2="90" y2="62"/>
+          <line x1="101" y1="28" x2="101" y2="72"/>
+          <line x1="112" y1="43" x2="112" y2="57"/>
+        </g>
+        <text x="140" y="57" font-family="Inter Tight, Inter, Helvetica, Arial, sans-serif" font-size="29" letter-spacing="-0.6" fill="#14181D"><tspan font-weight="400">Free</tspan><tspan font-weight="700">hold</tspan></text>
+      </svg>
+    </a>
+
+    <h1>The Freehold arrangement</h1>
+    <p class="standfirst">A longer account of what the name means, what moves, what stays, and who is on either side of it.</p>
+  </header>
+
+  <main>
+
+    <section>
+      <h2><span class="n">01</span>The arrangement today</h2>
+      <p>Every online platform runs on the same bargain. A person is given access to something useful, and pays for it with what they are, so with what they read, who they know, where they go and what they are likely to want next. Nothing is taken by force, because the terms were accepted at the door.</p>
+      <p>The same bargain runs between organisations, in a heavier form. A hospital, an insurer, a school and a payments company each hold records that together would answer a question none of them can answer alone. To reach that answer, one of them has to hand its records to another, or all of them have to pile their records into a third place in the middle. Usually nobody hands anything over, and the question stays unanswered.</p>
+    </section>
+
+    <section>
+      <h2><span class="n">02</span>Free tenure and feudal tenure</h2>
+      <p>Land in Europe was held one of two ways for a thousand years. Under feudal tenure you received the use of the ground from a lord, and in return you owed service, homage and dues. You could work it and live on it, but you never held it. It could be recalled, and you paid, in one form or another, for the right to stay.</p>
+      <p>Under freehold you held it outright, from no one, and owed nothing. Edward Coke described such land as land that is not <em>holden of some superior</em>. French law described it as property that is entirely free, held of no superior, and exempt from all seigneurial rights and services. The word survives in English property law, and the idea survives in every European system under a different name.</p>
+      <p>Every data platform of today runs on the first arrangement. Freehold is the second one, applied to data instead of to land.</p>
+    </section>
+
+    <div class="rule" aria-hidden="true">
+      <svg width="340" height="26" viewBox="0 0 340 26" preserveAspectRatio="xMinYMid meet" xmlns="http://www.w3.org/2000/svg" role="presentation" focusable="false">
+        <path d="M2,16 C90,16 250,10 338,10" stroke="#14796A" stroke-width="2.6" stroke-linecap="round" fill="none" opacity="0.62"/>
+      </svg>
+    </div>
+
+    <section>
+      <h2><span class="n">03</span>The reversal</h2>
+      <p>In the usual design, records from several parties are copied into one store, and the algorithms are set loose on the pile. The value of that pile is exactly what makes it worth attacking, and exactly what makes the parties reluctant to fill it. The safest store is still a store.</p>
+      <p>Freehold turns the movement round. The algorithm travels to the data. The data stays where it is, inside the boundary of whoever already holds it, under the obligations that already apply to it. The algorithm runs there, on terms agreed in advance, and what leaves is the finished insight and nothing else, with a record of where it came from and what it may be used for attached to it.</p>
+      <p>The mark on this page carries that shape. On the left a field of thin uneven strokes, raw data, plentiful and of widely differing worth. On the right three heavy strokes, insights, few and usable. Between them a curved line under pressure, the membrane. Two fine curves cross it, because a boundary that lets nothing through is not a boundary, it is a wall.</p>
+    </section>
+
+    <section>
+      <h2><span class="n">04</span>The harvest and the field</h2>
+      <p>Someone with a field of their own sells the harvest at the market. They do not sell the field, they do not rent it out, and they do not let the market come and dig. The field stays where it is, and what goes to market is the result.</p>
+      <p class="line">You trade the harvest, not the field.</p>
+      <p>The baseline says the same thing as a rule rather than as a promise, and that difference is the whole point. <strong>Insights, never data.</strong> A promise asks for trust in the good intentions of whoever makes it. A rule can be tested. The word never carries the weight there, because it admits no exception.</p>
+    </section>
+
+    <div class="rule" aria-hidden="true">
+      <svg width="340" height="26" viewBox="0 0 340 26" preserveAspectRatio="xMinYMid meet" xmlns="http://www.w3.org/2000/svg" role="presentation" focusable="false">
+        <path d="M2,16 C90,16 250,10 338,10" stroke="#14796A" stroke-width="2.6" stroke-linecap="round" fill="none" opacity="0.62"/>
+      </svg>
+    </div>
+
+    <section>
+      <h2><span class="n">05</span>The two parties</h2>
+      <p>Two parties meet here and they stand in different positions, so it is worth naming them separately rather than addressing both at once.</p>
+      <p><strong>Organisations</strong> reach a shared answer on data they will never hand each other. They keep their records, they keep the obligations that come with those records, and they pay for the answer. That is a commercial arrangement and there is nothing free about it.</p>
+      <p><strong>The person behind the data</strong> stands on the other side. Their records stay with the organisation that already holds them, no copy is made for anyone in the middle, and what crosses the boundary is an insight in which they cannot be found. They hold what is theirs, and they owe nothing for the right to take part.</p>
+      <div class="aside">
+        <p>It is worth saying what this is not. It is not a market where data is bought and sold. It is not a central store with better locks on it. And it is not an undertaking to behave well with material that has been handed over, because nothing is handed over.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span><a href="/">Front page</a></span>
+    <span><a href="mailto:hello@freehold.works">hello@freehold.works</a></span>
+    <span class="entity">Freehold Works</span>
+  </footer>
+
+</div>
+
+</body>
+</html>
