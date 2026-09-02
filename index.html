@@ -202,6 +202,18 @@
     margin:1.7em 0 0;
   }
 
+  /* The two ways further in, one per language. They sit under the harvest
+     line because that is where a reader who is convinced looks next. */
+  .prose .deeper{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.55em 1.6em;
+    margin:1.5em 0 0;
+    font-size:clamp(15px,0.3vw + 14px,17px);
+  }
+  .prose .deeper a{font-weight:500}
+  .prose .deeper span[lang]{display:inline-block}
+
   .claim p{margin:0}
 
   .claim .closing-lines{
@@ -435,6 +447,11 @@
         <p>Freehold builds the other one. Organisations reach a shared answer on data they will never hand each other, and they pay for that answer. The algorithms travel to the data, the data stays where it is, and only the insight leaves, with its provenance attached. The person behind the insight holds what is theirs, and owes nothing for the right to take part.</p>
 
         <p class="harvest">You trade the harvest, not the field.</p>
+
+        <p class="deeper">
+          <span lang="en"><a href="for-the-press.html">Information for the press</a></span>
+          <span lang="nl"><a href="voor-de-pers.html" hreflang="nl">Informatie voor de pers</a></span>
+        </p>
       </main>
 
       <aside class="claim">
@@ -450,8 +467,6 @@
     </div>
 
     <footer>
-      <span><a href="more.html">The arrangement, at greater length</a></span>
-
       <span><a href="mailto:hello@freehold.works">hello@freehold.works</a></span>
 
       <span class="sound">
