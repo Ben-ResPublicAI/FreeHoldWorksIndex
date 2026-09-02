@@ -118,6 +118,6 @@ Where the host is one of the forty odd services Hover knows, its **Connect** fea
 ## Before it goes live
 
 - [ ] `hello@freehold.works` exists and is monitored.
-- [x] Trademark clearance for Freehold Works. **Cleared, confirmed by Ben on 2 September 2026.** Section 24 of the brand book made a formal search a precondition for external use, and that condition is met. The clearance document itself is not filed anywhere yet.
+- [ ] Trademark clearance for Freehold Works. Section 24 of the brand book makes a formal search at EUIPO, BOIP and the national registers in classes 9, 42 and 35 a precondition for external use, and it has not been started. **The site is nonetheless live and shared, on Ben's decision of 2 September 2026.** The ground he gave is the patent: application 26202295.7 was filed on 1 September 2026 and the invention is patent pending, which protects the working during an examination period that can run over a year. **That is the invention and not the name.** Trademark clearance is a separate question and it stays open, knowingly.
 - [ ] The founders group has seen the page.
 - [ ] Confirm the full list of domains, so the redirect rules cover all of them.
