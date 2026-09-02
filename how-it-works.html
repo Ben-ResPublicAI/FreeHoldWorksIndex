@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Freehold, the network and the wall socket</title>
+<meta name="description" content="Your data stays where it is. The question travels to it, and only the answer leaves. Explained through the electricity grid, for readers who know nothing about the subject.">
+
+<link rel="canonical" href="https://freehold.works/how-it-works.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Freehold, the network and the wall socket">
+<meta property="og:description" content="Your data stays where it is. The question travels to it, and only the answer leaves.">
+<meta property="og:url" content="https://freehold.works/how-it-works.html">
+<meta property="og:image" content="https://freehold.works/freehold-share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Freehold. Insights, never data.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F5F3EE">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314181D'/%3E%3Cg stroke='%23F5F3EE' stroke-linecap='round' stroke-width='1.8' fill='none'%3E%3Cline x1='14' y1='27' x2='14' y2='37' opacity='0.3'/%3E%3Cline x1='20' y1='21' x2='20' y2='43' opacity='0.42'/%3E%3Cline x1='26' y1='28' x2='26' y2='36' opacity='0.24'/%3E%3C/g%3E%3Cpath d='M20,31 C27,31 32,31 40,32' stroke='%232FA891' stroke-width='1.4' stroke-linecap='round' fill='none' opacity='0.5'/%3E%3Cpath d='M26,34 C32,34 36,32 44,33' stroke='%232FA891' stroke-width='1.4' stroke-linecap='round' fill='none' opacity='0.34'/%3E%3Cpath d='M34,14 C37,23 37,41 34,50' stroke='%232FA891' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3Cg stroke='%232FA891' stroke-linecap='round' stroke-width='4'%3E%3Cline x1='44' y1='24' x2='44' y2='40'/%3E%3Cline x1='52' y1='28' x2='52' y2='36'/%3E%3C/g%3E%3C/svg%3E" type="image/svg+xml">
+
+<link rel="preload" href="fonts/source-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-tight-400.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+/* Fonts from this origin, never from a third party. Standing rule for this site:
+   a company whose proposition is that data does not leave should not make every
+   visitor's browser announce itself to a font server to read a page. */
+@font-face{font-family:'Inter Tight';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/inter-tight-400.woff2') format('woff2')}
+@font-face{font-family:'Inter Tight';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/inter-tight-500.woff2') format('woff2')}
+@font-face{font-family:'Inter Tight';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/inter-tight-700.woff2') format('woff2')}
+@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/source-serif-400.woff2') format('woff2')}
+@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/source-serif-600.woff2') format('woff2')}
+
+:root{
+  --basalt:#14181D; --basalt2:#2A3138; --grijs:#6B747C;
+  --verd:#14796A; --verd-lt:#2FA891; --verd-dp:#0C5347;
+  --chalk:#F5F3EE; --chalk-hi:#FBFAF7; --card:#FFFFFF;
+  --line:#D9D4CA; --klei:#C7BFB1; --oker:#C08A3E; --signaal:#E0623A;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --sans:'Inter Tight',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001ms !important;transition-duration:.001ms !important}}
+body{margin:0;background:var(--chalk);color:var(--basalt);font-family:var(--sans);font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:3px solid var(--verd);outline-offset:2px;border-radius:3px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--basalt);color:var(--chalk);padding:12px 18px;z-index:100}
+.skip:focus{left:8px;top:8px}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+p{max-width:74ch}
+
+header.top{padding:34px 0 0}
+.lockup{display:flex;align-items:center;gap:14px;margin:0 0 30px}
+.lockup svg{display:block;height:38px;width:auto}
+.lockup .wm{font-family:var(--sans);font-weight:600;font-size:25px;letter-spacing:.006em;line-height:1}
+.lockup .wm b{font-weight:700}
+.lockup .bl{font-family:var(--sans);font-weight:500;font-size:9.5px;letter-spacing:.19em;text-transform:uppercase;color:var(--verd-dp);margin-top:5px}
+
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);line-height:1.1;margin:0 0 16px;max-width:19ch}
+.lede{font-size:clamp(17px,2.2vw,19.5px);line-height:1.56;color:var(--basalt2);max-width:66ch;margin:0 0 22px}
+.lede em{font-style:normal;color:var(--basalt);font-weight:500}
+.rule{width:132px;height:3px;background:var(--verd);border-radius:2px;margin:0 0 26px}
+
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--verd-dp);background:rgba(20,121,106,.1);border-radius:4px;padding:6px 11px;margin:0 0 20px}
+.kicker span{width:6px;height:6px;border-radius:50%;background:var(--verd)}
+
+nav.rail{position:sticky;top:0;z-index:40;background:rgba(245,243,238,.94);backdrop-filter:blur(9px);
+  border-bottom:1px solid var(--line);margin:36px 0 44px}
+nav.rail .in{max-width:1120px;margin:0 auto;padding:0 26px;display:flex;gap:2px;overflow-x:auto;height:50px;align-items:center;scrollbar-width:none}
+nav.rail .in::-webkit-scrollbar{display:none}
+nav.rail a{font-size:12.5px;font-weight:500;color:var(--basalt2);text-decoration:none;white-space:nowrap;padding:6px 11px;border-radius:5px;opacity:.66;transition:.15s var(--ease)}
+nav.rail a:hover{opacity:1;background:rgba(20,121,106,.09);color:var(--verd-dp)}
+nav.rail a[aria-current="true"]{opacity:1;color:var(--verd-dp);background:rgba(20,121,106,.13);font-weight:600}
+
+section{margin:0 0 76px;scroll-margin-top:64px}
+.shead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 8px}
+.snum{font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--verd-dp)}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(23px,3.4vw,30px);line-height:1.2;margin:0}
+h3{font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.3;margin:0 0 10px}
+.sdesc{font-size:16.5px;color:var(--basalt2);margin:8px 0 20px;max-width:70ch}
+
+.kort{background:rgba(47,168,145,.1);border-left:3px solid var(--verd);border-radius:0 6px 6px 0;
+  padding:14px 18px;margin:0 0 26px;max-width:74ch;font-size:15.5px;line-height:1.6}
+.kort b{display:block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--verd-dp);margin:0 0 5px}
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:20px 22px 22px;display:flex;flex-direction:column}
+.card.dark{background:var(--basalt);border-color:var(--basalt);color:var(--chalk)}
+.card.dark .ctag{color:var(--verd-lt)}
+.card.dark .cnote{color:#A9B0B6}
+.card.full{grid-column:1 / -1}
+.ctag{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--grijs);margin:0 0 4px}
+.ctitle{font-family:var(--serif);font-size:18px;font-weight:600;margin:0 0 14px;line-height:1.25}
+.cnote{font-size:14px;line-height:1.55;color:var(--basalt2);margin:12px 0 0}
+svg.scene{display:block;width:100%;height:auto;overflow:visible;margin:2px 0 0}
+
+.ctl{background:var(--chalk-hi);border:1px solid var(--line);border-radius:9px;padding:18px 22px 20px;margin:22px 0 0}
+.ctl-lab{font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--verd-dp);margin:0 0 9px}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap}
+button{font-family:var(--sans);font-size:14px;font-weight:500;padding:10px 16px;border-radius:6px;
+  border:1px solid var(--line);background:var(--card);color:var(--basalt2);cursor:pointer;transition:.15s var(--ease)}
+button:hover{border-color:var(--verd-lt);color:var(--basalt)}
+button[aria-pressed="true"],button.on{background:var(--verd-dp);border-color:var(--verd-dp);color:var(--chalk)}
+button.big{font-size:15px;font-weight:600;padding:13px 22px}
+
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:3px;background:var(--klei);margin:12px 0 6px;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:21px;height:21px;border-radius:50%;background:var(--verd-dp);border:3px solid var(--chalk-hi);box-shadow:0 1px 4px rgba(20,24,29,.3);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:21px;height:21px;border-radius:50%;background:var(--verd-dp);border:3px solid var(--chalk-hi);cursor:pointer}
+.ticks{display:flex;justify-content:space-between;font-size:11.5px;color:var(--grijs)}
+.readout{font-size:15px;color:var(--basalt);margin:12px 0 0;min-height:1.6em}
+.readout strong{color:var(--verd-dp)}
+
+.tally{display:flex;gap:26px;flex-wrap:wrap;margin:16px 0 0}
+.tally div{min-width:96px}
+.tally dt{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grijs);margin:0 0 3px}
+.tally dd{margin:0;font-family:var(--sans);font-size:27px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.tally dd.geld{color:var(--verd-dp)}
+.tally dd.nul{color:var(--signaal)}
+
+.breek{display:grid;grid-template-columns:repeat(auto-fit,minmax(266px,1fr));gap:16px;margin:6px 0 0}
+.breek article{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--oker);border-radius:0 8px 8px 0;padding:16px 18px}
+.breek h3{font-size:16.5px;margin:0 0 7px}
+.breek p{font-size:14.5px;line-height:1.55;color:var(--basalt2);margin:0}
+
+details.diep{background:var(--card);border:1px solid var(--line);border-radius:9px;margin:0 0 14px;overflow:hidden}
+details.diep>summary{cursor:pointer;padding:17px 22px;font-family:var(--serif);font-size:18px;font-weight:600;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px}
+details.diep>summary::-webkit-details-marker{display:none}
+details.diep>summary::after{content:"+";font-family:var(--sans);font-size:24px;font-weight:400;color:var(--verd-dp);line-height:1}
+details.diep[open]>summary::after{content:"\2212"}
+details.diep>summary:hover{color:var(--verd-dp)}
+.diepbody{padding:0 22px 22px;border-top:1px solid var(--line);margin-top:-1px}
+.diepbody p:first-child{margin-top:16px}
+
+.gestapeld{display:flex;flex-direction:column;gap:9px;margin:16px 0 0}
+.trap{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;padding:13px 16px;border:1px solid var(--line);border-radius:7px;background:var(--chalk-hi);transition:.18s var(--ease)}
+.trap.aan{border-color:var(--verd);background:rgba(47,168,145,.09)}
+.trap .n{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--verd-dp);padding-top:3px;white-space:nowrap}
+.trap .t{font-weight:600;font-size:15px;margin:0 0 3px}
+.trap .d{font-size:14px;color:var(--basalt2);margin:0;line-height:1.5}
+
+.slot{background:var(--basalt);color:var(--chalk);border-radius:10px;padding:30px 32px;margin:0 0 40px}
+.slot h2{color:var(--chalk);margin:0 0 12px}
+.slot p{color:#C4C9CE;max-width:68ch;font-size:16px}
+.slot a{color:var(--verd-lt);font-weight:500}
+.slot .base{font-size:10.5px;font-weight:700;letter-spacing:.19em;text-transform:uppercase;color:var(--verd-lt);margin:22px 0 0}
+
+footer{border-top:1px solid var(--line);padding:26px 0 60px;font-size:13.5px;color:var(--grijs)}
+footer p{max-width:74ch;margin:0 0 8px}
+footer a{color:var(--verd-dp)}
+
+.geenjs{background:#2A2019;border-left:4px solid var(--oker);border-radius:0 7px 7px 0;padding:14px 18px;margin:0 0 26px;color:#F0E7DA;font-size:14px}
+
+.concreet-lab{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--verd-dp);margin:0 0 4px}
+.concreet-sub{font-size:14.5px;color:var(--grijs);margin:0 0 14px;max-width:74ch}
+.concreet{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:14px;margin:0 0 30px;max-width:1000px}
+.semek{display:flex;gap:18px;align-items:flex-start;background:var(--chalk-hi);border:1px solid var(--line);
+  border-left:3px solid var(--oker);border-radius:0 8px 8px 0;padding:16px 20px;margin:0 0 26px;max-width:900px}
+.semek .txt{font-size:15px;line-height:1.58;color:var(--basalt2)}
+.semek .txt b{color:var(--basalt)}
+.semek .lab{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8A5F1E;margin:0 0 5px}
+.semek a{color:var(--verd-dp);font-weight:500}
+.concreet article{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--verd);border-radius:0 0 8px 8px;padding:15px 17px 16px}
+.concreet .lab{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--verd-dp);margin:0 0 6px}
+.concreet p{font-size:14.5px;line-height:1.52;color:var(--basalt2);margin:0;max-width:none}
+.concreet p b{color:var(--basalt);font-weight:600}
+
+@media (max-width:820px){
+  .duo{grid-template-columns:1fr}
+  .ctl{padding:16px 18px 18px}
+  .wrap{padding:0 20px}
+}
+@media print{
+  nav.rail,.ctl,.geenjs{display:none}
+  body{background:#fff}
+  .card{break-inside:avoid}
+  details.diep{border:none}
+  details.diep>summary::after{content:""}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <div class="lockup">
+      <svg viewBox="6 8 118 84" role="img" aria-label="Freehold, the Membrane symbol">
+        <title>Freehold, the Membrane symbol</title>
+        <g stroke="#14181D" stroke-linecap="round" stroke-width="2.0" fill="none">
+          <line x1="15" y1="42" x2="15" y2="58" opacity="0.22"/>
+          <line x1="22" y1="34" x2="22" y2="68" opacity="0.3"/>
+          <line x1="29" y1="46" x2="29" y2="54" opacity="0.18"/>
+          <line x1="36" y1="26" x2="36" y2="76" opacity="0.38"/>
+          <line x1="43" y1="43" x2="43" y2="59" opacity="0.22"/>
+          <line x1="50" y1="31" x2="50" y2="71" opacity="0.3"/>
+          <line x1="57" y1="47" x2="57" y2="53" opacity="0.18"/>
+          <line x1="64" y1="28" x2="64" y2="74" opacity="0.34"/>
+        </g>
+        <path d="M36,50 C50,50 62,50 88,51" stroke="#14796A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.42"/>
+        <path d="M50,52 C62,52 72,49 100,51" stroke="#14796A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.3"/>
+        <path d="M75,13 C80,32 80,68 75,87" stroke="#14796A" stroke-width="3.0" stroke-linecap="round" fill="none"/>
+        <g stroke="#14796A" stroke-linecap="round" stroke-width="5.0">
+          <line x1="90" y1="38" x2="90" y2="62"/>
+          <line x1="101" y1="28" x2="101" y2="72"/>
+          <line x1="112" y1="43" x2="112" y2="57"/>
+        </g>
+      </svg>
+      <div>
+        <div class="wm">Free<b>hold</b></div>
+        <div class="bl">Insights, never data</div>
+      </div>
+    </div>
+
+    <div class="kicker"><span></span>European patent application 26202295.7, filed 1 September 2026</div>
+    <h1>The network and the wall socket</h1>
+    <p class="lede">We build a network on which your data stays where it is. <em>The question travels to it, the computation happens on the spot, and only the answer leaves.</em> This page explains how that works and why it is needed, without assuming you know anything about the subject.</p>
+    <div class="rule"></div>
+
+    <div class="concreet-lab">Three examples, not the full scope</div>
+    <p class="concreet-sub">They show the shape of what becomes possible. Freehold is a network on which many more kinds of question can run, and these three are here because they make the mechanism clear fastest.</p>
+    <div class="concreet">
+      <article>
+        <div class="lab">Three banks</div>
+        <p>Together they establish whether a payment is suspicious, <b>without any one of them seeing another's customer file.</b> Today that question can only be answered by pooling the files, so mostly it is not asked at all.</p>
+      </article>
+      <article>
+        <div class="lab">A hospital and a research group</div>
+        <p>They reach an answer about a treatment <b>while the patient records never leave the hospital.</b> That is exactly where things go wrong today, because data that leaves once acquires a second and a third life at parties the patient has never seen.</p>
+      </article>
+      <article>
+        <div class="lab">A machine builder</div>
+        <p>It warns the owner that servicing is due <b>without taking possession of that factory's production data.</b> The owner keeps the figures, the builder gets the answer, and neither of them does it out of kindness.</p>
+      </article>
+    </div>
+
+    <p>One comparison runs through the whole page, the electricity grid. A hundred years ago the same thing happened there: a line was laid, one socket became the standard, and after that thousands of other people built appliances for it. We think data now stands at that point. At the end you will also find where the comparison breaks, because it does not hold everywhere.</p>
+  </div>
+</header>
+
+<nav class="rail" aria-label="Contents of this page">
+  <div class="in">
+    <a href="#one">No data market</a>
+    <a href="#two">From data to answers</a>
+    <a href="#three">Direction of the question</a>
+    <a href="#four">The envelope</a>
+    <a href="#five">The connection point and the network</a>
+    <a href="#six">The break points</a>
+    <a href="#deeper">Further material</a>
+  </div>
+</nav>
+
+<main id="main">
+<div class="wrap">
+
+<noscript>
+  <div class="geenjs"><b>Please note.</b> The diagrams on this page are built by a script and your browser does not run scripts. The text reads in full without them, only the moving images stay empty.</div>
+</noscript>
+
+<!-- ================= ONE ================= -->
+<section id="one" aria-labelledby="h-one">
+  <div class="shead"><div class="snum">ONE</div><h2 id="h-one">The absent market for data</h2></div>
+  <p class="sdesc">People have been talking about a market for data for twenty years. That market does not exist, and not because something is going wrong. It is because data does not have the property that makes a price come about.</p>
+
+  <div class="kort"><b>In short</b>A price arises because there is too little of something. There is never too little of your data, because a copy costs nothing and cannot be told apart from the original. So a price never forms, and without a price there is no market but a distribution in which one side takes everything.</div>
+
+  <div class="duo">
+    <div class="card dark">
+      <div class="ctag">The electricity grid</div>
+      <div class="ctitle">A consumed kilowatt hour</div>
+      <svg class="scene" viewBox="0 0 320 150" role="img" aria-label="A stock of ten units of power that shrinks as it is consumed">
+        <g id="kwh-vak"></g>
+        <text x="0" y="140" font-family="Inter Tight,sans-serif" font-size="11" fill="#7E8890" id="kwh-tekst">Ten units available</text>
+      </svg>
+      <div class="btnrow" style="margin-top:14px">
+        <button type="button" id="kwh-btn">Use one unit</button>
+        <button type="button" id="kwh-reset">Reset</button>
+      </div>
+      <p class="cnote">What you consume, somebody else does not. That makes a shortage possible, that makes a price, and that is why there is a market for electricity.</p>
+    </div>
+
+    <div class="card">
+      <div class="ctag">What happens with data</div>
+      <div class="ctitle">A costless copy</div>
+      <svg class="scene" viewBox="0 0 320 150" role="img" aria-label="A data file multiplying while the price falls to zero">
+        <g id="kopie-vak"></g>
+        <text x="0" y="140" font-family="Inter Tight,sans-serif" font-size="11" fill="#7E8890" id="kopie-tekst">One file, with you</text>
+      </svg>
+      <div class="btnrow" style="margin-top:14px">
+        <button type="button" id="kopie-btn">Make a copy</button>
+        <button type="button" id="kopie-reset">Reset</button>
+      </div>
+      <dl class="tally">
+        <div><dt>Copies</dt><dd id="kopie-n">1</dd></div>
+        <div><dt>What the next copy fetches</dt><dd class="geld" id="kopie-prijs">100</dd></div>
+      </dl>
+      <p class="cnote">Every copy is as good as the original and costs almost nothing to make. So a shortage never arises, and neither does a price. That is not an opinion about today's market, it is a statement about what data is.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TWO ================= -->
+<section id="two" aria-labelledby="h-two">
+  <div class="shead"><div class="snum">TWO</div><h2 id="h-two">From data to answers</h2></div>
+  <p class="sdesc">So we do not trade data. We make it possible for two parties to exchange an answer that leaves both of them better off. An answer is the outcome of one bounded question, computed on data that stays where it is.</p>
+
+  <div class="kort"><b>In short</b>An insurer does not need your medical file. It needs to know one thing. A shop does not need your purchase history. It needs to know whether this product suits you. In both cases the answer is a fraction of the file, and in both cases that answer is exactly what is required.</div>
+
+  <div class="duo">
+    <div class="card">
+      <div class="ctag">What stays put</div>
+      <div class="ctitle">The file at the holder</div>
+      <svg class="scene" viewBox="0 0 300 210" role="img" aria-label="A file of fourteen lines of data that stays entirely with the holder">
+        <rect x="2" y="2" width="296" height="196" rx="8" fill="#F5F3EE" stroke="#D9D4CA"/>
+        <g id="dossier-regels"></g>
+        <text x="16" y="188" font-family="Inter Tight,sans-serif" font-size="10.5" fill="#7E8890">This never leaves, at any setting.</text>
+      </svg>
+    </div>
+
+    <div class="card">
+      <div class="ctag">What leaves</div>
+      <div class="ctitle">The answer to one question</div>
+      <svg class="scene" viewBox="0 0 300 210" role="img" aria-labelledby="antw-titel">
+        <title id="antw-titel">The answer to the chosen question, with its validity period</title>
+        <rect x="2" y="2" width="296" height="196" rx="8" fill="#FFFFFF" stroke="#D9D4CA"/>
+        <text x="18" y="34" font-family="Inter Tight,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.4" fill="#7E8890">THE QUESTION</text>
+        <text x="18" y="56" font-family="Source Serif 4,serif" font-size="15" fill="#2A3138" id="antw-vraag">May this person drive right now?</text>
+        <line x1="18" y1="74" x2="282" y2="74" stroke="#D9D4CA"/>
+        <text x="18" y="100" font-family="Inter Tight,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.4" fill="#0C5347">THE ANSWER</text>
+        <rect x="18" y="112" width="120" height="42" rx="6" fill="#14796A" id="antw-vak"/>
+        <text x="78" y="139" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="19" font-weight="600" fill="#F5F3EE" id="antw-waarde">Yes</text>
+        <text x="18" y="174" font-family="Inter Tight,sans-serif" font-size="12" fill="#2A3138" id="antw-vorm">Form: yes or no</text>
+        <text x="18" y="192" font-family="Inter Tight,sans-serif" font-size="12" fill="#7E8890" id="antw-duur">Valid: a few minutes</text>
+      </svg>
+    </div>
+
+    <div class="card full">
+      <div class="ctl" style="margin:0">
+        <div class="ctl-lab">Pick a question and see what leaves</div>
+        <div class="btnrow" role="group" aria-label="Pick a question">
+          <button type="button" class="vraag on" data-v="0">May this person drive right now?</button>
+          <button type="button" class="vraag" data-v="1">Does this product suit this customer?</button>
+          <button type="button" class="vraag" data-v="2">Is this supplier creditworthy?</button>
+          <button type="button" class="vraag" data-v="3">Does this machine need servicing now?</button>
+        </div>
+        <p class="readout" id="vraag-uitleg"></p>
+      </div>
+      <p class="cnote">Why an answer does carry a price while data does not. It is made for one question from one requester, it is computed at the moment the question is put, and the next requester puts the question differently. A copy of an answer therefore loses its value, because that value hangs on a particular moment and a particular question. The scarcity here is not something we organise, it follows from what an answer is.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THREE ================= -->
+<section id="three" aria-labelledby="h-three">
+  <div class="shead"><div class="snum">THREE</div><h2 id="h-three">The direction of the question</h2></div>
+  <p class="sdesc">This is the reversal, and it is the core of everything that follows. Today your data travels to the party that wants something from it. With us the question travels to your data, and only the answer travels back.</p>
+
+  <div class="kort"><b>In short</b>Compare it with solar panels. You do not give away your roof and you do not give away an installation. You supply power to the grid and you get something back for it. The panels stay on your roof. It works the same way here: your data stays with you, and what goes to the network is the result.</div>
+
+  <div class="duo">
+    <div class="card dark">
+      <div class="ctag">The electricity grid</div>
+      <div class="ctitle">The owner's roof</div>
+      <svg class="scene" viewBox="0 0 320 190" role="img" aria-label="A house with solar panels supplying power to the grid and receiving a payment in return">
+        <path d="M40 96 L88 62 L136 96 L136 152 L40 152 Z" fill="#2A3138" stroke="#4A5259"/>
+        <path d="M52 92 L88 66 L124 92 Z" fill="#0C5347" stroke="#2FA891" stroke-width="1.4"/>
+        <g stroke="#2FA891" stroke-width="1" opacity=".7"><path d="M62 88 L90 71"/><path d="M74 92 L102 75"/></g>
+        <rect x="78" y="120" width="20" height="32" fill="#14181D" stroke="#4A5259"/>
+        <text x="88" y="46" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="11" fill="#A9B0B6">your roof</text>
+        <rect x="238" y="70" width="58" height="82" rx="5" fill="#2A3138" stroke="#4A5259"/>
+        <text x="267" y="116" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="11" fill="#A9B0B6">the grid</text>
+        <path d="M140 106 L232 106" stroke="#2FA891" stroke-width="1.6" marker-end="url(#pijl-lt)"/>
+        <path d="M232 130 L140 130" stroke="#C08A3E" stroke-width="1.6" marker-end="url(#pijl-ok)"/>
+        <text x="186" y="100" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="10.5" fill="#2FA891">power</text>
+        <text x="186" y="146" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="10.5" fill="#C08A3E">payment</text>
+        <defs>
+          <marker id="pijl-lt" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#2FA891"/></marker>
+          <marker id="pijl-ok" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C08A3E"/></marker>
+        </defs>
+      </svg>
+      <p class="cnote">What leaves is power, not the installation. Nobody finds that strange, and nobody proposes posting the panels themselves.</p>
+    </div>
+
+    <div class="card">
+      <div class="ctag">What we build</div>
+      <div class="ctitle" id="lus-titel">Today, the travelling data</div>
+      <svg class="scene" viewBox="0 0 320 190" role="img" aria-labelledby="lus-titel-svg">
+        <title id="lus-titel-svg">Comparison between today's flow of data and the reversed flow at Freehold</title>
+        <g id="lus-vak"></g>
+      </svg>
+      <p class="cnote" id="lus-note">Your data goes to one party, and that party can pass it on to parties you have never seen. After that you have no sight of it and no say in what still happens to it.</p>
+    </div>
+
+    <div class="card full">
+      <div class="ctl" style="margin:0">
+        <div class="ctl-lab">The reversal</div>
+        <div class="btnrow" role="group" aria-label="Choose the view">
+          <button type="button" id="lus-vandaag" class="big on" aria-pressed="true">Today</button>
+          <button type="button" id="lus-freehold" class="big" aria-pressed="false">With Freehold</button>
+        </div>
+        <label class="ctl-lab" for="lus-slider" style="display:block;margin:22px 0 0">Which questions do you admit, and what do you want in return</label>
+        <input type="range" id="lus-slider" min="0" max="3" step="1" value="2" aria-describedby="lus-uitleg">
+        <div class="ticks"><span>no question at all</span><span>only my own benefit</span><span>offer and payment</span><span>any question with value</span></div>
+        <p class="readout" id="lus-uitleg"></p>
+      </div>
+      <p class="cnote">What you get back is usually not money. Money is the simplest form and the rarest. The ordinary form is a better offer or a better condition, so the product that actually suits you or a more favourable term. The third form is safety, so a warning about your own installation, your own machine or your own health. That third one stands apart, because it cannot be resold and no second market therefore forms behind your back.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOUR ================= -->
+<section id="four" aria-labelledby="h-four">
+  <div class="shead"><div class="snum">FOUR</div><h2 id="h-four">The envelope around an answer</h2></div>
+  <p class="sdesc">An answer without provenance is an assertion, and an assertion is worth nothing. So an answer never leaves us bare. A signed envelope goes around it, recording where it comes from and what it may be used for.</p>
+
+  <div class="kort"><b>In short</b>Think of a driving licence. It proves you may drive without you having to recount your driving test. An envelope does the same, with two differences. It is made per occasion rather than reused for years, and it says what it is for. Whoever receives it keeps the envelope as evidence of having acted correctly, and has never seen the contents of your file.</div>
+
+  <div class="duo">
+    <div class="card">
+      <div class="ctag">What is in the envelope</div>
+      <div class="ctitle">The five parts</div>
+      <svg class="scene" viewBox="0 0 376 230" role="img" aria-label="Diagram of the envelope with five parts that can be clicked">
+        <g id="env-vak"></g>
+      </svg>
+      <div class="btnrow" style="margin-top:14px" role="group" aria-label="Pick a part of the envelope">
+        <button type="button" class="env on" data-e="0">Provenance</button>
+        <button type="button" class="env" data-e="1">The answer</button>
+        <button type="button" class="env" data-e="2">Permitted use</button>
+        <button type="button" class="env" data-e="3">The recipient</button>
+        <button type="button" class="env" data-e="4">Validity period</button>
+      </div>
+      <p class="readout" id="env-uitleg"></p>
+    </div>
+
+    <div class="card">
+      <div class="ctag">At the recipient</div>
+      <div class="ctitle">The check before use</div>
+      <svg class="scene" viewBox="0 0 320 230" role="img" aria-labelledby="ctrl-titel">
+        <title id="ctrl-titel">The receiving system verifies the signature and the validity period before it uses the answer</title>
+        <g id="ctrl-vak"></g>
+      </svg>
+      <div class="ctl">
+        <label class="ctl-lab" for="tijd-slider">How much time has passed</label>
+        <input type="range" id="tijd-slider" min="0" max="4" step="1" value="0" aria-describedby="tijd-uitleg">
+        <div class="ticks"><span>now</span><span>later</span><span>past</span></div>
+        <p class="readout" id="tijd-uitleg"></p>
+      </div>
+      <p class="cnote">There is no revocation channel, and that is a choice. On this time scale the systems exchange question and answer up to dozens of times a minute, so asking again costs almost nothing. A right of use therefore holds very briefly, and whoever needs longer simply has a new envelope drawn up, with the then current state built into it. So the recipient shows a valid envelope, instead of having to demonstrate that no revocation notice reached them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FIVE ================= -->
+<section id="five" aria-labelledby="h-five">
+  <div class="shead"><div class="snum">FIVE</div><h2 id="h-five">The connection point and the network</h2></div>
+  <p class="sdesc">Up to here this was about one answer. This is about what arises when there are many connection points. The electricity grid never succeeded through the grid alone. It succeeded because one standard arrived and one socket, after which anyone was free to build an appliance for it.</p>
+
+  <div class="kort"><b>In short</b>At your home or in the business there is a connection point on the network, and a Hub runs on it. Compare the Hub with the fuse box: it hangs there, you do not notice it, and it determines what comes in. Together with the place where your data sits it forms what we call the trusted infrastructure, and the question comes in from outside that boundary. Every computation allowed to run there has first been tested and admitted and appears on a list of validated algorithms. If it is not on the list, it runs nowhere.</div>
+
+  <div class="semek">
+    <div class="txt">
+      <div class="lab">The device already exists</div>
+      That box is not a drawing. It runs as a working prototype under the name <b>Semek</b>, it sits next to your router, and today it checks photos, videos and text without anything leaving your home. <b>Aaltra</b>, a Belgian technology company, is developing it in collaboration with Freehold, and it is the device the Hub will run on. See <a href="https://semek.ai" rel="noopener">semek.ai</a>.
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="card dark">
+      <div class="ctag">The electricity grid</div>
+      <div class="ctitle">One socket, thousands of appliances made by others</div>
+      <svg class="scene" viewBox="0 0 320 200" role="img" aria-label="One standardised socket accepting appliances from many different makers">
+        <rect x="122" y="18" width="76" height="52" rx="7" fill="#2A3138" stroke="#4A5259"/>
+        <circle cx="148" cy="44" r="6" fill="#14181D" stroke="#2FA891"/>
+        <circle cx="172" cy="44" r="6" fill="#14181D" stroke="#2FA891"/>
+        <text x="160" y="86" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="11" fill="#2FA891">one standard</text>
+        <g id="toestellen"></g>
+        <text x="160" y="192" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="10.5" fill="#A9B0B6">The grid operator never made a washing machine.</text>
+      </svg>
+      <p class="cnote">And it is paid all the same for every kilowatt hour that passes through. That is the shape we keep. We build the network and a small number of applications, and we open the network to others who build their own applications on it.</p>
+    </div>
+
+    <div class="card">
+      <div class="ctag">What we build</div>
+      <div class="ctitle">Connection points and possibilities</div>
+      <svg class="scene" viewBox="0 0 320 200" role="img" aria-labelledby="net-titel">
+        <title id="net-titel">A network of connection points that grows as more participants join</title>
+        <g id="net-vak"></g>
+      </svg>
+      <div class="ctl">
+        <label class="ctl-lab" for="net-slider">How many connection points are on the network</label>
+        <input type="range" id="net-slider" min="0" max="4" step="1" value="2" aria-describedby="net-uitleg">
+        <div class="ticks"><span>the first</span><span>1,000</span><span>100,000</span><span>1 million</span><span>5 million</span></div>
+        <p class="readout" id="net-uitleg"></p>
+      </div>
+    </div>
+
+    <div class="card full">
+      <h3>The governance of register and tariff</h3>
+      <p>Whoever determines which computation is admitted, and whoever determines which traffic runs at cost, exercises authority over everyone else building on the same network. That cannot sit with a party that sells applications there itself, and so it cannot sit with us alone. Both decisions belong to a board on which Freehold does not sit by itself, with published conditions and with a right of appeal against a refusal. Alongside Freehold Works there is a foundation for that purpose, and the arrangement only works under hard conditions: its own board without a majority of ours, its own funding, published admission conditions, an appeal route, and the ability to admit a competitor of ours and to refuse us if it comes to that.</p>
+      <p>For the same reason we write the agreement by which two systems find each other, and we publish it. Whoever represents one side cannot credibly run the place where both sides meet.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SIX ================= -->
+<section id="six" aria-labelledby="h-six">
+  <div class="shead"><div class="snum">SIX</div><h2 id="h-six">The break points of the comparison</h2></div>
+  <p class="sdesc">The picture of the electricity grid carries far, and it does not carry everything. Below is where it stops.</p>
+
+  <div class="breek">
+    <article>
+      <h3>The form of the return</h3>
+      <p>Whoever supplies power is paid per kilowatt hour, pure quantity times tariff. With us what you get back is first of all the better offer itself. A model that promises you money for your data above all else is precisely the construction that has not worked these past twenty years.</p>
+    </article>
+    <article>
+      <h3>The incomparability of answers</h3>
+      <p>Two kilowatt hours are identical and therefore tradable on an exchange. Two answers never are. Pricing works differently here and no exchange will form.</p>
+    </article>
+    <article>
+      <h3>The absence of a monopoly</h3>
+      <p>A grid operator holds a regulated monopoly. We do not. To the question of who gave us this network, the answer is that the participants give it, per computation and in advance. They can also take it back.</p>
+    </article>
+    <article>
+      <h3>The free alternative</h3>
+      <p>Everyone is on the electricity grid because there is no alternative. For data that alternative does exist, namely the internet as it works today. That is at once the heaviest objection, because free is a strong competitor.</p>
+    </article>
+    <article>
+      <h3>Operation at scale</h3>
+      <p>This page shows controls that a person moves. At scale a piece of software does that on your behalf, because a household does not maintain hundreds of relationships by hand. The controls here are therefore the setting and not the operation.</p>
+    </article>
+    <article>
+      <h3>The run-up of electrification</h3>
+      <p>In 1899 three per cent of American homes had electric light. It took about four decades after the first central station before half was reached, and in Great Britain five per cent of houses were wired in 1919. Gas there remained cheaper per unit of energy until at least 1930.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ================= DEEPER ================= -->
+<section id="deeper" aria-labelledby="h-deeper">
+  <div class="shead"><div class="snum">FURTHER</div><h2 id="h-deeper">Further material</h2></div>
+  <p class="sdesc">The six movements above are the whole story. Anyone who wants more will find three subjects below that follow directly from it. You do not need them to understand the rest.</p>
+
+  <details class="diep">
+    <summary>The development layer</summary>
+    <div class="diepbody">
+      <p>A network on which only the operator builds is not a utility but a product. So we open the network, and that immediately raises a question: how do you keep it safe once the computations are no longer yours.</p>
+      <p>One distinction sits underneath all of it. Composing a question is not the same as writing a new computation. The great majority of builders do not want a new computation. They want an existing, already admitted computation applied to their own counterparties, with their own threshold. The electricity grid has that same distinction and nobody finds it strange: putting a plug in a socket needs no certification, putting a new appliance on the market does.</p>
+      <div class="ctl">
+        <div class="ctl-lab">What does this builder want to do</div>
+        <div class="btnrow" role="group" aria-label="Choose what the builder wants to do">
+          <button type="button" class="trapbtn on" data-t="0">Use an existing computation</button>
+          <button type="button" class="trapbtn" data-t="1">Adjust it within the limits</button>
+          <button type="button" class="trapbtn" data-t="2">Write a new computation</button>
+        </div>
+        <div class="gestapeld" id="trappen"></div>
+      </div>
+      <p style="margin-top:20px">The hard part is that a builder must be able to develop without ever seeing the data. That takes three kinds of tooling: credible synthetic data per type of connection point, a local imitation that imposes the same limits on the builder's laptop as the real environment does, and a trial run on real points belonging to holders who explicitly volunteer for it, where only summarised diagnostics leave and never an answer value.</p>
+    </div>
+  </details>
+
+  <details class="diep">
+    <summary>The question ceiling</summary>
+    <div class="diepbody">
+      <p>One answer is bounded. But anyone allowed to put a hundred slightly different questions rebuilds the underlying file out of the answers. That is the principal line of attack on the whole mechanism, and care on our part is no defence against it once other people write the computations.</p>
+      <p>So there is a ceiling per holder, per recipient and per time window, on the number of answers and on what they give away together. That ceiling depletes, the holder can see it deplete, and it refills only on the holder's terms. At admission it is also established how much an answer gives away about the input, and that figure determines what one answer costs out of the ceiling.</p>
+      <div class="ctl">
+        <label class="ctl-lab" for="budget-slider">How many questions may this recipient put</label>
+        <input type="range" id="budget-slider" min="0" max="4" step="1" value="1" aria-describedby="budget-uitleg">
+        <div class="ticks"><span>1</span><span>10</span><span>50</span><span>200</span><span>1,000</span></div>
+        <svg class="scene" viewBox="0 0 320 90" role="img" aria-labelledby="budget-titel" style="margin-top:10px">
+          <title id="budget-titel">How much can be derived in total from a series of answers</title>
+          <g id="budget-vak"></g>
+        </svg>
+        <p class="readout" id="budget-uitleg"></p>
+      </div>
+      <p style="margin-top:20px">There is a second reason as well, and it is commercial. As long as consent is a yes or a no, it cannot be priced. A ceiling that depletes is a quantity, and a quantity can be negotiated over.</p>
+      <p>That ceiling is a design choice when opening the network. What has been set down first is the envelope and the check on it.</p>
+    </div>
+  </details>
+
+  <details class="diep">
+    <summary>The open points</summary>
+    <div class="diepbody">
+      <p><strong>The run-up.</strong> A network is worth little until enough points are in place, and every existing supplier today sells an imperfect but complete answer. Whether we get through that run-up is not proven.</p>
+      <p><strong>The evidential weight.</strong> No regulator has pronounced on the value of such a signed envelope. As supporting evidence alongside a file the threshold is low, and low is not zero.</p>
+      <p><strong>The double role.</strong> We are at once a market participant and the keeper of the standard. That is a real tension, and the only remedy that has ever worked in Europe is to hand the standard to a body we do not control. That is the reason for the foundation, and it is an intention rather than an accomplished fact.</p>
+      <p><strong>The founding assumption.</strong> A network on which nobody else builds is not a utility but a product. That assumption has not been tested.</p>
+    </div>
+  </details>
+</section>
+
+<div class="slot">
+  <h2>The name and the patent application</h2>
+  <p>Freehold is the name of what we build. A freehold is land held in full ownership, as against feudal tenure, where you hold land from a lord to whom you owe service and dues. Every data platform today works in that second way: you get access to a service and you pay for it in the one currency you do not get back. Freehold is the other arrangement. Someone who owns their land sells the harvest at market. They do not sell the land, and they do not let the market come and dig it up.</p>
+  <p>The working described on this page is the subject of a European patent application under the title <em>Improved authentication for processing requests</em>, number 26202295.7, filed on 1 September 2026. Freehold Works is the company that builds the network. Alongside it stands a foundation that oversees the correct and ethical use of it.</p>
+  <p style="margin-top:18px">Questions, or a conversation: <a href="mailto:hello@freehold.works">hello@freehold.works</a></p>
+  <div class="base">Insights, never data</div>
+</div>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>This page shows the mechanism and not the figures behind it. It carries no amounts, because those would rest on estimates rather than on concluded business. The positions of all the sliders are choices and not forecasts, and the bars show proportions on a scale of their own.</p>
+    <p>The figures on electrification are historical data on the United States and Great Britain, and they are here as a warning about the pace of such transitions.</p>
+    <p>Freehold Works &middot; <a href="https://freehold.works/">freehold.works</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function el(n,a){var e=document.createElementNS(NS,n);for(var k in a){if(a.hasOwnProperty(k))e.setAttribute(k,a[k]);}return e;}
+function txt(x,y,s,o){var t=el("text",{x:x,y:y,"font-family":"Inter Tight,sans-serif","font-size":(o&&o.size)||11,fill:(o&&o.fill)||"#2A3138"});
+  if(o&&o.anchor)t.setAttribute("text-anchor",o.anchor); if(o&&o.weight)t.setAttribute("font-weight",o.weight);
+  if(o&&o.serif)t.setAttribute("font-family","Source Serif 4,serif"); if(o&&o.ls)t.setAttribute("letter-spacing",o.ls);
+  t.textContent=s;return t;}
+function clear(g){while(g&&g.firstChild)g.removeChild(g.firstChild);}
+function pick(list,btn,fn){list.forEach(function(b){b.addEventListener("click",function(){
+  list.forEach(function(o){o.classList.remove("on");o.setAttribute("aria-pressed","false");});
+  b.classList.add("on");b.setAttribute("aria-pressed","true");fn(b);});});}
+
+/* ---------- 1a, kilowatt hour ---------- */
+var kwhG=document.getElementById("kwh-vak"),kwhT=document.getElementById("kwh-tekst"),kwhOver=10;
+function kwhTeken(){clear(kwhG);
+  for(var i=0;i<10;i++){var op=i<kwhOver?1:0.13;
+    kwhG.appendChild(el("rect",{x:6+i*31,y:34,width:23,height:62,rx:4,fill:i<kwhOver?"#2FA891":"#4A5259",opacity:op}));}
+  kwhT.textContent=kwhOver===0?"Gone. Anyone wanting power now has to pay for it.":kwhOver+" of the 10 units still available";}
+document.getElementById("kwh-btn").addEventListener("click",function(){if(kwhOver>0)kwhOver--;kwhTeken();});
+document.getElementById("kwh-reset").addEventListener("click",function(){kwhOver=10;kwhTeken();});
+kwhTeken();
+
+/* ---------- 1b, copy ---------- */
+var kopG=document.getElementById("kopie-vak"),kopT=document.getElementById("kopie-tekst"),
+    kopN=document.getElementById("kopie-n"),kopP=document.getElementById("kopie-prijs"),kopAantal=1;
+var prijzen=[100,52,27,14,7,4,2,1,0,0,0,0,0,0,0,0];
+function kopTeken(){clear(kopG);
+  var toon=Math.min(kopAantal,16),kol=8;
+  for(var i=0;i<toon;i++){var r=Math.floor(i/kol),c=i%kol;
+    kopG.appendChild(el("rect",{x:6+c*39,y:26+r*46,width:31,height:38,rx:4,
+      fill:i===0?"#14796A":"#C7BFB1",opacity:i===0?1:Math.max(.28,1-i*0.07)}));}
+  var p=prijzen[Math.min(kopAantal-1,prijzen.length-1)];
+  kopN.textContent=kopAantal>16?kopAantal:toon;
+  kopP.textContent=p; kopP.className=p===0?"nul":"geld";
+  kopT.textContent=kopAantal===1?"One file, with you":
+    (p===0?"The same file everywhere. There is nothing left to ask for it.":kopAantal+" identical copies, at as many parties");}
+document.getElementById("kopie-btn").addEventListener("click",function(){if(kopAantal<24)kopAantal++;kopTeken();});
+document.getElementById("kopie-reset").addEventListener("click",function(){kopAantal=1;kopTeken();});
+kopTeken();
+
+/* ---------- 2, file and answer ---------- */
+var dosG=document.getElementById("dossier-regels");
+var dossiers=[
+ ["date of birth","diagnosis 2019","medication A","medication B","last consult","blood pressure","allergy","GP","hospital stay","rehabilitation","fitness to drive","eye test","reaction time","file number"],
+ ["purchase 12 Mar","purchase 4 Apr","return 9 Apr","size","colour preference","average spend","frequency","channel","newsletter","address","payment method","complaints","age","household size"],
+ ["revenue Q1","revenue Q2","outstanding","payment term","reminders","bank relation","headcount","stock","suppliers","credit line","balance sheet","equity","sector","incorporation"],
+ ["running hours","temperature","vibration","last service","part A","part B","power draw","fault codes","serial number","year built","location","operator","cycle time","stoppages"]];
+var vragen=[
+ {v:"May this person drive right now?",a:"Yes",vorm:"Form: yes or no",duur:"Valid: a few minutes",
+  u:"The doctor or the authority that knows computes the answer on the file that stays with them. Whoever receives the answer sees one word and has seen no diagnosis at all. Nor can the file be reconstructed from that one word."},
+ {v:"Does this product suit this customer?",a:"Suits",vorm:"Form: suits, does not, unsure",duur:"Valid: this visit",
+  u:"The shop is told whether the product suits, and never what you bought before. You get an offer that fits, the shop sells more, and neither of them does it out of kindness. That is exactly why it keeps working."},
+ {v:"Is this supplier creditworthy?",a:"Band 2",vorm:"Form: a band, not a figure",duur:"Valid: fourteen days",
+  u:"The answer is a band and not a figure, because a figure gives away more than the question needs. The figures themselves stay with the supplier and with their bank, and the requester knows enough to decide."},
+ {v:"Does this machine need servicing now?",a:"Within 8 days",vorm:"Form: a term",duur:"Valid: until the next reading",
+  u:"The manufacturer does not need the measurement series from your production line to know that servicing is due. Note the validity period here, because it is not chosen but computed: the sensors refresh on a fixed rhythm, and the answer stays usable until the next reading. You get a warning about your own machine, and that is a return which cannot be resold."}];
+function dosTeken(i){clear(dosG);
+  dossiers[i].forEach(function(r,n){var kol=n%2,rij=Math.floor(n/2);
+    dosG.appendChild(el("rect",{x:16+kol*136,y:22+rij*22,width:128,height:16,rx:3,fill:"#C7BFB1",opacity:.42}));
+    dosG.appendChild(txt(22+kol*136,34+rij*22,r,{size:9.5,fill:"#2A3138"}));});}
+function vraagToon(i){var q=vragen[i];dosTeken(i);
+  document.getElementById("antw-vraag").textContent=q.v;
+  document.getElementById("antw-waarde").textContent=q.a;
+  document.getElementById("antw-vorm").textContent=q.vorm;
+  document.getElementById("antw-duur").textContent=q.duur;
+  var lang=q.a.length,grootte=lang>9?15:20,w=Math.min(264,Math.max(96,lang*(grootte*0.58)+32));
+  document.getElementById("antw-vak").setAttribute("width",w);
+  var waarde=document.getElementById("antw-waarde");
+  waarde.setAttribute("x",18+w/2); waarde.setAttribute("font-size",grootte);
+  document.getElementById("vraag-uitleg").textContent=q.u;}
+pick([].slice.call(document.querySelectorAll(".vraag")),null,function(b){vraagToon(+b.dataset.v);});
+vraagToon(0);
+
+/* ---------- 3, the two loops ---------- */
+var lusG=document.getElementById("lus-vak"),lusModus=0,lusStand=2;
+var lusTeksten=[
+ "At this setting you admit no question at all. Nothing leaves, and you get nothing back. That is a valid setting and it stays available always.",
+ "You admit only questions you benefit from yourself, for instance a warning about your own installation. Little leaves, and what comes back is protection rather than money.",
+ "You admit questions that bring you a better offer or a better condition, and you ask a payment alongside. This is the ordinary setting.",
+ "You admit any question with something in return. More answers leave, and more comes back. Your data still does not leave, at any setting."];
+function lusTeken(){clear(lusG);
+  lusG.appendChild(el("path",{d:"M18 96 L52 70 L86 96 L86 148 L18 148 Z",fill:"#F5F3EE",stroke:"#D9D4CA"}));
+  lusG.appendChild(txt(52,164,"you",{anchor:"middle",size:11,fill:"#7E8890"}));
+  if(lusModus===0){
+    lusG.appendChild(el("rect",{x:190,y:56,width:56,height:44,rx:5,fill:"#C7BFB1",opacity:.5,stroke:"#D9D4CA"}));
+    lusG.appendChild(txt(218,82,"party",{anchor:"middle",size:10.5,fill:"#2A3138"}));
+    [ [268,26],[268,74],[268,122] ].forEach(function(p){
+      lusG.appendChild(el("rect",{x:p[0],y:p[1],width:40,height:30,rx:4,fill:"#C7BFB1",opacity:.34,stroke:"#D9D4CA"}));
+      lusG.appendChild(txt(p[0]+20,p[1]+19,"?",{anchor:"middle",size:12,fill:"#7E8890"}));});
+    lusG.appendChild(el("path",{d:"M90 110 L186 82",stroke:"#E0623A","stroke-width":2.2,fill:"none","marker-end":"url(#p-rood)"}));
+    lusG.appendChild(txt(138,126,"your data",{anchor:"middle",size:10.5,fill:"#E0623A"}));
+    [41,89,137].forEach(function(y){
+      lusG.appendChild(el("path",{d:"M248 78 L264 "+(y+15),stroke:"#E0623A","stroke-width":1.2,fill:"none",opacity:.55}));});
+    for(var k=0;k<4;k++){var d=el("circle",{cx:0,cy:0,r:3.4,fill:"#E0623A"});
+      d.appendChild(el("animateMotion",{dur:"2.6s",repeatCount:"indefinite",begin:(k*0.65)+"s",path:"M90 110 L186 82"}));
+      lusG.appendChild(d);}
+  }else{
+    lusG.appendChild(el("path",{d:"M126 12 L126 176",stroke:"#14796A","stroke-width":2.4,"stroke-dasharray":"5 5",fill:"none",opacity:.75}));
+    lusG.appendChild(txt(126,190,"the connection point",{anchor:"middle",size:10,fill:"#0C5347"}));
+    lusG.appendChild(el("rect",{x:96,y:96,width:26,height:34,rx:4,fill:"#14796A"}));
+    lusG.appendChild(txt(109,120,"H",{anchor:"middle",size:13,fill:"#F5F3EE",weight:"600"}));
+    lusG.appendChild(txt(109,146,"Hub",{anchor:"middle",size:9.5,fill:"#0C5347"}));
+    lusG.appendChild(el("rect",{x:236,y:74,width:64,height:46,rx:5,fill:"#FFFFFF",stroke:"#D9D4CA"}));
+    lusG.appendChild(txt(268,102,"the requester",{anchor:"middle",size:10.5,fill:"#2A3138"}));
+    lusG.appendChild(el("path",{d:"M232 84 L132 100",stroke:"#2A3138","stroke-width":1.6,fill:"none","marker-end":"url(#p-donker)"}));
+    lusG.appendChild(txt(182,76,"the question",{anchor:"middle",size:10.5,fill:"#2A3138"}));
+    var actief=lusStand>0;
+    lusG.appendChild(el("path",{d:"M132 116 L232 108",stroke:actief?"#14796A":"#C7BFB1","stroke-width":2.2,fill:"none","marker-end":actief?"url(#p-groen)":"url(#p-klei)"}));
+    lusG.appendChild(txt(182,134,actief?"the answer":"nothing",{anchor:"middle",size:10.5,fill:actief?"#0C5347":"#7E8890"}));
+    lusG.appendChild(el("path",{d:"M52 90 C30 100 30 124 52 134 C74 124 74 100 52 90 Z",fill:"none",stroke:"#14796A","stroke-width":1.3,opacity:.55}));
+    lusG.appendChild(txt(52,178,"your data stays inside",{anchor:"middle",size:9.5,fill:"#0C5347"}));
+    var n=Math.max(1,lusStand);
+    for(var j=0;j<n;j++){var d2=el("circle",{cx:0,cy:0,r:3.4,fill:"#14796A"});
+      d2.appendChild(el("animateMotion",{dur:"2.4s",repeatCount:"indefinite",begin:(j*0.7)+"s",path:"M132 116 L232 108"}));
+      lusG.appendChild(d2);}
+  }
+  var defs=el("defs",{});
+  [["p-rood","#E0623A"],["p-groen","#14796A"],["p-donker","#2A3138"],["p-klei","#C7BFB1"]].forEach(function(m){
+    var mk=el("marker",{id:m[0],markerWidth:7,markerHeight:7,refX:6,refY:3.5,orient:"auto"});
+    mk.appendChild(el("path",{d:"M0,0 L7,3.5 L0,7 Z",fill:m[1]}));defs.appendChild(mk);});
+  lusG.appendChild(defs);
+  document.getElementById("lus-titel").textContent=lusModus===0?"Today, the travelling data":"With Freehold, the travelling question";
+  document.getElementById("lus-note").textContent=lusModus===0
+    ?"Your data goes to one party, and that party can pass it on to parties you have never seen. After that you have no sight of it and no say in what still happens to it."
+    :"The data moves to the Hub and goes no further, that is the closed loop left of the line. The computation comes from outside, runs on the spot and leaves with an answer. So what leaves the network is never the data and always the answer about it.";
+  document.getElementById("lus-uitleg").textContent=lusTeksten[lusStand];}
+document.getElementById("lus-vandaag").addEventListener("click",function(){
+  lusModus=0;this.classList.add("on");this.setAttribute("aria-pressed","true");
+  var o=document.getElementById("lus-freehold");o.classList.remove("on");o.setAttribute("aria-pressed","false");lusTeken();});
+document.getElementById("lus-freehold").addEventListener("click",function(){
+  lusModus=1;this.classList.add("on");this.setAttribute("aria-pressed","true");
+  var o=document.getElementById("lus-vandaag");o.classList.remove("on");o.setAttribute("aria-pressed","false");lusTeken();});
+document.getElementById("lus-slider").addEventListener("input",function(){
+  lusStand=+this.value; if(lusModus===0){document.getElementById("lus-freehold").click();} else lusTeken();});
+lusTeken();
+
+/* ---------- 4a, the envelope ---------- */
+var envG=document.getElementById("env-vak"),envKeuze=0;
+var envDelen=[
+ {t:"The provenance",y:44,d:"Where the answer comes from and who stands behind it, like the stamp of a municipality under a certificate. As little of it as possible travels along, precisely enough to make it trustworthy."},
+ {t:"The answer itself",y:78,d:"The outcome of that one question. It is produced by a computation that has been tested beforehand and appears on the list of validated algorithms, so it is not a free answer to a freely put question."},
+ {t:"The permitted use",y:112,d:"What the answer may be used for and under which conditions. This does not sit beside the answer, it is attached to it, and that is the difference from a promise."},
+ {t:"The recipient",y:146,d:"The envelope is addressed to one recipient, and it can be encrypted so that only that recipient can read the contents. The signature stays verifiable by anyone, so authenticity can be checked without the contents being given away."},
+ {t:"The validity period",y:180,d:"How long the answer stays usable. This is the part that is always there. The duration follows from the kind of data and not from whoever composes the answer, so there is no fixed upper bound for everything. For a reading that refreshes every quarter of an hour, it runs until the next reading. This duration is also what stops onward passing, because an expired envelope is of no use to anyone."}];
+function envTeken(){clear(envG);
+  envG.appendChild(el("rect",{x:8,y:20,width:250,height:190,rx:8,fill:"#FFFFFF",stroke:"#14796A","stroke-width":1.6}));
+  envDelen.forEach(function(p,i){var aan=i===envKeuze;
+    envG.appendChild(el("rect",{x:22,y:p.y-16,width:222,height:26,rx:5,fill:aan?"#14796A":"#F5F3EE",stroke:aan?"#14796A":"#D9D4CA"}));
+    envG.appendChild(txt(34,p.y+2,(i+1)+". "+p.t,{size:12,fill:aan?"#F5F3EE":"#2A3138",weight:aan?"600":"400"}));});
+  envG.appendChild(el("path",{d:"M266 20 L266 210",stroke:"#C08A3E","stroke-width":2.4,fill:"none"}));
+  envG.appendChild(txt(278,108,"one signature",{size:11,fill:"#C08A3E",weight:"600"}));
+  envG.appendChild(txt(278,124,"over all five together,",{size:11,fill:"#C08A3E"}));
+  envG.appendChild(txt(278,140,"so no single part",{size:11,fill:"#C08A3E"}));
+  envG.appendChild(txt(278,156,"can be detached",{size:11,fill:"#C08A3E"}));
+  document.getElementById("env-uitleg").textContent=envDelen[envKeuze].d;}
+pick([].slice.call(document.querySelectorAll(".env")),null,function(b){envKeuze=+b.dataset.e;envTeken();});
+envTeken();
+
+/* ---------- 4b, the check ---------- */
+var ctrlG=document.getElementById("ctrl-vak"),tijd=0;
+var tijdTeksten=[
+ "The signature checks out and the envelope is still valid. The answer is used for the purpose recorded in it, and for nothing else.",
+ "Still valid. The recipient has at no point seen the contents of your file.",
+ "Nearly expired. Anyone needing it longer simply has a new envelope drawn up, with the then current state built into it.",
+ "Expired. The receiving system aborts before it does anything, so the action is not half performed and then undone, it does not begin.",
+ "Expired, and a second attempt does not begin either. That the envelope was valid at a given moment remains true and remains demonstrable."];
+function ctrlTeken(){clear(ctrlG);
+  var geldig=tijd<3;
+  ctrlG.appendChild(el("rect",{x:14,y:18,width:130,height:74,rx:7,fill:"#FFFFFF",stroke:"#D9D4CA"}));
+  ctrlG.appendChild(txt(79,44,"the envelope",{anchor:"middle",size:11,fill:"#2A3138"}));
+  ctrlG.appendChild(txt(79,64,"arrives",{anchor:"middle",size:11,fill:"#7E8890"}));
+  ctrlG.appendChild(el("path",{d:"M148 55 L184 55",stroke:"#2A3138","stroke-width":1.6,fill:"none","marker-end":"url(#p-donker2)"}));
+  ctrlG.appendChild(el("rect",{x:190,y:14,width:114,height:82,rx:7,fill:"#F5F3EE",stroke:"#D9D4CA"}));
+  ctrlG.appendChild(txt(247,42,"the check",{anchor:"middle",size:11,fill:"#2A3138",weight:"600"}));
+  ctrlG.appendChild(txt(247,60,"signature",{anchor:"middle",size:10,fill:"#7E8890"}));
+  ctrlG.appendChild(txt(247,76,"purpose and term",{anchor:"middle",size:10,fill:"#7E8890"}));
+  ctrlG.appendChild(el("rect",{x:14,y:124,width:290,height:66,rx:7,fill:geldig?"rgba(20,121,106,.1)":"rgba(224,98,58,.1)",stroke:geldig?"#14796A":"#E0623A","stroke-width":1.6}));
+  ctrlG.appendChild(txt(159,154,geldig?"Accepted":"Refused",{anchor:"middle",size:21,fill:geldig?"#0C5347":"#E0623A",weight:"600",serif:true}));
+  ctrlG.appendChild(txt(159,176,geldig?"used for the purpose recorded in it":"aborted before it begins",{anchor:"middle",size:11,fill:"#2A3138"}));
+  var defs=el("defs",{});
+  var mk=el("marker",{id:"p-donker2",markerWidth:7,markerHeight:7,refX:6,refY:3.5,orient:"auto"});
+  mk.appendChild(el("path",{d:"M0,0 L7,3.5 L0,7 Z",fill:"#2A3138"}));defs.appendChild(mk);ctrlG.appendChild(defs);
+  document.getElementById("tijd-uitleg").textContent=tijdTeksten[tijd];}
+document.getElementById("tijd-slider").addEventListener("input",function(){tijd=+this.value;ctrlTeken();});
+ctrlTeken();
+
+/* ---------- 5a, appliances ---------- */
+var toG=document.getElementById("toestellen");
+["lamp","fridge","drill","charger","washer","oven"].forEach(function(naam,i){
+  var kol=i%3,rij=Math.floor(i/3),x=42+kol*84,y=110+rij*38;
+  toG.appendChild(el("rect",{x:x,y:y,width:66,height:26,rx:5,fill:"#2A3138",stroke:"#4A5259"}));
+  toG.appendChild(txt(x+33,y+17,naam,{anchor:"middle",size:10,fill:"#A9B0B6"}));
+  toG.appendChild(el("path",{d:"M160 72 L"+(x+33)+" "+y,stroke:"#2FA891","stroke-width":.9,fill:"none",opacity:.35}));});
+
+/* ---------- 5b, the network ---------- */
+var netG=document.getElementById("net-vak"),netStand=2;
+var netData=[
+ {n:"the first connection points",p:6,u:"There is no network yet. What already has value at this stage is the signed envelope itself, because it works at the very first exchange between two parties."},
+ {n:"a thousand connection points",p:14,u:"One sector, one chain, one group that already knew each other. There is now enough traffic to learn what is actually being asked, and what an answer turns out to be worth."},
+ {n:"a hundred thousand connection points",p:34,u:"Traffic across the network takes over from the single envelope, and that traffic is the kilowatt hour of this utility. From here it becomes worthwhile for others to build applications on it."},
+ {n:"a million connection points",p:64,u:"Markets arise on top of the network that could not exist without that layer. We did not think them up and we do not build them, just as the grid operator never made a washing machine."},
+ {n:"five million connection points",p:104,u:"At this scale it is no longer a product but a utility. That brings the obligation which goes with it: published conditions, an appeal route, and a tariff that lets social traffic run at cost."}];
+function netTeken(){clear(netG);
+  var d=netData[netStand],cols=13,rows=8,toon=Math.min(d.p,cols*rows);
+  for(var i=0;i<cols*rows;i++){var c=i%cols,r=Math.floor(i/cols),x=18+c*23,y=22+r*20,aan=i<toon;
+    netG.appendChild(el("circle",{cx:x,cy:y,r:aan?4.2:2.4,fill:aan?"#14796A":"#C7BFB1",opacity:aan?1:.42}));
+    if(aan&&i>0&&c>0)netG.appendChild(el("line",{x1:x-23,y1:y,x2:x,y2:y,stroke:"#2FA891","stroke-width":.7,opacity:.42}));
+    if(aan&&i>=cols)netG.appendChild(el("line",{x1:x,y1:y-20,x2:x,y2:y,stroke:"#2FA891","stroke-width":.7,opacity:.3}));}
+  netG.appendChild(txt(18,192,d.n,{size:11.5,fill:"#0C5347",weight:"600"}));
+  document.getElementById("net-uitleg").textContent=d.u;}
+document.getElementById("net-slider").addEventListener("input",function(){netStand=+this.value;netTeken();});
+netTeken();
+
+/* ---------- deeper, the steps ---------- */
+var trapG=document.getElementById("trappen");
+var trapData=[
+ {n:"STEP ONE",t:"Register and start",d:"Using an existing, already admitted computation on your own counterparties, with your own threshold and your own time window. This is the plug in the socket, and it needs no certification."},
+ {n:"STEP TWO",t:"A light assessment",d:"Adjusting the computation within the limits set at the original admission. The form of the answer does not change, so the assessment stays light."},
+ {n:"STEP THREE",t:"Full admission",d:"Writing a new computation. It is tested in an environment that has no access whatever to real data and that runs on synthetic data, and only then admitted. This is putting the appliance on the market."}];
+function trapTeken(k){clear(trapG);
+  trapData.forEach(function(t,i){
+    var div=document.createElement("div");div.className="trap"+(i<=k?" aan":"");
+    var n=document.createElement("div");n.className="n";n.textContent=t.n;
+    var b=document.createElement("div");
+    var h=document.createElement("p");h.className="t";h.textContent=t.t;
+    var p=document.createElement("p");p.className="d";p.textContent=t.d;
+    b.appendChild(h);b.appendChild(p);div.appendChild(n);div.appendChild(b);trapG.appendChild(div);});}
+pick([].slice.call(document.querySelectorAll(".trapbtn")),null,function(b){trapTeken(+b.dataset.t);});
+trapTeken(0);
+
+/* ---------- deeper, the question ceiling ---------- */
+var budG=document.getElementById("budget-vak"),budStand=1;
+var budData=[
+ {v:"1 question",lek:6,u:"One answer gives away little. This is the ordinary situation and there is no problem at all."},
+ {v:"10 questions",lek:22,u:"Ten slightly different questions together already give away more than one of them does. The ceiling starts to count, and the holder can see it."},
+ {v:"50 questions",lek:52,u:"Here it becomes visible. From fifty answers a considerable part of the underlying file can be derived, even though each answer is innocuous on its own."},
+ {v:"200 questions",lek:82,u:"Without a ceiling this is the line of attack. The file is rebuilt out of the answers, without a single item of data ever having been sent."},
+ {v:"1,000 questions",lek:97,u:"At this point the difference between an answer and the file itself has gone. That is why the ceiling exists, and why the network should not be opened without one."}];
+function budTeken(){clear(budG);
+  var d=budData[budStand];
+  budG.appendChild(el("rect",{x:8,y:24,width:304,height:26,rx:5,fill:"#F5F3EE",stroke:"#D9D4CA"}));
+  budG.appendChild(el("rect",{x:8,y:24,width:Math.max(4,304*d.lek/100),height:26,rx:5,
+    fill:d.lek>70?"#E0623A":(d.lek>40?"#C08A3E":"#14796A")}));
+  budG.appendChild(txt(8,18,d.v,{size:11,fill:"#2A3138",weight:"600"}));
+  budG.appendChild(txt(312,18,"what can be derived in total",{size:10.5,fill:"#7E8890",anchor:"end"}));
+  budG.appendChild(txt(8,70,d.lek<40?"within the ceiling":(d.lek<70?"the ceiling is running out":"the ceiling is spent, no further answer follows"),
+    {size:11,fill:d.lek>70?"#E0623A":"#2A3138"}));
+  document.getElementById("budget-uitleg").textContent=d.u;}
+document.getElementById("budget-slider").addEventListener("input",function(){budStand=+this.value;budTeken();});
+budTeken();
+
+/* ---------- navigation, which section is in view ---------- */
+var links=[].slice.call(document.querySelectorAll("nav.rail a"));
+var secties=links.map(function(a){return document.querySelector(a.getAttribute("href"));}).filter(Boolean);
+if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(!e.isIntersecting)return;
+      links.forEach(function(a){a.setAttribute("aria-current",a.getAttribute("href")==="#"+e.target.id?"true":"false");});});
+  },{rootMargin:"-45% 0px -50% 0px"});
+  secties.forEach(function(s){io.observe(s);});
+}
+})();
+</script>
+</body>
+</html>
