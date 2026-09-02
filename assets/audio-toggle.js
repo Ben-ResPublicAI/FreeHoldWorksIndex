@@ -38,7 +38,8 @@
   function state(on) {
     btn.setAttribute('aria-pressed', on ? 'true' : 'false');
     btn.classList.toggle('is-playing', on);
-    if (label) label.textContent = on ? 'Stop' : 'Listen';
+    if (label) label.textContent = on ? (btn.dataset.labelOn || 'Stop')
+                                      : (btn.dataset.labelOff || 'Listen');
   }
 
   btn.addEventListener('click', function () {
