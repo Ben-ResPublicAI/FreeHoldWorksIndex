@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Freehold</title>
-<meta name="description" content="Freehold builds the layer on which organisations reach a shared answer on data they will never hand each other. The data stays where it is, and only the insight leaves.">
+<meta name="description" content="Your data stays where it is. The question comes to it, and only the answer leaves, with a label saying where it came from and what it may be used for.">
 
 <link rel="canonical" href="https://freehold.works/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Freehold">
-<meta property="og:description" content="The data stays where it is, and only the insight leaves. The person behind the insight holds what is theirs.">
+<meta property="og:description" content="Your data stays where it is. The question comes to it, and only the answer leaves. You trade the harvest, not the field.">
 <meta property="og:url" content="https://freehold.works/">
 <meta property="og:image" content="https://freehold.works/freehold-share.png">
 <meta property="og:image:width" content="1200">
@@ -302,56 +302,6 @@
   }
   footer .entity{font-weight:500}
 
-  /* The sound control. Opt in, quiet, and the last thing on the page rather
-     than the first. The three bars are the three signal strokes of the mark,
-     at the proportions the lock-up gives them, so the control belongs to the
-     identity instead of being a borrowed media icon. It is written into the
-     page by script, so a browser that cannot play the file never sees it. */
-  .sound{margin-left:auto}
-  .sound-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:9px;
-    font:inherit;
-    font-size:13px;
-    line-height:1.7;
-    color:var(--basalt-light);
-    background:none;
-    border:0;
-    padding:0;
-    cursor:pointer;
-    transition:color .18s ease;
-  }
-  .sound-btn[hidden]{display:none}
-  .sound-btn:hover{color:var(--verdigris-deep)}
-  .sound-btn:focus-visible{
-    outline:2px solid var(--verdigris);
-    outline-offset:3px;
-    border-radius:2px;
-  }
-  .sound-btn .bars{
-    display:inline-flex;
-    align-items:center;
-    gap:2px;
-    height:12px;
-  }
-  .sound-btn .bars i{
-    display:block;
-    width:2px;
-    background:var(--verdigris);
-    border-radius:1px;
-    opacity:.48;
-    transition:opacity .18s ease,height .18s ease;
-  }
-  .sound-btn .bars i:nth-child(1){height:5px}
-  .sound-btn .bars i:nth-child(2){height:10px}
-  .sound-btn .bars i:nth-child(3){height:4px}
-  .sound-btn:hover .bars i{opacity:.72}
-  .sound-btn.is-playing .bars i{opacity:1;animation:sig 1.15s ease-in-out infinite}
-  .sound-btn.is-playing .bars i:nth-child(2){animation-delay:.19s}
-  .sound-btn.is-playing .bars i:nth-child(3){animation-delay:.38s}
-  @keyframes sig{0%,100%{height:4px}50%{height:12px}}
-
   a{
     color:var(--verdigris);
     text-decoration:none;
@@ -381,7 +331,6 @@
     .backdrop svg{width:min(60%,240px);right:-13%;bottom:2%}
     .pull{max-width:none}
     /* On one column the control sits under the address rather than beside it. */
-    .sound{margin-left:0}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -391,15 +340,11 @@
     .backdrop .nz{animation:none;opacity:var(--o)}
     .backdrop .sg{animation:none;opacity:1}
     a{transition:none}
-    /* The bars stop moving. The control still says what it is doing, in words. */
-    .sound-btn.is-playing .bars i{animation:none;opacity:1}
-    .sound-btn,.sound-btn .bars i{transition:none}
   }
 
   @media print{
     .backdrop{display:none}
     body{background:#fff}
-    .sound{display:none}
   }
 </style>
 </head>
@@ -468,11 +413,11 @@
     <div class="cols">
 
       <main class="prose">
-        <p class="lead">Land in Europe was held one of two ways for a thousand years. Under feudal tenure you worked the ground but never held it, and you paid for the right to stay. Under freehold you held it outright, and owed no one.</p>
+        <p class="lead">Today your data has to travel to whoever wants to use it. Once it leaves, you have no say in where it goes next.</p>
 
-        <p>Every online platform runs on the first arrangement. You get access, and pay with what you are.</p>
+        <p>Freehold turns that around. Your data stays where it is. The question comes to it, the calculation happens there, and only the answer leaves, carrying a label that says where it came from and what it may be used for.</p>
 
-        <p>Freehold builds the other one. Organisations reach a shared answer on data they will never hand each other, and they pay for that answer. The algorithms travel to the data, the data stays where it is, and only the insight leaves, with its provenance attached. The person behind the insight holds what is theirs, and owes nothing for the right to take part.</p>
+        <p>That is what the name means. A freehold is land you hold outright, owing nothing to anyone. You sell what it produces. The ground stays yours.</p>
 
         <p class="harvest">You trade the harvest, not the field.</p>
 
@@ -496,27 +441,11 @@
 
     <footer>
       <span><a href="mailto:hello@freehold.works">hello@freehold.works</a></span>
-
-      <span class="sound">
-        <button type="button" id="sound-toggle" class="sound-btn" aria-pressed="false" hidden>
-          <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span class="sound-label">Listen</span>
-        </button>
-        <!-- Eighty seconds, looping. Written for this page, so nothing is
-             licensed from anyone and nothing is fetched from anywhere. -->
-        <audio id="sound-bed" loop preload="none">
-          <source src="assets/audio/freehold-bed.ogg" type="audio/ogg; codecs=opus">
-          <source src="assets/audio/freehold-bed.mp3" type="audio/mpeg">
-        </audio>
-      </span>
     </footer>
 
   </div>
 </div>
 
-<!-- External rather than inline, so a strict Content Security Policy needs
-     only script-src 'self' and never 'unsafe-inline'. See DEPLOY.md. -->
-<script src="assets/audio-toggle.js" defer></script>
 
 </body>
 </html>

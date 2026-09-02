@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Freehold</title>
-<meta name="description" content="Freehold bouwt de laag waarop organisaties tot een gezamenlijk antwoord komen over gegevens die zij elkaar nooit zullen geven. De gegevens blijven staan waar ze staan, en enkel het inzicht vertrekt.">
+<meta name="description" content="Uw gegevens blijven staan waar ze staan. De vraag komt ernaartoe, en enkel het antwoord vertrekt, met een label dat zegt waar het vandaan komt en waarvoor het gebruikt mag worden.">
 
 <link rel="canonical" href="https://freehold.works/nl.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Freehold">
-<meta property="og:description" content="De gegevens blijven staan waar ze staan, en enkel het inzicht vertrekt. Wie achter dat inzicht zit, houdt wat van hem is.">
+<meta property="og:description" content="Uw gegevens blijven staan waar ze staan. De vraag komt ernaartoe, en enkel het antwoord vertrekt. U verkoopt de oogst, niet de grond.">
 <meta property="og:url" content="https://freehold.works/nl.html">
 <meta property="og:image" content="https://freehold.works/freehold-share.png">
 <meta property="og:image:width" content="1200">
@@ -302,56 +302,6 @@
   }
   footer .entity{font-weight:500}
 
-  /* The sound control. Opt in, quiet, and the last thing on the page rather
-     than the first. The three bars are the three signal strokes of the mark,
-     at the proportions the lock-up gives them, so the control belongs to the
-     identity instead of being a borrowed media icon. It is written into the
-     page by script, so a browser that cannot play the file never sees it. */
-  .sound{margin-left:auto}
-  .sound-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:9px;
-    font:inherit;
-    font-size:13px;
-    line-height:1.7;
-    color:var(--basalt-light);
-    background:none;
-    border:0;
-    padding:0;
-    cursor:pointer;
-    transition:color .18s ease;
-  }
-  .sound-btn[hidden]{display:none}
-  .sound-btn:hover{color:var(--verdigris-deep)}
-  .sound-btn:focus-visible{
-    outline:2px solid var(--verdigris);
-    outline-offset:3px;
-    border-radius:2px;
-  }
-  .sound-btn .bars{
-    display:inline-flex;
-    align-items:center;
-    gap:2px;
-    height:12px;
-  }
-  .sound-btn .bars i{
-    display:block;
-    width:2px;
-    background:var(--verdigris);
-    border-radius:1px;
-    opacity:.48;
-    transition:opacity .18s ease,height .18s ease;
-  }
-  .sound-btn .bars i:nth-child(1){height:5px}
-  .sound-btn .bars i:nth-child(2){height:10px}
-  .sound-btn .bars i:nth-child(3){height:4px}
-  .sound-btn:hover .bars i{opacity:.72}
-  .sound-btn.is-playing .bars i{opacity:1;animation:sig 1.15s ease-in-out infinite}
-  .sound-btn.is-playing .bars i:nth-child(2){animation-delay:.19s}
-  .sound-btn.is-playing .bars i:nth-child(3){animation-delay:.38s}
-  @keyframes sig{0%,100%{height:4px}50%{height:12px}}
-
   a{
     color:var(--verdigris);
     text-decoration:none;
@@ -381,7 +331,6 @@
     .backdrop svg{width:min(60%,240px);right:-13%;bottom:2%}
     .pull{max-width:none}
     /* On one column the control sits under the address rather than beside it. */
-    .sound{margin-left:0}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -391,15 +340,11 @@
     .backdrop .nz{animation:none;opacity:var(--o)}
     .backdrop .sg{animation:none;opacity:1}
     a{transition:none}
-    /* The bars stop moving. The control still says what it is doing, in words. */
-    .sound-btn.is-playing .bars i{animation:none;opacity:1}
-    .sound-btn,.sound-btn .bars i{transition:none}
   }
 
   @media print{
     .backdrop{display:none}
     body{background:#fff}
-    .sound{display:none}
   }
 </style>
 </head>
@@ -468,11 +413,11 @@
     <div class="cols">
 
       <main class="prose">
-        <p class="lead">Duizend jaar lang werd grond in Europa op twee manieren gehouden. In leen bewerkte u de grond zonder hem ooit te houden, en u betaalde voor het recht om te blijven. In volle eigendom hield u hem onvoorwaardelijk, en was u niemand iets verschuldigd.</p>
+        <p class="lead">Vandaag moeten uw gegevens naar wie er iets mee wil doen. Zodra ze vertrekken, hebt u geen zeggenschap meer over waar ze daarna belanden.</p>
 
-        <p>Elk online platform draait op de eerste regeling. U krijgt toegang, en u betaalt met wie u bent.</p>
+        <p>Freehold draait dat om. Uw gegevens blijven staan waar ze staan. De vraag komt ernaartoe, de berekening gebeurt daar, en enkel het antwoord vertrekt, met een label dat zegt waar het vandaan komt en waarvoor het gebruikt mag worden.</p>
 
-        <p>Freehold bouwt de andere. Organisaties komen tot een gezamenlijk antwoord over gegevens die zij elkaar nooit zullen geven, en zij betalen voor dat antwoord. De algoritmen reizen naar de gegevens, de gegevens blijven staan waar ze staan, en enkel het inzicht vertrekt, met zijn herkomst eraan vast. Wie achter dat inzicht zit, houdt wat van hem is, en is niets verschuldigd voor het recht om mee te doen.</p>
+        <p>Dat is wat de naam betekent. Een freehold is grond die u volledig houdt, aan niemand iets verschuldigd. U verkoopt wat ze opbrengt. De grond blijft van u.</p>
 
         <p class="harvest">U verkoopt de oogst, niet de grond.</p>
 
@@ -496,27 +441,11 @@
 
     <footer>
       <span><a href="mailto:hello@freehold.works">hello@freehold.works</a></span>
-
-      <span class="sound">
-        <button type="button" id="sound-toggle" class="sound-btn" aria-pressed="false" data-label-on="Stop" data-label-off="Luister" hidden>
-          <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span class="sound-label">Luister</span>
-        </button>
-        <!-- Eighty seconds, looping. Written for this page, so nothing is
-             licensed from anyone and nothing is fetched from anywhere. -->
-        <audio id="sound-bed" loop preload="none">
-          <source src="assets/audio/freehold-bed.ogg" type="audio/ogg; codecs=opus">
-          <source src="assets/audio/freehold-bed.mp3" type="audio/mpeg">
-        </audio>
-      </span>
     </footer>
 
   </div>
 </div>
 
-<!-- External rather than inline, so a strict Content Security Policy needs
-     only script-src 'self' and never 'unsafe-inline'. See DEPLOY.md. -->
-<script src="assets/audio-toggle.js" defer></script>
 
 </body>
 </html>
