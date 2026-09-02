@@ -2,11 +2,27 @@
 
 Primary domain: **freehold.works**. Every other domain redirects to it, 301, path preserved.
 
+## What serves this site today
+
+**GitHub Pages, from this repository, `Ben-ResPublicAI/FreeHoldWorksIndex`, branch `main` at `/`.** The `CNAME` file holds `freehold.works` and HTTPS is enforced. That is the live arrangement and has been since the site went up.
+
+**Routes A, B and C below were written before that choice and none of them is in use.** They are kept because they are worked out and would each still function, so they are the fallback if GitHub Pages ever stops being the right host. **Read them as alternatives, not as instructions.** Anyone following Route A today would configure a second copy of the site at a host that serves nobody.
+
+Two consequences of being on GitHub Pages rather than on one of those three. `_headers`, `_redirects` and `netlify.toml` are read by nobody here, and `.nojekyll` is required so that files and folders beginning with an underscore are published. Both are listed in the table below.
+
+Deploying is `git push origin main`. **Verify against the served bytes and never against the build status alone**, because a bare status query passes against the previous build. `00_System/scripts/freehold_site_check.py --verify` in Ben's vault does this properly, matching on the commit SHA first.
+
 ## Folder contents
 
 | File | Purpose | Read by |
 |---|---|---|
-| `index.html` | The page. Self contained apart from the fonts. | everything |
+| `index.html` | The English front page. Self contained apart from the fonts. | everything |
+| `nl.html` | The Dutch front page. Linked from `index.html` by an `NL` button, and back by `EN` | everything |
+| `for-the-press.html`, `voor-de-pers.html` | Press information, English and Dutch. Linked from both front pages | everything |
+| `how-it-works.html`, `hoe-het-werkt.html` | The long explanation, English and Dutch. **Live but unlinked and out of the sitemap**, by decision of 2 September 2026 | anyone with the URL |
+| `more.html` | The arrangement at greater length. **Live but unlinked and out of the sitemap**, and the one page with no Dutch counterpart | anyone with the URL |
+| `CNAME` | The custom domain, `freehold.works` | GitHub Pages |
+| `.nojekyll` | Stops Jekyll processing, so underscore paths publish | GitHub Pages |
 | `fonts/` | Five woff2 files, Inter Tight 400, 500, 700 and Source Serif 4 400, 600 | `index.html` |
 | `freehold-share.png` | Link preview image, 1200 by 630 | social platforms |
 | `assets/audio-toggle.js` | The sound control, the only script on the page | `index.html` |
@@ -102,6 +118,6 @@ Where the host is one of the forty odd services Hover knows, its **Connect** fea
 ## Before it goes live
 
 - [ ] `hello@freehold.works` exists and is monitored.
-- [ ] Trademark clearance for Freehold Works. Section 24 of the brand book makes a formal search at EUIPO, BOIP and the national registers in classes 9, 42 and 35 a precondition for external use, and it has not been started. A public page is external use in its most irreversible form.
+- [x] Trademark clearance for Freehold Works. **Cleared, confirmed by Ben on 2 September 2026.** Section 24 of the brand book made a formal search a precondition for external use, and that condition is met. The clearance document itself is not filed anywhere yet.
 - [ ] The founders group has seen the page.
 - [ ] Confirm the full list of domains, so the redirect rules cover all of them.
