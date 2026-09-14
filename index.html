@@ -7,6 +7,8 @@
 <meta name="description" content="Your data stays where it is. The question comes to it, and only the answer leaves, with a label saying where it came from and what it may be used for.">
 
 <link rel="canonical" href="https://freehold.works/">
+<link rel="alternate" hreflang="nl" href="https://freehold.works/nl.html">
+<link rel="alternate" hreflang="fr" href="https://freehold.works/fr.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Freehold">
 <meta property="og:description" content="Your data stays where it is. The question comes to it, and only the answer leaves. You trade the harvest, not the field.">
@@ -188,6 +190,7 @@
   }
   .langswitch:hover{border-color:var(--verdigris);color:var(--verdigris-deep)}
   .langswitch:focus-visible{outline:3px solid var(--verdigris);outline-offset:2px}
+  .langs{display:flex;gap:8px;flex:0 0 auto}
 
   .cols{
     flex:1;
@@ -407,7 +410,10 @@
         <text x="140" y="53" font-family="Inter Tight, Inter, Helvetica, Arial, sans-serif" font-size="29" letter-spacing="-0.6" fill="#14181D"><tspan font-weight="400">Free</tspan><tspan font-weight="700">hold</tspan></text>
         <text x="141" y="73" font-family="Inter Tight, Inter, Helvetica, Arial, sans-serif" font-size="7.55" font-weight="500" letter-spacing="1.0" fill="#14181D" opacity="0.55">INSIGHTS, NEVER DATA</text>
       </svg>
-      <a class="langswitch" href="nl.html" hreflang="nl" lang="nl" aria-label="Deze pagina in het Nederlands">NL</a>
+      <nav class="langs" aria-label="Languages">
+        <a class="langswitch" href="nl.html" hreflang="nl" lang="nl" aria-label="Deze pagina in het Nederlands">NL</a>
+        <a class="langswitch" href="fr.html" hreflang="fr" lang="fr" aria-label="Cette page en français">FR</a>
+      </nav>
     </header>
 
     <div class="cols">
