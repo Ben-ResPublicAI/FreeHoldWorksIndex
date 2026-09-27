@@ -19,5 +19,8 @@ User-agent: meta-externalagent
 User-agent: cohere-ai
 Disallow: /illustration.html
 Disallow: /education.html
+Disallow: /more.html
+Disallow: /how-it-works.html
+Disallow: /hoe-het-werkt.html
 
 Sitemap: https://freehold.works/sitemap.xml
