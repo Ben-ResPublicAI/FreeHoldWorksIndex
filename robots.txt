@@ -22,5 +22,6 @@ Disallow: /education.html
 Disallow: /more.html
 Disallow: /how-it-works.html
 Disallow: /hoe-het-werkt.html
+Disallow: /map.html
 
 Sitemap: https://freehold.works/sitemap.xml
