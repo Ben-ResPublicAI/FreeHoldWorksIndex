@@ -8,6 +8,8 @@
 <meta name="description" content="Your data stays where it is. The question travels to it, and only the answer leaves. Explained through the electricity grid, for readers who know nothing about the subject.">
 
 <link rel="canonical" href="https://freehold.works/how-it-works.html">
+<link rel="alternate" hreflang="nl" href="https://freehold.works/hoe-het-werkt.html">
+<link rel="alternate" hreflang="es" href="https://freehold.works/como-funciona.html">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Freehold, the ecosystem and the wall socket">
 <meta property="og:description" content="Your data stays where it is. The question travels to it, and only the answer leaves.">
@@ -182,13 +184,23 @@ footer a{color:var(--verd-dp)}
   details.diep{border:none}
   details.diep>summary::after{content:""}
 }
+
+/* Language switch, added 2026-10-04 with the Spanish pages. */
+.pglangs{position:absolute;top:0;right:0;display:flex;gap:8px}
+.pglangs a{font-family:'Inter Tight',Inter,Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;line-height:1;
+  white-space:nowrap;text-decoration:none;color:#2A3138;border:1px solid #D9D4CA;border-radius:5px;padding:8px 12px}
+.pglangs a:hover{border-color:#14796A;color:#0C5347}
+.pglangs a:focus-visible{outline:3px solid #14796A;outline-offset:2px}
+@media (max-width:560px){.pglangs{position:static;margin:0 0 18px}}
+@media print{.pglangs{display:none}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="top">
-  <div class="wrap">
+  <div class="wrap" style="position:relative">
+    <nav class="pglangs" aria-label="Languages"><a href="hoe-het-werkt.html" hreflang="nl" lang="nl" aria-label="Deze pagina in het Nederlands">NL</a><a href="como-funciona.html" hreflang="es" lang="es" aria-label="Esta página en español">ES</a></nav>
     <div class="lockup">
       <svg viewBox="6 8 118 84" role="img" aria-label="Freehold, the Membrane symbol">
         <title>Freehold, the Membrane symbol</title>

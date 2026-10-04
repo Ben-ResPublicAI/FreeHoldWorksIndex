@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Freehold, el ecosistema y el enchufe</title>
+<meta name="description" content="Sus datos se quedan donde están. La pregunta viaja hasta ellos, y solo sale la respuesta. Explicado a través de la red eléctrica, para quien no sabe nada del tema.">
+
+<link rel="canonical" href="https://freehold.works/como-funciona.html">
+<link rel="alternate" hreflang="en" href="https://freehold.works/how-it-works.html">
+<link rel="alternate" hreflang="nl" href="https://freehold.works/hoe-het-werkt.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Freehold, el ecosistema y el enchufe">
+<meta property="og:description" content="Sus datos se quedan donde están. La pregunta viaja hasta ellos, y solo sale la respuesta.">
+<meta property="og:url" content="https://freehold.works/como-funciona.html">
+<meta property="og:image" content="https://freehold.works/freehold-share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Freehold. Conocimiento, nunca datos.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F5F3EE">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314181D'/%3E%3Cg stroke='%23F5F3EE' stroke-linecap='round' stroke-width='1.8' fill='none'%3E%3Cline x1='14' y1='27' x2='14' y2='37' opacity='0.3'/%3E%3Cline x1='20' y1='21' x2='20' y2='43' opacity='0.42'/%3E%3Cline x1='26' y1='28' x2='26' y2='36' opacity='0.24'/%3E%3C/g%3E%3Cpath d='M20,31 C27,31 32,31 40,32' stroke='%232FA891' stroke-width='1.4' stroke-linecap='round' fill='none' opacity='0.5'/%3E%3Cpath d='M26,34 C32,34 36,32 44,33' stroke='%232FA891' stroke-width='1.4' stroke-linecap='round' fill='none' opacity='0.34'/%3E%3Cpath d='M34,14 C37,23 37,41 34,50' stroke='%232FA891' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3Cg stroke='%232FA891' stroke-linecap='round' stroke-width='4'%3E%3Cline x1='44' y1='24' x2='44' y2='40'/%3E%3Cline x1='52' y1='28' x2='52' y2='36'/%3E%3C/g%3E%3C/svg%3E" type="image/svg+xml">
+
+<link rel="preload" href="fonts/source-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-tight-400.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+/* Fonts from this origin, never from a third party. Standing rule for this site:
+   a company whose proposition is that data does not leave should not make every
+   visitor's browser announce itself to a font server to read a page. */
+@font-face{font-family:'Inter Tight';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/inter-tight-400.woff2') format('woff2')}
+@font-face{font-family:'Inter Tight';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/inter-tight-500.woff2') format('woff2')}
+@font-face{font-family:'Inter Tight';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/inter-tight-700.woff2') format('woff2')}
+@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/source-serif-400.woff2') format('woff2')}
+@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/source-serif-600.woff2') format('woff2')}
+
+:root{
+  --basalt:#14181D; --basalt2:#2A3138; --grijs:#6B747C;
+  --verd:#14796A; --verd-lt:#2FA891; --verd-dp:#0C5347;
+  --chalk:#F5F3EE; --chalk-hi:#FBFAF7; --card:#FFFFFF;
+  --line:#D9D4CA; --klei:#C7BFB1; --oker:#C08A3E; --signaal:#E0623A;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --sans:'Inter Tight',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001ms !important;transition-duration:.001ms !important}}
+body{margin:0;background:var(--chalk);color:var(--basalt);font-family:var(--sans);font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:3px solid var(--verd);outline-offset:2px;border-radius:3px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--basalt);color:var(--chalk);padding:12px 18px;z-index:100}
+.skip:focus{left:8px;top:8px}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+p{max-width:74ch}
+
+header.top{padding:34px 0 0}
+.lockup{display:flex;align-items:center;gap:14px;margin:0 0 30px}
+.lockup svg{display:block;height:38px;width:auto}
+.lockup .wm{font-family:var(--sans);font-weight:600;font-size:25px;letter-spacing:.006em;line-height:1}
+.lockup .wm b{font-weight:700}
+.lockup .bl{font-family:var(--sans);font-weight:500;font-size:9.5px;letter-spacing:.19em;text-transform:uppercase;color:var(--verd-dp);margin-top:5px}
+
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);line-height:1.1;margin:0 0 16px;max-width:19ch}
+.lede{font-size:clamp(17px,2.2vw,19.5px);line-height:1.56;color:var(--basalt2);max-width:66ch;margin:0 0 22px}
+.lede em{font-style:normal;color:var(--basalt);font-weight:500}
+.rule{width:132px;height:3px;background:var(--verd);border-radius:2px;margin:0 0 26px}
+
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--verd-dp);background:rgba(20,121,106,.1);border-radius:4px;padding:6px 11px;margin:0 0 20px}
+.kicker span{width:6px;height:6px;border-radius:50%;background:var(--verd)}
+
+nav.rail{position:sticky;top:0;z-index:40;background:rgba(245,243,238,.94);backdrop-filter:blur(9px);
+  border-bottom:1px solid var(--line);margin:36px 0 44px}
+nav.rail .in{max-width:1120px;margin:0 auto;padding:0 26px;display:flex;gap:2px;overflow-x:auto;height:50px;align-items:center;scrollbar-width:none}
+nav.rail .in::-webkit-scrollbar{display:none}
+nav.rail a{font-size:12.5px;font-weight:500;color:var(--basalt2);text-decoration:none;white-space:nowrap;padding:6px 11px;border-radius:5px;opacity:.66;transition:.15s var(--ease)}
+nav.rail a:hover{opacity:1;background:rgba(20,121,106,.09);color:var(--verd-dp)}
+nav.rail a[aria-current="true"]{opacity:1;color:var(--verd-dp);background:rgba(20,121,106,.13);font-weight:600}
+
+section{margin:0 0 76px;scroll-margin-top:64px}
+.shead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:0 0 8px}
+.snum{font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--verd-dp)}
+h2{font-family:var(--serif);font-weight:600;font-size:clamp(23px,3.4vw,30px);line-height:1.2;margin:0}
+h3{font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.3;margin:0 0 10px}
+.sdesc{font-size:16.5px;color:var(--basalt2);margin:8px 0 20px;max-width:70ch}
+
+.kort{background:rgba(47,168,145,.1);border-left:3px solid var(--verd);border-radius:0 6px 6px 0;
+  padding:14px 18px;margin:0 0 26px;max-width:74ch;font-size:15.5px;line-height:1.6}
+.kort b{display:block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--verd-dp);margin:0 0 5px}
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:20px 22px 22px;display:flex;flex-direction:column}
+.card.dark{background:var(--basalt);border-color:var(--basalt);color:var(--chalk)}
+.card.dark .ctag{color:var(--verd-lt)}
+.card.dark .cnote{color:#A9B0B6}
+.card.full{grid-column:1 / -1}
+.ctag{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--grijs);margin:0 0 4px}
+.ctitle{font-family:var(--serif);font-size:18px;font-weight:600;margin:0 0 14px;line-height:1.25}
+.cnote{font-size:14px;line-height:1.55;color:var(--basalt2);margin:12px 0 0}
+svg.scene{display:block;width:100%;height:auto;overflow:visible;margin:2px 0 0}
+
+.ctl{background:var(--chalk-hi);border:1px solid var(--line);border-radius:9px;padding:18px 22px 20px;margin:22px 0 0}
+.ctl-lab{font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--verd-dp);margin:0 0 9px}
+.btnrow{display:flex;gap:9px;flex-wrap:wrap}
+button{font-family:var(--sans);font-size:14px;font-weight:500;padding:10px 16px;border-radius:6px;
+  border:1px solid var(--line);background:var(--card);color:var(--basalt2);cursor:pointer;transition:.15s var(--ease)}
+button:hover{border-color:var(--verd-lt);color:var(--basalt)}
+button[aria-pressed="true"],button.on{background:var(--verd-dp);border-color:var(--verd-dp);color:var(--chalk)}
+button.big{font-size:15px;font-weight:600;padding:13px 22px}
+
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:3px;background:var(--klei);margin:12px 0 6px;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:21px;height:21px;border-radius:50%;background:var(--verd-dp);border:3px solid var(--chalk-hi);box-shadow:0 1px 4px rgba(20,24,29,.3);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:21px;height:21px;border-radius:50%;background:var(--verd-dp);border:3px solid var(--chalk-hi);cursor:pointer}
+.ticks{display:flex;justify-content:space-between;font-size:11.5px;color:var(--grijs)}
+.readout{font-size:15px;color:var(--basalt);margin:12px 0 0;min-height:1.6em}
+.readout strong{color:var(--verd-dp)}
+
+.tally{display:flex;gap:26px;flex-wrap:wrap;margin:16px 0 0}
+.tally div{min-width:96px}
+.tally dt{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grijs);margin:0 0 3px}
+.tally dd{margin:0;font-family:var(--sans);font-size:27px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.tally dd.geld{color:var(--verd-dp)}
+.tally dd.nul{color:var(--signaal)}
+
+.breek{display:grid;grid-template-columns:repeat(auto-fit,minmax(266px,1fr));gap:16px;margin:6px 0 0}
+.breek article{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--oker);border-radius:0 8px 8px 0;padding:16px 18px}
+.breek h3{font-size:16.5px;margin:0 0 7px}
+.breek p{font-size:14.5px;line-height:1.55;color:var(--basalt2);margin:0}
+
+details.diep{background:var(--card);border:1px solid var(--line);border-radius:9px;margin:0 0 14px;overflow:hidden}
+details.diep>summary{cursor:pointer;padding:17px 22px;font-family:var(--serif);font-size:18px;font-weight:600;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px}
+details.diep>summary::-webkit-details-marker{display:none}
+details.diep>summary::after{content:"+";font-family:var(--sans);font-size:24px;font-weight:400;color:var(--verd-dp);line-height:1}
+details.diep[open]>summary::after{content:"\2212"}
+details.diep>summary:hover{color:var(--verd-dp)}
+.diepbody{padding:0 22px 22px;border-top:1px solid var(--line);margin-top:-1px}
+.diepbody p:first-child{margin-top:16px}
+
+.gestapeld{display:flex;flex-direction:column;gap:9px;margin:16px 0 0}
+.trap{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;padding:13px 16px;border:1px solid var(--line);border-radius:7px;background:var(--chalk-hi);transition:.18s var(--ease)}
+.trap.aan{border-color:var(--verd);background:rgba(47,168,145,.09)}
+.trap .n{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--verd-dp);padding-top:3px;white-space:nowrap}
+.trap .t{font-weight:600;font-size:15px;margin:0 0 3px}
+.trap .d{font-size:14px;color:var(--basalt2);margin:0;line-height:1.5}
+
+.slot{background:var(--basalt);color:var(--chalk);border-radius:10px;padding:30px 32px;margin:0 0 40px}
+.slot h2{color:var(--chalk);margin:0 0 12px}
+.slot p{color:#C4C9CE;max-width:68ch;font-size:16px}
+.slot a{color:var(--verd-lt);font-weight:500}
+.slot .base{font-size:10.5px;font-weight:700;letter-spacing:.19em;text-transform:uppercase;color:var(--verd-lt);margin:22px 0 0}
+
+footer{border-top:1px solid var(--line);padding:26px 0 60px;font-size:13.5px;color:var(--grijs)}
+footer p{max-width:74ch;margin:0 0 8px}
+footer a{color:var(--verd-dp)}
+
+.geenjs{background:#2A2019;border-left:4px solid var(--oker);border-radius:0 7px 7px 0;padding:14px 18px;margin:0 0 26px;color:#F0E7DA;font-size:14px}
+
+.concreet-lab{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--verd-dp);margin:0 0 4px}
+.concreet-sub{font-size:14.5px;color:var(--grijs);margin:0 0 14px;max-width:74ch}
+.concreet{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:14px;margin:0 0 30px;max-width:1000px}
+.semek{display:flex;gap:18px;align-items:flex-start;background:var(--chalk-hi);border:1px solid var(--line);
+  border-left:3px solid var(--oker);border-radius:0 8px 8px 0;padding:16px 20px;margin:0 0 26px;max-width:900px}
+.semek .txt{font-size:15px;line-height:1.58;color:var(--basalt2)}
+.semek .txt b{color:var(--basalt)}
+.semek .lab{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8A5F1E;margin:0 0 5px}
+.semek a{color:var(--verd-dp);font-weight:500}
+.concreet article{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--verd);border-radius:0 0 8px 8px;padding:15px 17px 16px}
+.concreet .lab{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--verd-dp);margin:0 0 6px}
+.concreet p{font-size:14.5px;line-height:1.52;color:var(--basalt2);margin:0;max-width:none}
+.concreet p b{color:var(--basalt);font-weight:600}
+
+@media (max-width:820px){
+  .duo{grid-template-columns:1fr}
+  .ctl{padding:16px 18px 18px}
+  .wrap{padding:0 20px}
+}
+@media print{
+  nav.rail,.ctl,.geenjs{display:none}
+  body{background:#fff}
+  .card{break-inside:avoid}
+  details.diep{border:none}
+  details.diep>summary::after{content:""}
+}
+
+/* Language switch, added 2026-10-04 with the Spanish pages. */
+.pglangs{position:absolute;top:0;right:0;display:flex;gap:8px}
+.pglangs a{font-family:'Inter Tight',Inter,Helvetica,Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:.1em;line-height:1;
+  white-space:nowrap;text-decoration:none;color:#2A3138;border:1px solid #D9D4CA;border-radius:5px;padding:8px 12px}
+.pglangs a:hover{border-color:#14796A;color:#0C5347}
+.pglangs a:focus-visible{outline:3px solid #14796A;outline-offset:2px}
+@media (max-width:560px){.pglangs{position:static;margin:0 0 18px}}
+@media print{.pglangs{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<header class="top">
+  <div class="wrap" style="position:relative">
+    <nav class="pglangs" aria-label="Idiomas"><a href="how-it-works.html" hreflang="en" lang="en" aria-label="This page in English">EN</a><a href="hoe-het-werkt.html" hreflang="nl" lang="nl" aria-label="Deze pagina in het Nederlands">NL</a></nav>
+    <div class="lockup">
+      <svg viewBox="6 8 118 84" role="img" aria-label="Freehold, el símbolo de la Membrana">
+        <title>Freehold, el símbolo de la Membrana</title>
+        <g stroke="#14181D" stroke-linecap="round" stroke-width="2.0" fill="none">
+          <line x1="15" y1="42" x2="15" y2="58" opacity="0.22"/>
+          <line x1="22" y1="34" x2="22" y2="68" opacity="0.3"/>
+          <line x1="29" y1="46" x2="29" y2="54" opacity="0.18"/>
+          <line x1="36" y1="26" x2="36" y2="76" opacity="0.38"/>
+          <line x1="43" y1="43" x2="43" y2="59" opacity="0.22"/>
+          <line x1="50" y1="31" x2="50" y2="71" opacity="0.3"/>
+          <line x1="57" y1="47" x2="57" y2="53" opacity="0.18"/>
+          <line x1="64" y1="28" x2="64" y2="74" opacity="0.34"/>
+        </g>
+        <path d="M36,50 C50,50 62,50 88,51" stroke="#14796A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.42"/>
+        <path d="M50,52 C62,52 72,49 100,51" stroke="#14796A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.3"/>
+        <path d="M75,13 C80,32 80,68 75,87" stroke="#14796A" stroke-width="3.0" stroke-linecap="round" fill="none"/>
+        <g stroke="#14796A" stroke-linecap="round" stroke-width="5.0">
+          <line x1="90" y1="38" x2="90" y2="62"/>
+          <line x1="101" y1="28" x2="101" y2="72"/>
+          <line x1="112" y1="43" x2="112" y2="57"/>
+        </g>
+      </svg>
+      <div>
+        <div class="wm">Free<b>hold</b></div>
+        <div class="bl">Conocimiento, nunca datos</div>
+      </div>
+    </div>
+
+    <div class="kicker"><span></span>Solicitud de patente europea 26202295.7, presentada el 1 de septiembre de 2026</div>
+    <h1>El ecosistema y el enchufe</h1>
+    <p class="lede">Construimos el Ecosistema de Conocimiento Freehold, en el que sus datos se quedan donde están. <em>La pregunta viaja hasta ellos, el algoritmo se ejecuta allí mismo y solo sale la respuesta.</em> Esta página explica cómo funciona y por qué hace falta, sin suponer que usted sepa nada del tema.</p>
+    <div class="rule"></div>
+
+    <div class="concreet-lab">Tres ejemplos, no todo el alcance</div>
+    <p class="concreet-sub">Muestran la forma de lo que se vuelve posible. Freehold es un ecosistema en el que pueden ejecutarse muchos más tipos de preguntas, y estos tres están aquí porque son los que aclaran el mecanismo más rápido.</p>
+    <div class="concreet">
+      <article>
+        <div class="lab">Tres bancos</div>
+        <p>Juntos establecen si un pago es sospechoso, <b>sin que ninguno de ellos vea el expediente de cliente de otro.</b> Hoy esa pregunta solo puede responderse juntando los expedientes, así que casi nunca se plantea.</p>
+      </article>
+      <article>
+        <div class="lab">Un hospital y un grupo de investigación</div>
+        <p>Llegan a una respuesta sobre un tratamiento <b>mientras los historiales de los pacientes nunca salen del hospital.</b> Es justo ahí donde hoy fallan las cosas, porque los datos que salen una vez adquieren una segunda y una tercera vida en manos de terceros que el paciente nunca ha visto.</p>
+      </article>
+      <article>
+        <div class="lab">Un fabricante de máquinas</div>
+        <p>Avisa al propietario de que toca el mantenimiento <b>sin apropiarse de los datos de producción de esa fábrica.</b> El propietario conserva las cifras, el fabricante obtiene la respuesta, y ninguno de los dos lo hace por amabilidad.</p>
+      </article>
+    </div>
+
+    <p>Una comparación recorre toda la página, la red eléctrica. Hace cien años ocurrió allí lo mismo: se tendió una línea, un enchufe se convirtió en el estándar y después miles de otras personas construyeron aparatos para él. Creemos que los datos están ahora en ese punto. Al final encontrará también dónde falla la comparación, porque no se sostiene en todas partes.</p>
+  </div>
+</header>
+
+<nav class="rail" aria-label="Contenido de esta página">
+  <div class="in">
+    <a href="#one">Sin mercado de datos</a>
+    <a href="#two">De los datos a las respuestas</a>
+    <a href="#three">La dirección de la pregunta</a>
+    <a href="#four">El sobre</a>
+    <a href="#five">El punto de conexión y el ecosistema</a>
+    <a href="#six">Los puntos de ruptura</a>
+    <a href="#deeper">Material adicional</a>
+  </div>
+</nav>
+
+<main id="main">
+<div class="wrap">
+
+<noscript>
+  <div class="geenjs"><b>Tenga en cuenta.</b> Los diagramas de esta página los construye un script y su navegador no ejecuta scripts. El texto se lee completo sin ellos, solo las imágenes en movimiento quedan vacías.</div>
+</noscript>
+
+<!-- ================= ONE ================= -->
+<section id="one" aria-labelledby="h-one">
+  <div class="shead"><div class="snum">UNO</div><h2 id="h-one">El mercado de datos ausente</h2></div>
+  <p class="sdesc">Desde hace veinte años se habla de un mercado de datos. Ese mercado no existe, y no porque algo esté fallando. Es porque los datos no tienen la propiedad que hace surgir un precio.</p>
+
+  <div class="kort"><b>En breve</b>Un precio surge porque hay demasiado poco de algo. Nunca hay demasiado poco de sus datos, porque una copia no cuesta nada y no se puede distinguir del original. Así que nunca se forma un precio, y sin precio no hay mercado sino un reparto en el que una parte se lo lleva todo.</div>
+
+  <div class="duo">
+    <div class="card dark">
+      <div class="ctag">La red eléctrica</div>
+      <div class="ctitle">Un kilovatio hora consumido</div>
+      <svg class="scene" viewBox="0 0 320 150" role="img" aria-label="Una reserva de diez unidades de energía que se reduce a medida que se consume">
+        <g id="kwh-vak"></g>
+        <text x="0" y="140" font-family="Inter Tight,sans-serif" font-size="11" fill="#7E8890" id="kwh-tekst">Diez unidades disponibles</text>
+      </svg>
+      <div class="btnrow" style="margin-top:14px">
+        <button type="button" id="kwh-btn">Usar una unidad</button>
+        <button type="button" id="kwh-reset">Reiniciar</button>
+      </div>
+      <p class="cnote">Lo que usted consume, otro no lo consume. Eso hace posible la escasez, eso crea un precio, y por eso existe un mercado de la electricidad.</p>
+    </div>
+
+    <div class="card">
+      <div class="ctag">Lo que pasa con los datos</div>
+      <div class="ctitle">Una copia sin coste</div>
+      <svg class="scene" viewBox="0 0 320 150" role="img" aria-label="Un archivo de datos que se multiplica mientras el precio cae a cero">
+        <g id="kopie-vak"></g>
+        <text x="0" y="140" font-family="Inter Tight,sans-serif" font-size="11" fill="#7E8890" id="kopie-tekst">Un archivo, en su poder</text>
+      </svg>
+      <div class="btnrow" style="margin-top:14px">
+        <button type="button" id="kopie-btn">Hacer una copia</button>
+        <button type="button" id="kopie-reset">Reiniciar</button>
+      </div>
+      <dl class="tally">
+        <div><dt>Copias</dt><dd id="kopie-n">1</dd></div>
+        <div><dt>Lo que obtiene la siguiente copia</dt><dd class="geld" id="kopie-prijs">100</dd></div>
+      </dl>
+      <p class="cnote">Cada copia es tan buena como el original y casi no cuesta nada hacerla. Así que nunca surge la escasez, ni tampoco un precio. Eso no es una opinión sobre el mercado actual, es una afirmación sobre lo que son los datos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TWO ================= -->
+<section id="two" aria-labelledby="h-two">
+  <div class="shead"><div class="snum">DOS</div><h2 id="h-two">De los datos a las respuestas</h2></div>
+  <p class="sdesc">Por eso no comerciamos con datos. Hacemos posible que dos partes intercambien una respuesta que deja a ambas en mejor situación. Una respuesta es el resultado de una pregunta acotada, calculada sobre datos que se quedan donde están.</p>
+
+  <div class="kort"><b>En breve</b>Una aseguradora no necesita su historial médico. Necesita saber una cosa. Una tienda no necesita su historial de compras. Necesita saber si este producto le conviene. En ambos casos la respuesta es una fracción del expediente, y en ambos casos esa respuesta es exactamente lo que se necesita.</div>
+
+  <div class="duo">
+    <div class="card">
+      <div class="ctag">Lo que se queda</div>
+      <div class="ctitle">El expediente en manos del titular</div>
+      <svg class="scene" viewBox="0 0 300 210" role="img" aria-label="Un expediente de catorce líneas de datos que se queda por completo con el titular">
+        <rect x="2" y="2" width="296" height="196" rx="8" fill="#F5F3EE" stroke="#D9D4CA"/>
+        <g id="dossier-regels"></g>
+        <text x="16" y="188" font-family="Inter Tight,sans-serif" font-size="10.5" fill="#7E8890">Esto no sale nunca, en ninguna posición.</text>
+      </svg>
+    </div>
+
+    <div class="card">
+      <div class="ctag">Lo que sale</div>
+      <div class="ctitle">La respuesta a una pregunta</div>
+      <svg class="scene" viewBox="0 0 300 210" role="img" aria-labelledby="antw-titel">
+        <title id="antw-titel">La respuesta a la pregunta elegida, con su periodo de validez</title>
+        <rect x="2" y="2" width="296" height="196" rx="8" fill="#FFFFFF" stroke="#D9D4CA"/>
+        <text x="18" y="34" font-family="Inter Tight,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.4" fill="#7E8890">LA PREGUNTA</text>
+        <text x="18" y="56" font-family="Source Serif 4,serif" font-size="15" fill="#2A3138" id="antw-vraag">¿Puede conducir ahora mismo esta persona?</text>
+        <line x1="18" y1="74" x2="282" y2="74" stroke="#D9D4CA"/>
+        <text x="18" y="100" font-family="Inter Tight,sans-serif" font-size="10.5" font-weight="700" letter-spacing="1.4" fill="#0C5347">LA RESPUESTA</text>
+        <rect x="18" y="112" width="120" height="42" rx="6" fill="#14796A" id="antw-vak"/>
+        <text x="78" y="139" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="19" font-weight="600" fill="#F5F3EE" id="antw-waarde">Sí</text>
+        <text x="18" y="174" font-family="Inter Tight,sans-serif" font-size="12" fill="#2A3138" id="antw-vorm">Forma: sí o no</text>
+        <text x="18" y="192" font-family="Inter Tight,sans-serif" font-size="12" fill="#7E8890" id="antw-duur">Válida: unos minutos</text>
+      </svg>
+    </div>
+
+    <div class="card full">
+      <div class="ctl" style="margin:0">
+        <div class="ctl-lab">Elija una pregunta y vea lo que sale</div>
+        <div class="btnrow" role="group" aria-label="Elija una pregunta">
+          <button type="button" class="vraag on" data-v="0">¿Puede conducir ahora mismo esta persona?</button>
+          <button type="button" class="vraag" data-v="1">¿Le conviene este producto al cliente?</button>
+          <button type="button" class="vraag" data-v="2">¿Es solvente este proveedor?</button>
+          <button type="button" class="vraag" data-v="3">¿Hay que revisar ya esta máquina?</button>
+        </div>
+        <p class="readout" id="vraag-uitleg"></p>
+      </div>
+      <p class="cnote">Por qué una respuesta sí tiene precio y los datos no. Se hace para una pregunta de un solicitante, se calcula en el momento en que se plantea la pregunta, y el siguiente solicitante la plantea de otra manera. Una copia de una respuesta pierde por tanto su valor, porque ese valor depende de un momento concreto y de una pregunta concreta. La escasez aquí no es algo que organicemos nosotros, se deriva de lo que es una respuesta.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THREE ================= -->
+<section id="three" aria-labelledby="h-three">
+  <div class="shead"><div class="snum">TRES</div><h2 id="h-three">La dirección de la pregunta</h2></div>
+  <p class="sdesc">Este es el giro, y es el núcleo de todo lo que sigue. Hoy sus datos viajan hacia la parte que quiere algo de ellos. Con nosotros la pregunta viaja hacia sus datos, y solo la respuesta vuelve.</p>
+
+  <div class="kort"><b>En breve</b>Compárelo con los paneles solares. Usted no regala su tejado ni regala una instalación. Entrega energía a la red y recibe algo a cambio. Los paneles se quedan en su tejado. Aquí funciona igual: sus datos se quedan con usted, y lo que entra en el ecosistema es el resultado.</div>
+
+  <div class="duo">
+    <div class="card dark">
+      <div class="ctag">La red eléctrica</div>
+      <div class="ctitle">El tejado del propietario</div>
+      <svg class="scene" viewBox="0 0 320 190" role="img" aria-label="Una casa con paneles solares que entrega energía a la red y recibe un pago a cambio">
+        <path d="M40 96 L88 62 L136 96 L136 152 L40 152 Z" fill="#2A3138" stroke="#4A5259"/>
+        <path d="M52 92 L88 66 L124 92 Z" fill="#0C5347" stroke="#2FA891" stroke-width="1.4"/>
+        <g stroke="#2FA891" stroke-width="1" opacity=".7"><path d="M62 88 L90 71"/><path d="M74 92 L102 75"/></g>
+        <rect x="78" y="120" width="20" height="32" fill="#14181D" stroke="#4A5259"/>
+        <text x="88" y="46" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="11" fill="#A9B0B6">su tejado</text>
+        <rect x="238" y="70" width="58" height="82" rx="5" fill="#2A3138" stroke="#4A5259"/>
+        <text x="267" y="116" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="11" fill="#A9B0B6">la red</text>
+        <path d="M140 106 L232 106" stroke="#2FA891" stroke-width="1.6" marker-end="url(#pijl-lt)"/>
+        <path d="M232 130 L140 130" stroke="#C08A3E" stroke-width="1.6" marker-end="url(#pijl-ok)"/>
+        <text x="186" y="100" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="10.5" fill="#2FA891">energía</text>
+        <text x="186" y="146" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="10.5" fill="#C08A3E">pago</text>
+        <defs>
+          <marker id="pijl-lt" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#2FA891"/></marker>
+          <marker id="pijl-ok" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C08A3E"/></marker>
+        </defs>
+      </svg>
+      <p class="cnote">Lo que sale es la energía, no la instalación. A nadie le parece extraño, y nadie propone enviar por correo los propios paneles.</p>
+    </div>
+
+    <div class="card">
+      <div class="ctag">Lo que construimos</div>
+      <div class="ctitle" id="lus-titel">Hoy, los datos que viajan</div>
+      <svg class="scene" viewBox="0 0 320 190" role="img" aria-labelledby="lus-titel-svg">
+        <title id="lus-titel-svg">Comparación entre el flujo de datos actual y el flujo invertido en Freehold</title>
+        <g id="lus-vak"></g>
+      </svg>
+      <p class="cnote" id="lus-note">Sus datos van a una parte, y esa parte puede pasarlos a otras partes que usted nunca ha visto. Después ya no los ve ni tiene nada que decir sobre lo que todavía les pase.</p>
+    </div>
+
+    <div class="card full">
+      <div class="ctl" style="margin:0">
+        <div class="ctl-lab">El giro</div>
+        <div class="btnrow" role="group" aria-label="Elija la vista">
+          <button type="button" id="lus-vandaag" class="big on" aria-pressed="true">Hoy</button>
+          <button type="button" id="lus-freehold" class="big" aria-pressed="false">Con Freehold</button>
+        </div>
+        <label class="ctl-lab" for="lus-slider" style="display:block;margin:22px 0 0">Qué preguntas admite y qué quiere a cambio</label>
+        <input type="range" id="lus-slider" min="0" max="3" step="1" value="2" aria-describedby="lus-uitleg">
+        <div class="ticks"><span>ninguna pregunta</span><span>solo mi propio beneficio</span><span>oferta y pago</span><span>toda pregunta con valor</span></div>
+        <p class="readout" id="lus-uitleg"></p>
+      </div>
+      <p class="cnote">Lo que recibe a cambio no suele ser dinero. El dinero es la forma más simple y la más rara. La forma habitual es una oferta mejor o una condición mejor, es decir, el producto que de verdad le conviene o un plazo más favorable. La tercera forma es la seguridad, es decir, un aviso sobre su propia instalación, su propia máquina o su propia salud. Esa tercera forma es aparte, porque no se puede revender y por tanto no se forma un segundo mercado a sus espaldas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOUR ================= -->
+<section id="four" aria-labelledby="h-four">
+  <div class="shead"><div class="snum">CUATRO</div><h2 id="h-four">El sobre alrededor de una respuesta</h2></div>
+  <p class="sdesc">Una respuesta sin procedencia es una afirmación, y una afirmación no vale nada. Por eso una respuesta nunca sale de nosotros desnuda. La rodea un sobre firmado, que registra de dónde viene y para qué puede usarse.</p>
+
+  <div class="kort"><b>En breve</b>Piense en un permiso de conducir. Demuestra que usted puede conducir sin tener que repetir el examen práctico. Un sobre hace lo mismo, con dos diferencias. Se hace para cada ocasión en vez de reutilizarse durante años, y dice para qué sirve. Quien lo recibe guarda el sobre como prueba de haber actuado correctamente, y nunca ha visto el contenido de su expediente.</div>
+
+  <div class="duo">
+    <div class="card">
+      <div class="ctag">Lo que hay en el sobre</div>
+      <div class="ctitle">Las cinco partes</div>
+      <svg class="scene" viewBox="0 0 376 230" role="img" aria-label="Diagrama del sobre con cinco partes en las que se puede hacer clic">
+        <g id="env-vak"></g>
+      </svg>
+      <div class="btnrow" style="margin-top:14px" role="group" aria-label="Elija una parte del sobre">
+        <button type="button" class="env on" data-e="0">Procedencia</button>
+        <button type="button" class="env" data-e="1">La respuesta</button>
+        <button type="button" class="env" data-e="2">Uso permitido</button>
+        <button type="button" class="env" data-e="3">El destinatario</button>
+        <button type="button" class="env" data-e="4">Periodo de validez</button>
+      </div>
+      <p class="readout" id="env-uitleg"></p>
+    </div>
+
+    <div class="card">
+      <div class="ctag">En el destinatario</div>
+      <div class="ctitle">La comprobación antes del uso</div>
+      <svg class="scene" viewBox="0 0 320 230" role="img" aria-labelledby="ctrl-titel">
+        <title id="ctrl-titel">El sistema receptor verifica la firma y el periodo de validez antes de usar la respuesta</title>
+        <g id="ctrl-vak"></g>
+      </svg>
+      <div class="ctl">
+        <label class="ctl-lab" for="tijd-slider">Cuánto tiempo ha pasado</label>
+        <input type="range" id="tijd-slider" min="0" max="4" step="1" value="0" aria-describedby="tijd-uitleg">
+        <div class="ticks"><span>ahora</span><span>más tarde</span><span>vencido</span></div>
+        <p class="readout" id="tijd-uitleg"></p>
+      </div>
+      <p class="cnote">No hay canal de revocación, y es una elección. A esta escala de tiempo los sistemas intercambian pregunta y respuesta hasta decenas de veces por minuto, así que volver a preguntar casi no cuesta nada. Un derecho de uso vale por tanto muy poco tiempo, y quien lo necesite durante más tiempo simplemente pide que se redacte un sobre nuevo, con el estado vigente en ese momento incorporado. Así el destinatario muestra un sobre válido, en lugar de tener que demostrar que no le llegó ningún aviso de revocación.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FIVE ================= -->
+<section id="five" aria-labelledby="h-five">
+  <div class="shead"><div class="snum">CINCO</div><h2 id="h-five">El punto de conexión y el ecosistema</h2></div>
+  <p class="sdesc">Hasta aquí se trataba de una sola respuesta. Esto trata de lo que surge cuando hay muchos puntos de conexión. La red eléctrica nunca triunfó solo por la red. Triunfó porque llegó un estándar y un enchufe, después de lo cual cualquiera era libre de construir un aparato para él.</p>
+
+  <div class="kort"><b>En breve</b>En su casa o en la empresa hay un punto de conexión al ecosistema, y en él funciona un Hub. Compare el Hub con el caja de fusibles: está colgado ahí, usted no lo nota, y decide lo que entra. Junto con el lugar donde están sus datos forma lo que llamamos la infraestructura de confianza, y la pregunta llega desde fuera de ese límite. Cada algoritmo al que se permite ejecutarse allí ha sido primero probado y admitido, y figura en una lista de algoritmos validados. Si no está en la lista, no se ejecuta en ningún sitio.</div>
+
+  <div class="semek">
+    <div class="txt">
+      <div class="lab">El dispositivo ya existe</div>
+      Esa cajita no es un dibujo. Funciona como prototipo operativo con el nombre de <b>Semek</b>, se coloca junto a su router y hoy ya revisa fotos, videos y texto sin que nada salga de su casa. La desarrolla el Chief Product Officer de Freehold, y es el dispositivo en el que funcionará el Hub. Consulte <a href="https://semek.ai" rel="noopener">semek.ai</a>.
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="card dark">
+      <div class="ctag">La red eléctrica</div>
+      <div class="ctitle">Un enchufe, miles de aparatos hechos por otros</div>
+      <svg class="scene" viewBox="0 0 320 200" role="img" aria-label="Un enchufe estandarizado que acepta aparatos de muchos fabricantes distintos">
+        <rect x="122" y="18" width="76" height="52" rx="7" fill="#2A3138" stroke="#4A5259"/>
+        <circle cx="148" cy="44" r="6" fill="#14181D" stroke="#2FA891"/>
+        <circle cx="172" cy="44" r="6" fill="#14181D" stroke="#2FA891"/>
+        <text x="160" y="86" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="11" fill="#2FA891">un estándar</text>
+        <g id="toestellen"></g>
+        <text x="160" y="192" text-anchor="middle" font-family="Inter Tight,sans-serif" font-size="10.5" fill="#A9B0B6">El operador de la red nunca fabricó una lavadora.</text>
+      </svg>
+      <p class="cnote">Y aun así se le paga por cada kilovatio hora que pasa por la red. Esa es la forma que mantenemos. Construimos el ecosistema y un pequeño número de aplicaciones, y abrimos el ecosistema a otros que construyen en él sus propias aplicaciones.</p>
+    </div>
+
+    <div class="card">
+      <div class="ctag">Lo que construimos</div>
+      <div class="ctitle">Puntos de conexión y posibilidades</div>
+      <svg class="scene" viewBox="0 0 320 200" role="img" aria-labelledby="net-titel">
+        <title id="net-titel">Un ecosistema de puntos de conexión que crece a medida que se suman participantes</title>
+        <g id="net-vak"></g>
+      </svg>
+      <div class="ctl">
+        <label class="ctl-lab" for="net-slider">Cuántos puntos de conexión hay en el ecosistema</label>
+        <input type="range" id="net-slider" min="0" max="4" step="1" value="2" aria-describedby="net-uitleg">
+        <div class="ticks"><span>los primeros</span><span>1000</span><span>100&nbsp;000</span><span>1&nbsp;millón</span><span>5&nbsp;millones</span></div>
+        <p class="readout" id="net-uitleg"></p>
+      </div>
+    </div>
+
+    <div class="card full">
+      <h3>La gobernanza del registro y de la tarifa</h3>
+      <p>Quien decide qué algoritmo se admite, y quien decide qué tráfico circula a precio de coste, ejerce autoridad sobre todos los demás que construyen en el mismo ecosistema. Eso no puede estar en manos de una parte que vende allí sus propias aplicaciones, y por tanto no puede estar solo en nuestras manos. Ambas decisiones corresponden a un consejo en el que Freehold no se sienta en solitario, con condiciones publicadas y con derecho de recurso contra una denegación. Junto a Freehold Works existe una fundación con ese fin, y el esquema solo funciona bajo condiciones estrictas: un consejo propio sin mayoría nuestra, financiación propia, condiciones de admisión publicadas, una vía de recurso, y la capacidad de admitir a un competidor nuestro y de rechazarnos si llega el caso.</p>
+      <p>Por la misma razón redactamos el acuerdo mediante el cual dos sistemas se encuentran, y lo publicamos. Quien representa a una de las partes no puede gestionar de forma creíble el lugar donde ambas partes se encuentran.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SIX ================= -->
+<section id="six" aria-labelledby="h-six">
+  <div class="shead"><div class="snum">SEIS</div><h2 id="h-six">Los puntos de ruptura de la comparación</h2></div>
+  <p class="sdesc">La imagen de la red eléctrica llega lejos, y no lo cubre todo. A continuación se indica dónde se detiene.</p>
+
+  <div class="breek">
+    <article>
+      <h3>La forma de la contrapartida</h3>
+      <p>Quien entrega energía cobra por kilovatio hora, pura cantidad por tarifa. Con nosotros, lo que usted recibe a cambio es ante todo una oferta mejor. Un modelo que le promete dinero por sus datos por encima de todo es precisamente la construcción que no ha funcionado en estos últimos veinte años.</p>
+    </article>
+    <article>
+      <h3>La incomparabilidad de las respuestas</h3>
+      <p>Dos kilovatios hora son idénticos y por tanto negociables en una bolsa. Dos respuestas nunca lo son. Aquí los precios se fijan de otra manera y no se formará ninguna bolsa.</p>
+    </article>
+    <article>
+      <h3>La ausencia de monopolio</h3>
+      <p>Un operador de red tiene un monopolio regulado. Nosotros no. A la pregunta de quién nos dio este ecosistema, la respuesta es que nos lo dan los participantes, por algoritmo y por adelantado. También pueden retirárnoslo.</p>
+    </article>
+    <article>
+      <h3>La alternativa gratuita</h3>
+      <p>Todos están en la red eléctrica porque no hay alternativa. Para los datos esa alternativa sí existe, a saber, internet tal como funciona hoy. Esa es a la vez la objeción de más peso, porque lo gratuito es un competidor fuerte.</p>
+    </article>
+    <article>
+      <h3>El funcionamiento a escala</h3>
+      <p>Esta página muestra controles que mueve una persona. A escala lo hace un programa en su nombre, porque un hogar no mantiene cientos de relaciones a mano. Los controles de aquí son por tanto el ajuste y no el funcionamiento.</p>
+    </article>
+    <article>
+      <h3>El arranque de la electrificación</h3>
+      <p>En 1899 el tres por ciento de los hogares estadounidenses tenía luz eléctrica. Pasaron unas cuatro décadas desde la primera central eléctrica hasta llegar a la mitad, y en Gran Bretaña el cinco por ciento de las casas tenía instalación eléctrica en 1919. Allí el gas siguió siendo más barato por unidad de energía al menos hasta 1930.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ================= DEEPER ================= -->
+<section id="deeper" aria-labelledby="h-deeper">
+  <div class="shead"><div class="snum">MÁS</div><h2 id="h-deeper">Material adicional</h2></div>
+  <p class="sdesc">Los seis movimientos de arriba son toda la historia. Quien quiera más encontrará abajo tres temas que se derivan directamente de ella. No los necesita para entender el resto.</p>
+
+  <details class="diep">
+    <summary>La capa de desarrollo</summary>
+    <div class="diepbody">
+      <p>Un ecosistema en el que solo construye el operador no es un servicio público sino un producto. Por eso abrimos el ecosistema, y eso plantea de inmediato una pregunta: cómo mantenerlo seguro cuando los algoritmos ya no son nuestros.</p>
+      <p>Debajo de todo hay una distinción. Componer una pregunta no es lo mismo que escribir un algoritmo nuevo. La gran mayoría de los constructores no quiere un algoritmo nuevo. Quieren que se aplique un algoritmo existente, ya admitido, a sus propias contrapartes, con su propio umbral. La red eléctrica tiene esa misma distinción y a nadie le parece extraña: enchufar una clavija no necesita certificación, sacar al mercado un aparato nuevo sí.</p>
+      <div class="ctl">
+        <div class="ctl-lab">Qué quiere hacer este constructor</div>
+        <div class="btnrow" role="group" aria-label="Elija lo que quiere hacer el constructor">
+          <button type="button" class="trapbtn on" data-t="0">Usar un algoritmo existente</button>
+          <button type="button" class="trapbtn" data-t="1">Ajustarlo dentro de los límites</button>
+          <button type="button" class="trapbtn" data-t="2">Escribir un algoritmo nuevo</button>
+        </div>
+        <div class="gestapeld" id="trappen"></div>
+      </div>
+      <p style="margin-top:20px">Lo difícil es que un constructor debe poder desarrollar sin ver nunca los datos. Para eso hacen falta tres tipos de herramientas: datos sintéticos creíbles por tipo de punto de conexión, una imitación local que impone en el equipo del constructor los mismos límites que el entorno real, y una prueba en puntos reales de titulares que se ofrecen voluntarios expresamente para ello, de la que solo salen diagnósticos resumidos y nunca un valor de respuesta.</p>
+    </div>
+  </details>
+
+  <details class="diep">
+    <summary>El límite de preguntas</summary>
+    <div class="diepbody">
+      <p>Una respuesta está acotada. Pero quien puede hacer cien preguntas ligeramente distintas reconstruye el expediente subyacente a partir de las respuestas. Esa es la principal vía de ataque contra todo el mecanismo, y nuestro cuidado no sirve de defensa una vez que otros escriben los algoritmos.</p>
+      <p>Por eso hay un límite por titular, por destinatario y por ventana de tiempo, sobre el número de respuestas y sobre lo que revelan en conjunto. Ese límite se agota, el titular puede ver cómo se agota, y solo se repone en las condiciones del titular. En la admisión se establece también cuánto revela una respuesta sobre los datos de entrada, y esa cifra determina lo que una respuesta consume del límite.</p>
+      <div class="ctl">
+        <label class="ctl-lab" for="budget-slider">Cuántas preguntas puede hacer este destinatario</label>
+        <input type="range" id="budget-slider" min="0" max="4" step="1" value="1" aria-describedby="budget-uitleg">
+        <div class="ticks"><span>1</span><span>10</span><span>50</span><span>200</span><span>1000</span></div>
+        <svg class="scene" viewBox="0 0 320 90" role="img" aria-labelledby="budget-titel" style="margin-top:10px">
+          <title id="budget-titel">Cuánto se puede deducir en total de una serie de respuestas</title>
+          <g id="budget-vak"></g>
+        </svg>
+        <p class="readout" id="budget-uitleg"></p>
+      </div>
+      <p style="margin-top:20px">Hay además una segunda razón, y es comercial. Mientras el consentimiento sea un sí o un no, no se le puede poner precio. Un límite que se agota es una cantidad, y sobre una cantidad se puede negociar.</p>
+      <p>Ese límite es una decisión de diseño al abrir el ecosistema. Lo que se ha fijado primero es el sobre y su comprobación.</p>
+    </div>
+  </details>
+
+</section>
+
+<div class="slot">
+  <h2>El nombre y la solicitud de patente</h2>
+  <p>Freehold es el nombre de lo que construimos. Un freehold es una tierra en pleno dominio, frente a la tenencia feudal, en la que uno recibe la tierra de un señor al que debe servicio y tributos. Toda plataforma de datos funciona hoy de esa segunda manera: usted obtiene acceso a un servicio y lo paga en la única moneda que no recupera. Freehold es el otro sistema. Quien es dueño de su tierra vende la cosecha en el mercado. No vende la tierra, y no deja que el mercado venga a excavarla.</p>
+  <p>El funcionamiento descrito en esta página es objeto de una solicitud de patente europea con el título <em>Improved authentication for processing requests</em>, número 26202295.7, presentada el 1 de septiembre de 2026. Freehold Works es la empresa que construye el Ecosistema de Conocimiento Freehold. A su lado hay una fundación que vela por su uso correcto y ético.</p>
+  <p style="margin-top:18px">Preguntas, o una conversación: <a href="mailto:hello@freehold.works">hello@freehold.works</a></p>
+  <div class="base">Conocimiento, nunca datos</div>
+</div>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Esta página muestra el mecanismo y no las cifras que hay detrás. No incluye importes, porque se basarían en estimaciones y no en negocios cerrados. Las posiciones de todos los controles deslizantes son elecciones y no previsiones, y las barras muestran proporciones en una escala propia.</p>
+    <p>Las cifras sobre la electrificación son datos históricos de Estados Unidos y Gran Bretaña, y están aquí como advertencia sobre el ritmo de este tipo de transiciones.</p>
+    <p>Freehold Works &middot; <a href="https://freehold.works/">freehold.works</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+var NS="http://www.w3.org/2000/svg";
+function el(n,a){var e=document.createElementNS(NS,n);for(var k in a){if(a.hasOwnProperty(k))e.setAttribute(k,a[k]);}return e;}
+function txt(x,y,s,o){var t=el("text",{x:x,y:y,"font-family":"Inter Tight,sans-serif","font-size":(o&&o.size)||11,fill:(o&&o.fill)||"#2A3138"});
+  if(o&&o.anchor)t.setAttribute("text-anchor",o.anchor); if(o&&o.weight)t.setAttribute("font-weight",o.weight);
+  if(o&&o.serif)t.setAttribute("font-family","Source Serif 4,serif"); if(o&&o.ls)t.setAttribute("letter-spacing",o.ls);
+  t.textContent=s;return t;}
+function clear(g){while(g&&g.firstChild)g.removeChild(g.firstChild);}
+function pick(list,btn,fn){list.forEach(function(b){b.addEventListener("click",function(){
+  list.forEach(function(o){o.classList.remove("on");o.setAttribute("aria-pressed","false");});
+  b.classList.add("on");b.setAttribute("aria-pressed","true");fn(b);});});}
+
+/* ---------- 1a, kilowatt hour ---------- */
+var kwhG=document.getElementById("kwh-vak"),kwhT=document.getElementById("kwh-tekst"),kwhOver=10;
+function kwhTeken(){clear(kwhG);
+  for(var i=0;i<10;i++){var op=i<kwhOver?1:0.13;
+    kwhG.appendChild(el("rect",{x:6+i*31,y:34,width:23,height:62,rx:4,fill:i<kwhOver?"#2FA891":"#4A5259",opacity:op}));}
+  kwhT.textContent=kwhOver===0?"Agotado. Quien quiera energía ahora tiene que pagarla.":kwhOver+" de las 10 unidades siguen disponibles";}
+document.getElementById("kwh-btn").addEventListener("click",function(){if(kwhOver>0)kwhOver--;kwhTeken();});
+document.getElementById("kwh-reset").addEventListener("click",function(){kwhOver=10;kwhTeken();});
+kwhTeken();
+
+/* ---------- 1b, copy ---------- */
+var kopG=document.getElementById("kopie-vak"),kopT=document.getElementById("kopie-tekst"),
+    kopN=document.getElementById("kopie-n"),kopP=document.getElementById("kopie-prijs"),kopAantal=1;
+var prijzen=[100,52,27,14,7,4,2,1,0,0,0,0,0,0,0,0];
+function kopTeken(){clear(kopG);
+  var toon=Math.min(kopAantal,16),kol=8;
+  for(var i=0;i<toon;i++){var r=Math.floor(i/kol),c=i%kol;
+    kopG.appendChild(el("rect",{x:6+c*39,y:26+r*46,width:31,height:38,rx:4,
+      fill:i===0?"#14796A":"#C7BFB1",opacity:i===0?1:Math.max(.28,1-i*0.07)}));}
+  var p=prijzen[Math.min(kopAantal-1,prijzen.length-1)];
+  kopN.textContent=kopAantal>16?kopAantal:toon;
+  kopP.textContent=p; kopP.className=p===0?"nul":"geld";
+  kopT.textContent=kopAantal===1?"Un archivo, en su poder":
+    (p===0?"El mismo archivo en todas partes. Ya no se puede pedir nada.":kopAantal+" copias idénticas, en otras tantas partes");}
+document.getElementById("kopie-btn").addEventListener("click",function(){if(kopAantal<24)kopAantal++;kopTeken();});
+document.getElementById("kopie-reset").addEventListener("click",function(){kopAantal=1;kopTeken();});
+kopTeken();
+
+/* ---------- 2, file and answer ---------- */
+var dosG=document.getElementById("dossier-regels");
+var dossiers=[
+ ["fecha de nacimiento","diagnóstico 2019","medicación A","medicación B","última consulta","presión arterial","alergia","médico de cabecera","hospitalización","rehabilitación","aptitud para conducir","prueba de vista","tiempo de reacción","n.º de expediente"],
+ ["compra 12 mar","compra 4 abr","devolución 9 abr","talla","color preferido","gasto medio","frecuencia","canal","boletín","dirección","forma de pago","reclamaciones","edad","tamaño del hogar"],
+ ["ingresos T1","ingresos T2","saldo pendiente","plazo de pago","recordatorios","relación bancaria","número de empleados","existencias","proveedores","línea de crédito","balance","patrimonio neto","sector","constitución"],
+ ["horas de uso","temperatura","vibración","última revisión","pieza A","pieza B","consumo eléctrico","códigos de error","número de serie","año de fabricación","ubicación","operario","tiempo de ciclo","paradas"]];
+var vragen=[
+ {v:"¿Puede conducir ahora mismo esta persona?",a:"Sí",vorm:"Forma: sí o no",duur:"Válida: unos minutos",
+  u:"El médico o la autoridad que lo sabe calcula la respuesta sobre el expediente que se queda en su poder. Quien recibe la respuesta ve una palabra y no ha visto ningún diagnóstico. Tampoco se puede reconstruir el expediente a partir de esa única palabra."},
+ {v:"¿Le conviene este producto al cliente?",a:"Conviene",vorm:"Forma: conviene, no conviene, dudoso",duur:"Válida: esta visita",
+  u:"A la tienda se le dice si el producto le conviene, y nunca lo que usted compró antes. Usted recibe una oferta adecuada, la tienda vende más, y ninguno de los dos lo hace por amabilidad. Precisamente por eso sigue funcionando."},
+ {v:"¿Es solvente este proveedor?",a:"Banda 2",vorm:"Forma: una banda, no una cifra",duur:"Válida: catorce días",
+  u:"La respuesta es una banda y no una cifra, porque una cifra revela más de lo que la pregunta necesita. Las cifras en sí se quedan con el proveedor y con su banco, y quien pregunta sabe lo suficiente para decidir."},
+ {v:"¿Hay que revisar ya esta máquina?",a:"En 8 días",vorm:"Forma: un plazo",duur:"Válida: hasta la próxima lectura",
+  u:"El fabricante no necesita las series de mediciones de su línea de producción para saber que toca el mantenimiento. Fíjese aquí en el periodo de validez, porque no se elige sino que se calcula: los sensores se actualizan con un ritmo fijo, y la respuesta sigue siendo utilizable hasta la próxima lectura. Usted recibe un aviso sobre su propia máquina, y esa es una contrapartida que no se puede revender."}];
+function dosTeken(i){clear(dosG);
+  dossiers[i].forEach(function(r,n){var kol=n%2,rij=Math.floor(n/2);
+    dosG.appendChild(el("rect",{x:16+kol*136,y:22+rij*22,width:128,height:16,rx:3,fill:"#C7BFB1",opacity:.42}));
+    dosG.appendChild(txt(22+kol*136,34+rij*22,r,{size:9.5,fill:"#2A3138"}));});}
+function vraagToon(i){var q=vragen[i];dosTeken(i);
+  document.getElementById("antw-vraag").textContent=q.v;
+  document.getElementById("antw-waarde").textContent=q.a;
+  document.getElementById("antw-vorm").textContent=q.vorm;
+  document.getElementById("antw-duur").textContent=q.duur;
+  var lang=q.a.length,grootte=lang>9?15:20,w=Math.min(264,Math.max(96,lang*(grootte*0.58)+32));
+  document.getElementById("antw-vak").setAttribute("width",w);
+  var waarde=document.getElementById("antw-waarde");
+  waarde.setAttribute("x",18+w/2); waarde.setAttribute("font-size",grootte);
+  document.getElementById("vraag-uitleg").textContent=q.u;}
+pick([].slice.call(document.querySelectorAll(".vraag")),null,function(b){vraagToon(+b.dataset.v);});
+vraagToon(0);
+
+/* ---------- 3, the two loops ---------- */
+var lusG=document.getElementById("lus-vak"),lusModus=0,lusStand=2;
+var lusTeksten=[
+ "En esta posición no admite ninguna pregunta. No sale nada, y no recibe nada a cambio. Es una posición válida y siempre sigue disponible.",
+ "Solo admite preguntas de las que usted mismo se beneficia, por ejemplo un aviso sobre su propia instalación. Sale poco, y lo que vuelve es protección y no dinero.",
+ "Admite preguntas que le aportan una oferta mejor o una condición mejor, y además pide un pago. Esta es la posición habitual.",
+ "Admite cualquier pregunta a cambio de algo. Salen más respuestas, y vuelve más. Sus datos siguen sin salir, en ninguna posición."];
+function lusTeken(){clear(lusG);
+  lusG.appendChild(el("path",{d:"M18 96 L52 70 L86 96 L86 148 L18 148 Z",fill:"#F5F3EE",stroke:"#D9D4CA"}));
+  lusG.appendChild(txt(52,164,"usted",{anchor:"middle",size:11,fill:"#7E8890"}));
+  if(lusModus===0){
+    lusG.appendChild(el("rect",{x:190,y:56,width:56,height:44,rx:5,fill:"#C7BFB1",opacity:.5,stroke:"#D9D4CA"}));
+    lusG.appendChild(txt(218,82,"parte",{anchor:"middle",size:10.5,fill:"#2A3138"}));
+    [ [268,26],[268,74],[268,122] ].forEach(function(p){
+      lusG.appendChild(el("rect",{x:p[0],y:p[1],width:40,height:30,rx:4,fill:"#C7BFB1",opacity:.34,stroke:"#D9D4CA"}));
+      lusG.appendChild(txt(p[0]+20,p[1]+19,"?",{anchor:"middle",size:12,fill:"#7E8890"}));});
+    lusG.appendChild(el("path",{d:"M90 110 L186 82",stroke:"#E0623A","stroke-width":2.2,fill:"none","marker-end":"url(#p-rood)"}));
+    lusG.appendChild(txt(138,126,"sus datos",{anchor:"middle",size:10.5,fill:"#E0623A"}));
+    [41,89,137].forEach(function(y){
+      lusG.appendChild(el("path",{d:"M248 78 L264 "+(y+15),stroke:"#E0623A","stroke-width":1.2,fill:"none",opacity:.55}));});
+    for(var k=0;k<4;k++){var d=el("circle",{cx:0,cy:0,r:3.4,fill:"#E0623A"});
+      d.appendChild(el("animateMotion",{dur:"2.6s",repeatCount:"indefinite",begin:(k*0.65)+"s",path:"M90 110 L186 82"}));
+      lusG.appendChild(d);}
+  }else{
+    lusG.appendChild(el("path",{d:"M126 12 L126 176",stroke:"#14796A","stroke-width":2.4,"stroke-dasharray":"5 5",fill:"none",opacity:.75}));
+    lusG.appendChild(txt(126,190,"el punto de conexión",{anchor:"middle",size:10,fill:"#0C5347"}));
+    lusG.appendChild(el("rect",{x:96,y:96,width:26,height:34,rx:4,fill:"#14796A"}));
+    lusG.appendChild(txt(109,120,"H",{anchor:"middle",size:13,fill:"#F5F3EE",weight:"600"}));
+    lusG.appendChild(txt(109,146,"Hub",{anchor:"middle",size:9.5,fill:"#0C5347"}));
+    lusG.appendChild(el("rect",{x:236,y:74,width:64,height:46,rx:5,fill:"#FFFFFF",stroke:"#D9D4CA"}));
+    lusG.appendChild(txt(268,102,"el solicitante",{anchor:"middle",size:10.5,fill:"#2A3138"}));
+    lusG.appendChild(el("path",{d:"M232 84 L132 100",stroke:"#2A3138","stroke-width":1.6,fill:"none","marker-end":"url(#p-donker)"}));
+    lusG.appendChild(txt(182,76,"la pregunta",{anchor:"middle",size:10.5,fill:"#2A3138"}));
+    var actief=lusStand>0;
+    lusG.appendChild(el("path",{d:"M132 116 L232 108",stroke:actief?"#14796A":"#C7BFB1","stroke-width":2.2,fill:"none","marker-end":actief?"url(#p-groen)":"url(#p-klei)"}));
+    lusG.appendChild(txt(182,134,actief?"la respuesta":"nada",{anchor:"middle",size:10.5,fill:actief?"#0C5347":"#7E8890"}));
+    lusG.appendChild(el("path",{d:"M52 90 C30 100 30 124 52 134 C74 124 74 100 52 90 Z",fill:"none",stroke:"#14796A","stroke-width":1.3,opacity:.55}));
+    lusG.appendChild(txt(52,178,"sus datos quedan dentro",{anchor:"middle",size:9.5,fill:"#0C5347"}));
+    var n=Math.max(1,lusStand);
+    for(var j=0;j<n;j++){var d2=el("circle",{cx:0,cy:0,r:3.4,fill:"#14796A"});
+      d2.appendChild(el("animateMotion",{dur:"2.4s",repeatCount:"indefinite",begin:(j*0.7)+"s",path:"M132 116 L232 108"}));
+      lusG.appendChild(d2);}
+  }
+  var defs=el("defs",{});
+  [["p-rood","#E0623A"],["p-groen","#14796A"],["p-donker","#2A3138"],["p-klei","#C7BFB1"]].forEach(function(m){
+    var mk=el("marker",{id:m[0],markerWidth:7,markerHeight:7,refX:6,refY:3.5,orient:"auto"});
+    mk.appendChild(el("path",{d:"M0,0 L7,3.5 L0,7 Z",fill:m[1]}));defs.appendChild(mk);});
+  lusG.appendChild(defs);
+  document.getElementById("lus-titel").textContent=lusModus===0?"Hoy, los datos que viajan":"Con Freehold, la pregunta que viaja";
+  document.getElementById("lus-note").textContent=lusModus===0
+    ?"Sus datos van a una parte, y esa parte puede pasarlos a otras partes que usted nunca ha visto. Después ya no los ve ni tiene nada que decir sobre lo que todavía les pase."
+    :"Los datos van al Hub y no pasan de ahí, ese es el circuito cerrado a la izquierda de la línea. El algoritmo viene de fuera, se ejecuta allí mismo y sale con una respuesta. Así que lo que sale del Hub nunca son los datos y siempre es la respuesta sobre ellos.";
+  document.getElementById("lus-uitleg").textContent=lusTeksten[lusStand];}
+document.getElementById("lus-vandaag").addEventListener("click",function(){
+  lusModus=0;this.classList.add("on");this.setAttribute("aria-pressed","true");
+  var o=document.getElementById("lus-freehold");o.classList.remove("on");o.setAttribute("aria-pressed","false");lusTeken();});
+document.getElementById("lus-freehold").addEventListener("click",function(){
+  lusModus=1;this.classList.add("on");this.setAttribute("aria-pressed","true");
+  var o=document.getElementById("lus-vandaag");o.classList.remove("on");o.setAttribute("aria-pressed","false");lusTeken();});
+document.getElementById("lus-slider").addEventListener("input",function(){
+  lusStand=+this.value; if(lusModus===0){document.getElementById("lus-freehold").click();} else lusTeken();});
+lusTeken();
+
+/* ---------- 4a, the envelope ---------- */
+var envG=document.getElementById("env-vak"),envKeuze=0;
+var envDelen=[
+ {t:"La procedencia",y:44,d:"De dónde viene la respuesta y quién la respalda, como el sello de un municipio al pie de un certificado. Se envía lo menos posible de ella, justo lo suficiente para que sea fiable."},
+ {t:"La respuesta en sí",y:78,d:"El resultado de esa única pregunta. Lo produce un algoritmo que se ha probado de antemano y que figura en la lista de algoritmos validados, así que no es una respuesta libre a una pregunta formulada libremente."},
+ {t:"El uso permitido",y:112,d:"Para qué se puede usar la respuesta y en qué condiciones. Esto no va al lado de la respuesta, va unido a ella, y esa es la diferencia con una promesa."},
+ {t:"El destinatario",y:146,d:"El sobre va dirigido a un solo destinatario, y puede cifrarse para que solo ese destinatario pueda leer el contenido. La firma sigue siendo verificable por cualquiera, así que se puede comprobar la autenticidad sin revelar el contenido."},
+ {t:"El periodo de validez",y:180,d:"Cuánto tiempo sigue siendo utilizable la respuesta. Esta es la parte que siempre está presente. La duración se deriva del tipo de datos y no de quien redacta la respuesta, así que no hay un límite superior fijo para todo. Para una lectura que se actualiza cada cuarto de hora, dura hasta la próxima lectura. Esta duración es también lo que impide que se transmita a otros, porque un sobre vencido no le sirve a nadie."}];
+function envTeken(){clear(envG);
+  envG.appendChild(el("rect",{x:8,y:20,width:250,height:190,rx:8,fill:"#FFFFFF",stroke:"#14796A","stroke-width":1.6}));
+  envDelen.forEach(function(p,i){var aan=i===envKeuze;
+    envG.appendChild(el("rect",{x:22,y:p.y-16,width:222,height:26,rx:5,fill:aan?"#14796A":"#F5F3EE",stroke:aan?"#14796A":"#D9D4CA"}));
+    envG.appendChild(txt(34,p.y+2,(i+1)+". "+p.t,{size:12,fill:aan?"#F5F3EE":"#2A3138",weight:aan?"600":"400"}));});
+  envG.appendChild(el("path",{d:"M266 20 L266 210",stroke:"#C08A3E","stroke-width":2.4,fill:"none"}));
+  envG.appendChild(txt(278,108,"una firma",{size:11,fill:"#C08A3E",weight:"600"}));
+  envG.appendChild(txt(278,124,"sobre las cinco,",{size:11,fill:"#C08A3E"}));
+  envG.appendChild(txt(278,140,"así que ninguna",{size:11,fill:"#C08A3E"}));
+  envG.appendChild(txt(278,156,"parte puede",{size:11,fill:"#C08A3E"}));
+  envG.appendChild(txt(278,172,"separarse",{size:11,fill:"#C08A3E"}));
+  document.getElementById("env-uitleg").textContent=envDelen[envKeuze].d;}
+pick([].slice.call(document.querySelectorAll(".env")),null,function(b){envKeuze=+b.dataset.e;envTeken();});
+envTeken();
+
+/* ---------- 4b, the check ---------- */
+var ctrlG=document.getElementById("ctrl-vak"),tijd=0;
+var tijdTeksten=[
+ "La firma es correcta y el sobre sigue siendo válido. La respuesta se usa para la finalidad registrada en él, y para nada más.",
+ "Sigue siendo válido. El destinatario no ha visto en ningún momento el contenido de su expediente.",
+ "Casi vencido. Quien lo necesite durante más tiempo simplemente pide que se redacte un sobre nuevo, con el estado vigente en ese momento incorporado.",
+ "Vencido. El sistema receptor se detiene antes de hacer nada, así que la acción no se realiza a medias para luego deshacerse, no empieza.",
+ "Vencido, y un segundo intento tampoco empieza. Que el sobre fue válido en un momento dado sigue siendo cierto y sigue siendo demostrable."];
+function ctrlTeken(){clear(ctrlG);
+  var geldig=tijd<3;
+  ctrlG.appendChild(el("rect",{x:14,y:18,width:130,height:74,rx:7,fill:"#FFFFFF",stroke:"#D9D4CA"}));
+  ctrlG.appendChild(txt(79,44,"el sobre",{anchor:"middle",size:11,fill:"#2A3138"}));
+  ctrlG.appendChild(txt(79,64,"llega",{anchor:"middle",size:11,fill:"#7E8890"}));
+  ctrlG.appendChild(el("path",{d:"M148 55 L184 55",stroke:"#2A3138","stroke-width":1.6,fill:"none","marker-end":"url(#p-donker2)"}));
+  ctrlG.appendChild(el("rect",{x:190,y:14,width:114,height:82,rx:7,fill:"#F5F3EE",stroke:"#D9D4CA"}));
+  ctrlG.appendChild(txt(247,42,"la comprobación",{anchor:"middle",size:11,fill:"#2A3138",weight:"600"}));
+  ctrlG.appendChild(txt(247,60,"firma",{anchor:"middle",size:10,fill:"#7E8890"}));
+  ctrlG.appendChild(txt(247,76,"finalidad y plazo",{anchor:"middle",size:10,fill:"#7E8890"}));
+  ctrlG.appendChild(el("rect",{x:14,y:124,width:290,height:66,rx:7,fill:geldig?"rgba(20,121,106,.1)":"rgba(224,98,58,.1)",stroke:geldig?"#14796A":"#E0623A","stroke-width":1.6}));
+  ctrlG.appendChild(txt(159,154,geldig?"Aceptado":"Rechazado",{anchor:"middle",size:21,fill:geldig?"#0C5347":"#E0623A",weight:"600",serif:true}));
+  ctrlG.appendChild(txt(159,176,geldig?"usado para la finalidad registrada en él":"interrumpido antes de empezar",{anchor:"middle",size:11,fill:"#2A3138"}));
+  var defs=el("defs",{});
+  var mk=el("marker",{id:"p-donker2",markerWidth:7,markerHeight:7,refX:6,refY:3.5,orient:"auto"});
+  mk.appendChild(el("path",{d:"M0,0 L7,3.5 L0,7 Z",fill:"#2A3138"}));defs.appendChild(mk);ctrlG.appendChild(defs);
+  document.getElementById("tijd-uitleg").textContent=tijdTeksten[tijd];}
+document.getElementById("tijd-slider").addEventListener("input",function(){tijd=+this.value;ctrlTeken();});
+ctrlTeken();
+
+/* ---------- 5a, appliances ---------- */
+var toG=document.getElementById("toestellen");
+["lámpara","nevera","taladro","cargador","lavadora","horno"].forEach(function(naam,i){
+  var kol=i%3,rij=Math.floor(i/3),x=42+kol*84,y=110+rij*38;
+  toG.appendChild(el("rect",{x:x,y:y,width:66,height:26,rx:5,fill:"#2A3138",stroke:"#4A5259"}));
+  toG.appendChild(txt(x+33,y+17,naam,{anchor:"middle",size:10,fill:"#A9B0B6"}));
+  toG.appendChild(el("path",{d:"M160 72 L"+(x+33)+" "+y,stroke:"#2FA891","stroke-width":.9,fill:"none",opacity:.35}));});
+
+/* ---------- 5b, the network ---------- */
+var netG=document.getElementById("net-vak"),netStand=2;
+var netData=[
+ {n:"los primeros puntos de conexión",p:6,u:"Todavía no hay ecosistema. Lo que en esta fase ya tiene valor es el propio sobre firmado, porque funciona desde el primer intercambio entre dos partes."},
+ {n:"mil puntos de conexión",p:14,u:"Un sector, una cadena, un grupo que ya se conocía. Ahora hay tráfico suficiente para aprender qué se pregunta en realidad, y cuánto resulta valer una respuesta."},
+ {n:"cien mil puntos de conexión",p:34,u:"El tráfico a través del ecosistema toma el relevo del sobre aislado, y ese tráfico es el kilovatio hora de este servicio público. A partir de aquí a otros les compensa construir aplicaciones sobre él."},
+ {n:"un millón de puntos de conexión",p:64,u:"Sobre el ecosistema surgen mercados que no podrían existir sin esa capa. No los hemos ideado nosotros y no los construimos, igual que el operador de la red nunca fabricó una lavadora."},
+ {n:"cinco millones de puntos de conexión",p:104,u:"A esta escala ya no es un producto sino un servicio público. Eso trae la obligación que lo acompaña: condiciones publicadas, una vía de recurso, y una tarifa que permite que el tráfico social circule a precio de coste."}];
+function netTeken(){clear(netG);
+  var d=netData[netStand],cols=13,rows=8,toon=Math.min(d.p,cols*rows);
+  for(var i=0;i<cols*rows;i++){var c=i%cols,r=Math.floor(i/cols),x=18+c*23,y=22+r*20,aan=i<toon;
+    netG.appendChild(el("circle",{cx:x,cy:y,r:aan?4.2:2.4,fill:aan?"#14796A":"#C7BFB1",opacity:aan?1:.42}));
+    if(aan&&i>0&&c>0)netG.appendChild(el("line",{x1:x-23,y1:y,x2:x,y2:y,stroke:"#2FA891","stroke-width":.7,opacity:.42}));
+    if(aan&&i>=cols)netG.appendChild(el("line",{x1:x,y1:y-20,x2:x,y2:y,stroke:"#2FA891","stroke-width":.7,opacity:.3}));}
+  netG.appendChild(txt(18,192,d.n,{size:11.5,fill:"#0C5347",weight:"600"}));
+  document.getElementById("net-uitleg").textContent=d.u;}
+document.getElementById("net-slider").addEventListener("input",function(){netStand=+this.value;netTeken();});
+netTeken();
+
+/* ---------- deeper, the steps ---------- */
+var trapG=document.getElementById("trappen");
+var trapData=[
+ {n:"PASO UNO",t:"Registrarse y empezar",d:"Usar un algoritmo existente, ya admitido, sobre sus propias contrapartes, con su propio umbral y su propia ventana de tiempo. Esto es la clavija en el enchufe, y no necesita certificación."},
+ {n:"PASO DOS",t:"Una evaluación ligera",d:"Ajustar el algoritmo dentro de los límites fijados en la admisión original. La forma de la respuesta no cambia, así que la evaluación sigue siendo ligera."},
+ {n:"PASO TRES",t:"Admisión completa",d:"Escribir un algoritmo nuevo. Se prueba en un entorno que no tiene ningún acceso a datos reales y que funciona con datos sintéticos, y solo entonces se admite. Esto es sacar el aparato al mercado."}];
+function trapTeken(k){clear(trapG);
+  trapData.forEach(function(t,i){
+    var div=document.createElement("div");div.className="trap"+(i<=k?" aan":"");
+    var n=document.createElement("div");n.className="n";n.textContent=t.n;
+    var b=document.createElement("div");
+    var h=document.createElement("p");h.className="t";h.textContent=t.t;
+    var p=document.createElement("p");p.className="d";p.textContent=t.d;
+    b.appendChild(h);b.appendChild(p);div.appendChild(n);div.appendChild(b);trapG.appendChild(div);});}
+pick([].slice.call(document.querySelectorAll(".trapbtn")),null,function(b){trapTeken(+b.dataset.t);});
+trapTeken(0);
+
+/* ---------- deeper, the question ceiling ---------- */
+var budG=document.getElementById("budget-vak"),budStand=1;
+var budData=[
+ {v:"1 pregunta",lek:6,u:"Una respuesta revela poco. Es la situación habitual y no hay ningún problema."},
+ {v:"10 preguntas",lek:22,u:"Diez preguntas ligeramente distintas revelan juntas más que una sola. El límite empieza a contar, y el titular lo ve."},
+ {v:"50 preguntas",lek:52,u:"Aquí se hace visible. De cincuenta respuestas se puede deducir una parte considerable del expediente subyacente, aunque cada respuesta por sí sola sea inofensiva."},
+ {v:"200 preguntas",lek:82,u:"Sin límite, esta es la vía de ataque. El expediente se reconstruye a partir de las respuestas, sin que se haya enviado nunca un solo dato."},
+ {v:"1000 preguntas",lek:97,u:"En este punto la diferencia entre una respuesta y el propio expediente ha desaparecido. Por eso existe el límite, y por eso el ecosistema no debería abrirse sin él."}];
+function budTeken(){clear(budG);
+  var d=budData[budStand];
+  budG.appendChild(el("rect",{x:8,y:24,width:304,height:26,rx:5,fill:"#F5F3EE",stroke:"#D9D4CA"}));
+  budG.appendChild(el("rect",{x:8,y:24,width:Math.max(4,304*d.lek/100),height:26,rx:5,
+    fill:d.lek>70?"#E0623A":(d.lek>40?"#C08A3E":"#14796A")}));
+  budG.appendChild(txt(8,18,d.v,{size:11,fill:"#2A3138",weight:"600"}));
+  budG.appendChild(txt(312,18,"lo que se puede deducir en total",{size:10.5,fill:"#7E8890",anchor:"end"}));
+  budG.appendChild(txt(8,70,d.lek<40?"dentro del límite":(d.lek<70?"el límite se está agotando":"el límite está agotado, no hay más respuestas"),
+    {size:11,fill:d.lek>70?"#E0623A":"#2A3138"}));
+  document.getElementById("budget-uitleg").textContent=d.u;}
+document.getElementById("budget-slider").addEventListener("input",function(){budStand=+this.value;budTeken();});
+budTeken();
+
+/* ---------- navigation, which section is in view ---------- */
+var links=[].slice.call(document.querySelectorAll("nav.rail a"));
+var secties=links.map(function(a){return document.querySelector(a.getAttribute("href"));}).filter(Boolean);
+if("IntersectionObserver" in window){
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(!e.isIntersecting)return;
+      links.forEach(function(a){a.setAttribute("aria-current",a.getAttribute("href")==="#"+e.target.id?"true":"false");});});
+  },{rootMargin:"-45% 0px -50% 0px"});
+  secties.forEach(function(s){io.observe(s);});
+}
+})();
+</script>
+</body>
+</html>

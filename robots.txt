@@ -24,5 +24,7 @@ Disallow: /how-it-works.html
 Disallow: /hoe-het-werkt.html
 Disallow: /map.html
 Disallow: /bank-messages.html
+Disallow: /como-funciona.html
+Disallow: /mas.html
 
 Sitemap: https://freehold.works/sitemap.xml
