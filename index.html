@@ -105,6 +105,12 @@ figure.photo{margin:clamp(30px,4vw,52px) 0 0}
 figure.photo img{width:100%;height:auto;border-radius:6px}
 figure.photo figcaption{font-size:14px;color:var(--mute);margin-top:12px;max-width:70ch}
 
+/* The device: the real Semek, a cut-out on a warm glow */
+figure.device{margin:clamp(28px,4vw,44px) 0 0;max-width:380px}
+figure.device .glow{background:radial-gradient(closest-side,rgba(224,98,58,.38),rgba(224,98,58,0));padding:clamp(14px,3vw,30px)}
+figure.device img{width:100%;height:auto}
+figure.device figcaption{font-size:14px;color:var(--mute);margin-top:10px;max-width:46ch}
+
 /* The harvest band: the ember gradient as a full surface */
 .band{position:relative;overflow:hidden;border-top:0;background:linear-gradient(118deg,var(--ember-deep) 0%,var(--signal) 46%,var(--ochre) 100%)}
 .band .statement{color:#FFF8F1;max-width:20ch}
@@ -114,14 +120,13 @@ figure.photo figcaption{font-size:14px;color:var(--mute);margin-top:12px;max-wid
 .band .wrap{position:relative;z-index:1}
 
 /* Faces. Uniform treatment: backlit, warm, dark. Placeholders until the
-   founders' portraits arrive, marked as such. */
+   portraits arrive, marked as such. Names only, no roles. */
 .team{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:clamp(18px,2.4vw,32px);margin-top:clamp(28px,4vw,48px)}
 .person{min-width:0}
 .portrait{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:6px;overflow:hidden;background:radial-gradient(120% 90% at 50% 18%,var(--signal) 0%,var(--ember-deep) 48%,#16100D 82%)}
 .portrait .sil{position:absolute;left:50%;bottom:0;width:78%;transform:translateX(-50%);fill:#0E0B0A}
 .portrait .ph{position:absolute;left:12px;top:12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,248,241,.8);background:rgba(15,18,22,.45);padding:5px 9px;border-radius:999px}
 .person h3{font-size:21px;font-weight:500;margin:16px 0 2px}
-.person .role{font-size:14px;color:var(--ochre);margin:0 0 8px}
 .person p{font-family:var(--serif);font-size:16px;line-height:1.5;color:#CFCCC4;margin:0}
 
 /* Facts table */
@@ -213,12 +218,12 @@ footer .big{font-size:clamp(40px,8vw,120px);font-weight:500;letter-spacing:-.035
 
 <section><div class="wrap split">
 <h2 class="label">The settings dial</h2>
-<div class="body"><p class="lead">You set the dial for both directions. Off is allowed, and it always will be.</p></div>
-</div>
-<div class="wrap"><figure class="photo">
-<img src="img/two-homes.webp" srcset="img/two-homes-900.webp 900w, img/two-homes.webp 1600w" sizes="(max-width:1240px) 100vw, 1240px" width="1600" height="666" alt="The same small black box in two homes. On a workbench it glows red, on a sideboard beside family photos it glows blue." loading="lazy">
-<figcaption>Two people, the same Hub, two settings. On the workbench a lot comes in, because the owner chose that. On the sideboard very little comes in, because that is what she wants. Both are right.</figcaption>
-</figure></div></section>
+<div class="body"><p class="lead">You set the dial for both directions. Off is allowed, and it always will be.</p>
+<figure class="device">
+<div class="glow"><img src="img/semek.webp" srcset="img/semek-600.webp 600w, img/semek.webp 1100w" sizes="(max-width:760px) 80vw, 380px" width="1100" height="1413" alt="Semek, an orange box with a screen showing level 3, Balanced, Monitoring, with network cables plugged in." loading="lazy"></div>
+<figcaption>Semek, the working prototype a Hub runs on today, set to Balanced.</figcaption>
+</figure>
+</div></div></section>
 
 <section class="band"><div class="wrap"><svg class="mark" viewBox="0 0 128 100" aria-hidden="true" focusable="false">
   <path d="M75,13 C80,32 80,68 75,87" stroke="#2FA891" stroke-width="7" stroke-linecap="round" fill="none"/>
@@ -232,20 +237,20 @@ footer .big{font-size:clamp(40px,8vw,120px);font-weight:500;letter-spacing:-.035
 
 <section><div class="wrap split">
 <h2 class="label">The team</h2>
-<div class="body"><p class="lead">Three founders and a product lead, with a working prototype and a European patent application.</p></div>
+<div class="body"><p class="lead">Four people, a working prototype and a European patent application.</p></div>
 </div>
 <div class="wrap"><div class="team"><div class="person">
-<div class="portrait" role="img" aria-label="Portrait of Ruben Verborgh to follow"><svg class="sil" viewBox="0 0 120 150" aria-hidden="true" focusable="false"><circle cx="60" cy="58" r="25"/><path d="M14,150 C16,112 36,94 60,94 C84,94 104,112 106,150 Z"/></svg><span class="ph">Portrait to follow</span></div>
-<h3>Ruben Verborgh</h3><p class="role">Co-founder</p><p>Technical architecture. Author of The Insight Economy, in preparation with Wiley.</p>
+<div class="portrait" role="img" aria-label="Portrait of Ben Broeckx to follow"><svg class="sil" viewBox="0 0 120 150" aria-hidden="true" focusable="false"><circle cx="60" cy="58" r="25"/><path d="M14,150 C16,112 36,94 60,94 C84,94 104,112 106,150 Z"/></svg><span class="ph">Portrait to follow</span></div>
+<h3>Ben Broeckx</h3>
 </div><div class="person">
 <div class="portrait" role="img" aria-label="Portrait of Roel Naessens to follow"><svg class="sil" viewBox="0 0 120 150" aria-hidden="true" focusable="false"><circle cx="60" cy="58" r="25"/><path d="M14,150 C16,112 36,94 60,94 C84,94 104,112 106,150 Z"/></svg><span class="ph">Portrait to follow</span></div>
-<h3>Roel Naessens</h3><p class="role">Co-founder</p>
+<h3>Roel Naessens</h3>
 </div><div class="person">
-<div class="portrait" role="img" aria-label="Portrait of Ben Broeckx to follow"><svg class="sil" viewBox="0 0 120 150" aria-hidden="true" focusable="false"><circle cx="60" cy="58" r="25"/><path d="M14,150 C16,112 36,94 60,94 C84,94 104,112 106,150 Z"/></svg><span class="ph">Portrait to follow</span></div>
-<h3>Ben Broeckx</h3><p class="role">Co-founder</p><p>Organisation, administration and ecosystem expertise.</p>
+<div class="portrait" role="img" aria-label="Portrait of Ruben Verborgh to follow"><svg class="sil" viewBox="0 0 120 150" aria-hidden="true" focusable="false"><circle cx="60" cy="58" r="25"/><path d="M14,150 C16,112 36,94 60,94 C84,94 104,112 106,150 Z"/></svg><span class="ph">Portrait to follow</span></div>
+<h3>Ruben Verborgh</h3>
 </div><div class="person">
 <div class="portrait" role="img" aria-label="Portrait of Pieter-Paulus Vertongen to follow"><svg class="sil" viewBox="0 0 120 150" aria-hidden="true" focusable="false"><circle cx="60" cy="58" r="25"/><path d="M14,150 C16,112 36,94 60,94 C84,94 104,112 106,150 Z"/></svg><span class="ph">Portrait to follow</span></div>
-<h3>Pieter-Paulus Vertongen</h3><p class="role">Chief Product Officer</p><p>Developed Semek, the working prototype the Hub runs on today.</p>
+<h3>Pieter-Paulus Vertongen</h3>
 </div></div></div></section>
 
 <section><div class="wrap">

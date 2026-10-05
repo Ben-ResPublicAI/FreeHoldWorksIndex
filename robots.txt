@@ -28,5 +28,11 @@ Disallow: /como-funciona.html
 Disallow: /mas.html
 Disallow: /what-freehold-does-in-full.html
 Disallow: /for-the-press-in-full.html
+Disallow: /wat-freehold-doet-volledig.html
+Disallow: /voor-de-pers-volledig.html
+Disallow: /ce-que-fait-freehold-en-entier.html
+Disallow: /pour-la-presse-en-entier.html
+Disallow: /lo-que-hace-freehold-completo.html
+Disallow: /para-la-prensa-completo.html
 
 Sitemap: https://freehold.works/sitemap.xml

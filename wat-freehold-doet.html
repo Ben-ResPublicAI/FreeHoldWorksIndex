@@ -2,309 +2,332 @@
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Wat Freehold doet</title>
-<meta name="description" content="Een Hub, thuis of op uw telefoon, beslist wat er van het internet binnen mag en wat er over u naar buiten mag. Uw eigen bestanden gaan nergens heen. Freehold beheert het ecosysteem dat alle Hubs verbindt.">
-
+<meta name="description" content="Een Hub aan uw deur beslist wat binnenkomt en wat buitengaat. Uw eigen bestanden blijven thuis, en alleen antwoorden vertrekken, elk met een ondertekend label.">
 <link rel="canonical" href="https://freehold.works/wat-freehold-doet.html">
-<link rel="alternate" hreflang="en" href="https://freehold.works/what-freehold-does.html">
-<link rel="alternate" hreflang="fr" href="https://freehold.works/ce-que-fait-freehold.html">
-<link rel="alternate" hreflang="es" href="https://freehold.works/lo-que-hace-freehold.html">
-<meta property="og:type" content="article">
+<link rel="alternate" hreflang="en" href="https://freehold.works/what-freehold-does.html"><link rel="alternate" hreflang="fr" href="https://freehold.works/ce-que-fait-freehold.html"><link rel="alternate" hreflang="es" href="https://freehold.works/lo-que-hace-freehold.html">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Wat Freehold doet">
-<meta property="og:description" content="Een Hub, naast uw router of op uw telefoon, beslist wat er binnenkomt en wat er vertrekt. Uw bestanden blijven thuis. Freehold beheert het ecosysteem.">
+<meta property="og:description" content="Een Hub aan uw deur beslist wat binnenkomt en wat buitengaat. Uw eigen bestanden blijven thuis, en alleen antwoorden vertrekken, elk met een ondertekend label.">
 <meta property="og:url" content="https://freehold.works/wat-freehold-doet.html">
 <meta property="og:image" content="https://freehold.works/freehold-share.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Freehold. Inzichten, nooit data.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#F5F3EE">
+<meta name="theme-color" content="#0F1216">
+<link rel="preload" href="fonts/inter-tight-500.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:'Inter Tight';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/inter-tight-400.woff2') format('woff2')}@font-face{font-family:'Inter Tight';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/inter-tight-500.woff2') format('woff2')}@font-face{font-family:'Inter Tight';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/inter-tight-700.woff2') format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/source-serif-400.woff2') format('woff2')}@font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/source-serif-600.woff2') format('woff2')}
+/* Layout: one dark canvas, statements set large and revealed word by word on
+   scroll, short blocks under small labels, one warm ember field that recurs
+   in the hero, the harvest band and the footer. */
+:root{
+  --night:#0F1216;      /* canvas, basalt pushed darker */
+  --panel:#1A1F25;      /* raised surfaces */
+  --rule:#2C333B;
+  --chalk:#F5F3EE;
+  --mute:#A7ABAD;
+  --ochre:#C08A3E;
+  --signal:#E0623A;
+  --ember-deep:#7E2615;
+  --verdigris:#2FA891;  /* the brand green, lifted for a dark ground */
+  --sans:'Inter Tight',Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --gut:clamp(18px,5vw,72px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--night);color:var(--chalk);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--chalk);text-decoration:underline;text-decoration-color:var(--verdigris);text-underline-offset:3px;text-decoration-thickness:1.5px}
+a:hover{color:var(--verdigris)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--verdigris);outline-offset:3px;border-radius:3px}
+img{max-width:100%;display:block}
+.skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:16px;background:var(--chalk);color:var(--night);padding:8px 12px;z-index:9}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:var(--gut)}
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314181D'/%3E%3Cg stroke='%23F5F3EE' stroke-linecap='round' stroke-width='1.8' fill='none'%3E%3Cline x1='14' y1='27' x2='14' y2='37' opacity='0.3'/%3E%3Cline x1='20' y1='21' x2='20' y2='43' opacity='0.42'/%3E%3Cline x1='26' y1='28' x2='26' y2='36' opacity='0.24'/%3E%3C/g%3E%3Cpath d='M20,31 C27,31 32,31 40,32' stroke='%232FA891' stroke-width='1.4' stroke-linecap='round' fill='none' opacity='0.5'/%3E%3Cpath d='M26,34 C32,34 36,32 44,33' stroke='%232FA891' stroke-width='1.4' stroke-linecap='round' fill='none' opacity='0.34'/%3E%3Cpath d='M34,14 C37,23 37,41 34,50' stroke='%232FA891' stroke-width='2.6' stroke-linecap='round' fill='none'/%3E%3Cg stroke='%232FA891' stroke-linecap='round' stroke-width='4'%3E%3Cline x1='44' y1='24' x2='44' y2='40'/%3E%3Cline x1='52' y1='28' x2='52' y2='36'/%3E%3C/g%3E%3C/svg%3E" type="image/svg+xml">
+/* Header */
+.top{position:absolute;left:0;right:0;top:0;z-index:3;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding-block:clamp(22px,3vw,36px)}
+.lockup{width:clamp(170px,18vw,232px);height:auto}
+.langs{display:flex;gap:6px;flex-wrap:wrap}
+.langs a{font-size:12px;font-weight:500;letter-spacing:.1em;text-decoration:none;color:var(--mute);border:1px solid var(--rule);border-radius:999px;padding:6px 11px}
+.langs a:hover{color:var(--chalk);border-color:var(--verdigris)}
 
-<link rel="preload" href="fonts/source-serif-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/inter-tight-400.woff2" as="font" type="font/woff2" crossorigin>
+/* Hero with the ember field, the site's moving colour */
+.hero{position:relative;overflow:hidden;padding-block:clamp(150px,22vh,250px) clamp(80px,14vh,160px)}
+.ember{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.ember i{position:absolute;border-radius:50%;opacity:.8;will-change:transform}
+.ember i:nth-child(1){width:62vw;height:62vw;max-width:880px;max-height:880px;right:-14vw;top:-22vw;background:radial-gradient(circle closest-side,rgba(224,98,58,.95) 0%,rgba(126,38,21,.7) 45%,rgba(126,38,21,0) 100%);animation:drift1 22s ease-in-out infinite alternate}
+.ember i:nth-child(2){width:44vw;height:44vw;max-width:620px;max-height:620px;right:16vw;top:8vw;background:radial-gradient(circle closest-side,rgba(192,138,62,.8) 0%,rgba(192,138,62,0) 100%);opacity:.5;animation:drift2 28s ease-in-out infinite alternate}
+.ember.paused i{animation-play-state:paused}
+@keyframes drift1{to{transform:translate(-8vw,6vw) scale(1.12)}}
+@keyframes drift2{to{transform:translate(10vw,-4vw) scale(.9)}}
+.hero .wrap{position:relative;z-index:1}
+.eyebrow{font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin:0 0 22px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:9px;height:9px;background:var(--verdigris);border-radius:2px}
+.statement{font-family:var(--sans);font-weight:500;font-size:clamp(34px,5.6vw,82px);line-height:1.04;letter-spacing:-.025em;margin:0;max-width:17ch;text-wrap:balance}
+.statement.mid{font-size:clamp(28px,3.8vw,56px);max-width:22ch;line-height:1.1}
+.sub{font-family:var(--serif);font-size:clamp(18px,1.4vw,22px);line-height:1.5;color:var(--mute);max-width:46ch;margin:28px 0 0}
 
-<style>
-  /* Fonts are served from this origin, not from Google. Both families are
-     under the SIL Open Font License, subset to Latin and Latin Extended.
-     A company whose proposition is that data does not leave should not make
-     every visitor's browser announce itself to a third party to read a page. */
-  @font-face{font-family:'Inter Tight';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/inter-tight-400.woff2') format('woff2')}
-  @font-face{font-family:'Inter Tight';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/inter-tight-500.woff2') format('woff2')}
-  @font-face{font-family:'Inter Tight';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/inter-tight-700.woff2') format('woff2')}
-  @font-face{font-family:'Source Serif 4';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/source-serif-400.woff2') format('woff2')}
-  @font-face{font-family:'Source Serif 4';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/source-serif-600.woff2') format('woff2')}
+/* Word reveal: words rest at a visible grey and light up as the reader
+   scrolls through, the device the reference site uses. Without script, or
+   with reduced motion, every word stands at full strength. */
+.js .reveal .w{color:rgba(245,243,238,.32);transition:color .35s ease}
+.js .reveal .w.on{color:var(--chalk)}
 
-  :root{
-    --basalt:#14181D;
-    --basalt-light:#2A3138;
-    --verdigris:#14796A;
-    --verdigris-deep:#0C5347;
-    --chalk:#F5F3EE;
-    --line:#D9D4CA;
-    --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
-    --sans:'Inter Tight',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
-  }
+/* Sections */
+section{padding-block:clamp(56px,9vw,120px);border-top:1px solid var(--rule)}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.2fr);gap:clamp(20px,5vw,80px);align-items:start}
+.label{font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:6px 0 0;display:flex;gap:10px;align-items:center}
+.label::before{content:"";width:9px;height:9px;border:1.5px solid var(--verdigris);border-radius:2px;flex:0 0 auto}
+.body p{font-family:var(--serif);font-size:clamp(18px,1.35vw,21px);line-height:1.55;margin:0 0 1em;max-width:58ch;color:#DAD7D0}
+.body p.lead{font-family:var(--sans);font-size:clamp(22px,2.1vw,30px);line-height:1.3;color:var(--chalk);letter-spacing:-.01em;max-width:30ch}
+.body p:last-child{margin-bottom:0}
 
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Cards: dark panels, one role, set off from the canvas */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px;margin-top:clamp(28px,4vw,48px)}
+.card{background:var(--panel);border-radius:6px;padding:26px 24px 28px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card h3{font-size:21px;font-weight:500;letter-spacing:-.01em;margin:0}
+.card p{font-family:var(--serif);font-size:17px;line-height:1.5;color:#CFCCC4;margin:0}
+.card .tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre);font-weight:500}
 
-  body{
-    margin:0;
-    background:var(--chalk);
-    color:var(--basalt);
-    font-family:var(--sans);
-    font-size:16px;
-    line-height:1.62;
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-  }
-  :focus-visible{outline:3px solid var(--verdigris);outline-offset:2px;border-radius:3px}
-  .skip{position:absolute;left:-9999px;top:0;background:var(--basalt);color:var(--chalk);padding:12px 18px;z-index:100}
-  .skip:focus{left:8px;top:8px}
+/* The note: five fields as chips */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;padding:0;list-style:none}
+.chips li{border:1px solid var(--ochre);color:var(--chalk);border-radius:999px;padding:9px 16px;font-size:15px}
 
-  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(24px,5vw,72px)}
+/* Steps, a real sequence on the press page */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:s}
+.steps li{display:grid;grid-template-columns:3.2em minmax(0,1fr);gap:12px;padding:18px 0;border-bottom:1px solid var(--rule);counter-increment:s}
+.steps li::before{content:counter(s,decimal-leading-zero);font-size:14px;color:var(--ochre);font-variant-numeric:tabular-nums;padding-top:4px}
+.steps b{font-weight:500;font-size:19px;display:block}
+.steps span{font-family:var(--serif);color:#CFCCC4;font-size:17px}
 
-  /* The header carries the lockup and the language switch, as on the front page. */
-  header.top{padding:clamp(30px,4.4vw,64px) 0 0}
-  .topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin:0 0 clamp(36px,6vh,64px)}
-  .lockup{width:clamp(224px,22vw,296px);height:auto;display:block}
-  .langswitch{
-    flex:0 0 auto;
-    font-family:var(--sans);
-    font-size:12px;font-weight:600;letter-spacing:.1em;line-height:1;
-    white-space:nowrap;text-decoration:none;
-    color:var(--basalt-light);
-    border:1px solid var(--line);border-radius:5px;
-    padding:8px 12px;margin-top:6px;
-    transition:border-color .15s ease,color .15s ease;
-  }
-  .langswitch:hover{border-color:var(--verdigris);color:var(--verdigris-deep)}
-  .langswitch:focus-visible{outline:3px solid var(--verdigris);outline-offset:2px}
-  .langs{display:flex;gap:8px;flex:0 0 auto}
+/* Photograph */
+figure.photo{margin:clamp(30px,4vw,52px) 0 0}
+figure.photo img{width:100%;height:auto;border-radius:6px}
+figure.photo figcaption{font-size:14px;color:var(--mute);margin-top:12px;max-width:70ch}
 
-  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;font-weight:700;letter-spacing:.15em;
-    text-transform:uppercase;color:var(--verdigris-deep);background:rgba(20,121,106,.1);border-radius:4px;padding:6px 11px;margin:0 0 20px}
-  .kicker span{width:6px;height:6px;border-radius:50%;background:var(--verdigris)}
+/* The device: the real Semek, a cut-out on a warm glow */
+figure.device{margin:clamp(28px,4vw,44px) 0 0;max-width:380px}
+figure.device .glow{background:radial-gradient(closest-side,rgba(224,98,58,.38),rgba(224,98,58,0));padding:clamp(14px,3vw,30px)}
+figure.device img{width:100%;height:auto}
+figure.device figcaption{font-size:14px;color:var(--mute);margin-top:10px;max-width:46ch}
 
-  h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5.2vw,46px);line-height:1.1;margin:0 0 18px;max-width:19ch}
-  .lede{
-    font-family:var(--serif);
-    font-size:clamp(18px,0.58vw + 16px,22px);
-    line-height:1.5;
-    color:var(--basalt);
-    max-width:62ch;
-    margin:0 0 22px;
-  }
-  .rule{width:132px;height:3px;background:var(--verdigris);border-radius:2px;margin:0 0 clamp(36px,6vh,56px)}
+/* The harvest band: the ember gradient as a full surface */
+.band{position:relative;overflow:hidden;border-top:0;background:linear-gradient(118deg,var(--ember-deep) 0%,var(--signal) 46%,var(--ochre) 100%)}
+.band .statement{color:#FFF8F1;max-width:20ch}
+.band .sub{color:rgba(255,248,241,.86)}
+.band .mark{position:absolute;right:-3%;bottom:-18%;width:min(42vw,520px);opacity:.22}
+.band .mark path,.band .mark line{stroke:#FFF8F1}
+.band .wrap{position:relative;z-index:1}
 
-  main section{margin:0 0 clamp(44px,7vh,68px);scroll-margin-top:24px}
-  h2{font-family:var(--serif);font-weight:600;font-size:clamp(23px,3.4vw,30px);line-height:1.2;margin:0 0 14px;max-width:24ch}
-  main p{
-    font-family:var(--serif);
-    font-size:clamp(16.5px,0.42vw + 15px,19.5px);
-    line-height:1.58;
-    color:var(--basalt-light);
-    max-width:62ch;
-    margin:0 0 1.15em;
-  }
-  main p:last-child{margin-bottom:0}
-  main p strong{color:var(--basalt);font-weight:600}
+/* Faces. Uniform treatment: backlit, warm, dark. Placeholders until the
+   portraits arrive, marked as such. Names only, no roles. */
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:clamp(18px,2.4vw,32px);margin-top:clamp(28px,4vw,48px)}
+.person{min-width:0}
+.portrait{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:6px;overflow:hidden;background:radial-gradient(120% 90% at 50% 18%,var(--signal) 0%,var(--ember-deep) 48%,#16100D 82%)}
+.portrait .sil{position:absolute;left:50%;bottom:0;width:78%;transform:translateX(-50%);fill:#0E0B0A}
+.portrait .ph{position:absolute;left:12px;top:12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,248,241,.8);background:rgba(15,18,22,.45);padding:5px 9px;border-radius:999px}
+.person h3{font-size:21px;font-weight:500;margin:16px 0 2px}
+.person p{font-family:var(--serif);font-size:16px;line-height:1.5;color:#CFCCC4;margin:0}
 
-  /* The two directions carry a verdigris rule on the left, the same device
-     the brand book uses for a note, so the pair reads as a pair. */
-  main p.dir{
-    border-left:2px solid var(--verdigris);
-    padding:2px 0 2px 16px;
-  }
+/* Facts table */
+.facts{width:100%;border-collapse:collapse;font-size:16px}
+.facts th,.facts td{text-align:left;vertical-align:top;padding:13px 0;border-bottom:1px solid var(--rule)}
+.facts th{font-weight:500;color:var(--mute);width:34%;padding-right:18px}
+.tablewrap{overflow-x:auto}
 
-  main p.contact{
-    font-family:var(--sans);
-    font-size:15px;
-    color:var(--basalt-light);
-    margin-top:1.6em;
-  }
+/* Next steps and contact */
+.next{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px;margin-top:clamp(26px,4vw,44px)}
+.next a{display:flex;justify-content:space-between;align-items:center;gap:16px;text-decoration:none;background:var(--panel);border-radius:6px;padding:24px;font-size:19px;font-weight:500;transition:background .2s}
+.next a::after{content:"\2197";color:var(--verdigris);font-size:20px}
+.next a:hover{background:#232A31;color:var(--chalk)}
+.mail{font-size:clamp(26px,3.4vw,48px);font-weight:500;letter-spacing:-.02em}
+.quiet{font-size:14px;color:var(--mute);margin-top:18px}
 
-  a{
-    color:var(--verdigris);
-    text-decoration:none;
-    border-bottom:1px solid rgba(20,121,106,.34);
-    padding-bottom:1px;
-    transition:color .18s ease,border-color .18s ease;
-  }
-  a:hover{color:var(--verdigris-deep);border-bottom-color:var(--verdigris-deep)}
-  a:focus-visible{outline:2px solid var(--verdigris);outline-offset:3px;border-radius:2px;border-bottom-color:transparent}
-  .langswitch{border-bottom:1px solid var(--line);padding-bottom:8px}
+/* Footer: the ember once more, as Primitive closes */
+footer{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--night) 0%,var(--ember-deep) 38%,var(--signal) 78%,var(--ochre) 100%);padding-block:clamp(90px,14vw,170px) calc(110px + env(safe-area-inset-bottom,0px))}
+footer .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:22px;font-size:15px;color:#FFF8F1}
+footer a{color:#FFF8F1;text-decoration-color:rgba(255,248,241,.5)}
+footer .entity{font-weight:500}
+footer .big{font-size:clamp(40px,8vw,120px);font-weight:500;letter-spacing:-.035em;line-height:.95;color:#FFF8F1;margin:0 0 clamp(36px,5vw,64px)}
 
-  /* Figures: one line drawing per section, inline so the page still makes
-     no request to any other host. Captions in the sans, as on the front page. */
-  figure.fig{margin:4px 0 28px;max-width:62ch}
-  figure.fig svg{display:block;width:100%;height:auto}
-  figure.fig figcaption{font-family:var(--sans);font-size:13.5px;line-height:1.55;color:var(--basalt-light);margin-top:10px}
+/* Floating pill navigation, bottom centre */
+.pill{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:10;display:flex;align-items:center;gap:4px;background:rgba(26,31,37,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(245,243,238,.1);border-radius:999px;padding:6px;max-width:calc(100vw - 24px)}
+.pill a{text-decoration:none;font-size:14px;font-weight:500;padding:9px 14px;border-radius:999px;white-space:nowrap;color:var(--chalk)}
+.pill a.home{display:flex;align-items:center;gap:7px}
+.pill a.home .mark{width:26px;height:auto}
+.pill a[aria-current="page"]{background:rgba(245,243,238,.1)}
+.pill a.cta{background:var(--chalk);color:var(--night)}
+.pill a.cta:hover{background:var(--verdigris);color:var(--night)}
 
-  footer{
-    border-top:1px solid var(--line);
-    margin-top:clamp(24px,4vh,40px);
-    padding:16px 0 clamp(40px,6vh,64px);
-    font-size:13px;
-    line-height:1.7;
-    color:var(--basalt-light);
-  }
-  footer .wrap{display:flex;flex-wrap:wrap;gap:4px clamp(20px,4vw,52px)}
-  footer .entity{font-weight:500}
-
-  @media (max-width:820px){
-    h1{max-width:none}
-    main p,.lede{max-width:none}
-  }
-  @media print{
-    body{background:#fff}
-    .langswitch,.skip{display:none}
-  }
+@media (max-width:760px){
+  .split{grid-template-columns:1fr}
+  .pill .opt{display:none}
+  .facts th{width:42%}
+  .band .mark{opacity:.1;width:70vw;right:-30%}
+  .team{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .person h3{font-size:18px}
+  .portrait .ph{font-size:9px;left:8px;top:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ember i{animation:none}
+  .js .reveal .w{color:var(--chalk);transition:none}
+  html{scroll-behavior:auto}
+}
+@media print{.pill,.ember{display:none}body{background:#fff;color:#000}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Naar de inhoud</a>
-
-<header class="top">
-  <div class="wrap">
-    <div class="topbar">
-      <svg class="lockup" viewBox="0 0 280 86" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Freehold. Inzichten, nooit data.">
-        <title>Freehold</title>
-        <desc>Het Membraan, met het woordmerk Freehold en de baseline Inzichten, nooit data.</desc>
-        <g stroke="#14181D" stroke-linecap="round" stroke-width="2.0" fill="none">
-          <line x1="15" y1="42" x2="15" y2="58" opacity="0.22"/>
-          <line x1="22" y1="34" x2="22" y2="68" opacity="0.3"/>
-          <line x1="29" y1="46" x2="29" y2="54" opacity="0.18"/>
-          <line x1="36" y1="26" x2="36" y2="76" opacity="0.38"/>
-          <line x1="43" y1="43" x2="43" y2="59" opacity="0.22"/>
-          <line x1="50" y1="31" x2="50" y2="71" opacity="0.3"/>
-          <line x1="57" y1="47" x2="57" y2="53" opacity="0.18"/>
-          <line x1="64" y1="28" x2="64" y2="74" opacity="0.34"/>
-        </g>
-        <path d="M36,50 C50,50 62,50 88,51" stroke="#14796A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.42"/>
-        <path d="M50,52 C62,52 72,49 100,51" stroke="#14796A" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.3"/>
-        <path d="M75,13 C80,32 80,68 75,87" stroke="#14796A" stroke-width="3.0" stroke-linecap="round" fill="none"/>
-        <g stroke="#14796A" stroke-linecap="round" stroke-width="5.0">
-          <line x1="90" y1="38" x2="90" y2="62"/>
-          <line x1="101" y1="28" x2="101" y2="72"/>
-          <line x1="112" y1="43" x2="112" y2="57"/>
-        </g>
-        <text x="140" y="53" font-family="Inter Tight, Inter, Helvetica, Arial, sans-serif" font-size="29" letter-spacing="-0.6" fill="#14181D"><tspan font-weight="400">Free</tspan><tspan font-weight="700">hold</tspan></text>
-        <text x="141" y="73" font-family="Inter Tight, Inter, Helvetica, Arial, sans-serif" font-size="7.55" font-weight="500" letter-spacing="1.0" fill="#14181D" opacity="0.55">INZICHTEN, NOOIT DATA</text>
-      </svg>
-      <nav class="langs" aria-label="Talen">
-        <a class="langswitch" href="what-freehold-does.html" hreflang="en" lang="en" aria-label="This page in English">EN</a>
-        <a class="langswitch" href="ce-que-fait-freehold.html" hreflang="fr" lang="fr" aria-label="Cette page en français">FR</a>
-        <a class="langswitch" href="lo-que-hace-freehold.html" hreflang="es" lang="es" aria-label="Esta página en español">ES</a>
-      </nav>
-    </div>
-
-    <div class="kicker"><span></span>Europese octrooiaanvraag 26202295.7, ingediend op 1 september 2026</div>
-    <!-- heading-gate: page title, identical to the document name and to the link on the front page -->
-    <h1>Wat Freehold doet</h1>
-    <p class="lede">Freehold beheert het Freehold Inzichten Ecosysteem. In dat ecosysteem bereiken de goede dingen u, en uw eigen gegevens vertrekken nooit. Het ding dat beslist, heet de Hub. Een Hub kan een klein kastje zijn in een huis, naast het kastje dat het internet binnenbrengt. Het kan evengoed een stuk software zijn op uw telefoon, op uw computer, of in een app die het u eerst vraagt voor er iets gebeurt. Vandaag heeft het ecosysteem zijn eerste punt: een kastje in een huis. Freehold houdt de software op uw Hub bij, en het voegt telkens nieuwe dingen toe die het ecosysteem voor u kan doen. Elke Hub beslist wat er van het internet binnen mag, en wat er over u naar buiten mag. Uw eigen bestanden gaan nergens heen. De bedoeling van dit alles is dat alles wat binnenkomt u iets oplevert, en alles wat over u vertrekt ook.</p>
-    <div class="rule"></div>
-  </div>
-</header>
+<div class="wrap top"><a href="nl.html" aria-label="Freehold, voorpagina" style="text-decoration:none"><svg class="lockup" viewBox="0 0 280 86" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Freehold. Inzichten, nooit data.">
+  <title>Freehold</title>
+  <g stroke="#F5F3EE" stroke-linecap="round" stroke-width="2.0" fill="none">
+    <line x1="15" y1="42" x2="15" y2="58" opacity="0.28"/><line x1="22" y1="34" x2="22" y2="68" opacity="0.36"/>
+    <line x1="29" y1="46" x2="29" y2="54" opacity="0.22"/><line x1="36" y1="26" x2="36" y2="76" opacity="0.44"/>
+    <line x1="43" y1="43" x2="43" y2="59" opacity="0.28"/><line x1="50" y1="31" x2="50" y2="71" opacity="0.36"/>
+    <line x1="57" y1="47" x2="57" y2="53" opacity="0.22"/><line x1="64" y1="28" x2="64" y2="74" opacity="0.4"/>
+  </g>
+  <path d="M36,50 C50,50 62,50 88,51" stroke="#2FA891" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.5"/>
+  <path d="M50,52 C62,52 72,49 100,51" stroke="#2FA891" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.36"/>
+  <path d="M75,13 C80,32 80,68 75,87" stroke="#2FA891" stroke-width="3.0" stroke-linecap="round" fill="none"/>
+  <g stroke="#2FA891" stroke-linecap="round" stroke-width="5.0">
+    <line x1="90" y1="38" x2="90" y2="62"/><line x1="101" y1="28" x2="101" y2="72"/><line x1="112" y1="43" x2="112" y2="57"/>
+  </g>
+  <text x="140" y="53" font-family="Inter Tight, Inter, Helvetica, Arial, sans-serif" font-size="29" letter-spacing="-0.6" fill="#F5F3EE"><tspan font-weight="400">Free</tspan><tspan font-weight="700">hold</tspan></text>
+  <text x="141" y="73" font-family="Inter Tight, Inter, Helvetica, Arial, sans-serif" font-size="7.55" font-weight="500" letter-spacing="1.0" fill="#F5F3EE" opacity="0.6">INZICHTEN, NOOIT DATA</text>
+</svg></a>
+<nav class="langs" aria-label="Talen"><a href="what-freehold-does.html" lang="en" hreflang="en">EN</a><a href="ce-que-fait-freehold.html" lang="fr" hreflang="fr">FR</a><a href="lo-que-hace-freehold.html" lang="es" hreflang="es">ES</a></nav></div>
 
 <main id="main">
-  <div class="wrap">
+<div class="hero"><div class="ember" aria-hidden="true"><i></i><i></i></div>
+<div class="wrap">
+<!-- heading-gate: page title, identical to the document name and to the link on the front page -->
+<h1 class="eyebrow">Wat Freehold doet</h1>
+<p class="statement reveal">Een Hub aan uw deur beslist wat binnenkomt en wat buitengaat. Uw eigen bestanden blijven thuis.</p>
+<p class="sub">Freehold beheert het Freehold Inzichten Ecosysteem. Freehold houdt elke Hub bij en voegt telkens nieuwe dingen toe die het voor u kan doen.</p>
+</div></div>
 
-<section id="het-kastje-thuis" aria-labelledby="h-het-kastje-thuis">
-  <h2 id="h-het-kastje-thuis">Het eerste punt in het ecosysteem</h2>
-  <figure class="fig">
-    <svg viewBox="0 0 440 150" role="img" aria-label="De router brengt het internet binnen, de Hub staat ernaast als een klein kastje, en uw laptop en telefoon staan erachter, thuis."><rect x="250" y="12" width="180" height="126" rx="10" fill="rgba(192,138,62,.11)"/><text x="340.0" y="32" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="middle" fill="#14181D">Bij u thuis</text><text x="38" y="88" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="13" font-weight="500" text-anchor="middle" fill="#14181D">Internet</text><line x1="66" y1="84" x2="94" y2="84" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M89,79 L94,84 L89,89" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M71,79 L66,84 L71,89" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="100" y="64" width="56" height="40" rx="6" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="112" y1="64" x2="108" y2="48" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="144" y1="64" x2="148" y2="48" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="114" cy="86" r="2" fill="#14181D"/><circle cx="126" cy="86" r="2" fill="#14181D"/><circle cx="138" cy="86" r="2" fill="#14181D"/><text x="128" y="124" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="12" font-weight="500" text-anchor="middle" fill="#2A3138">Router</text><line x1="156" y1="84" x2="176" y2="84" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="176" y="58" width="56" height="52" rx="8" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="190.0" y1="77.0" x2="190.0" y2="91.0" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" opacity="0.32"/><line x1="198.0" y1="71.0" x2="198.0" y2="97.0" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" opacity="0.42"/><line x1="206.0" y1="79.0" x2="206.0" y2="89.0" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" opacity="0.26"/><path d="M198.0,84.0 C206.0,84.0 210.0,83.0 222.0,84.0" stroke="#14796A" stroke-width="2.2" stroke-linecap="round" fill="none"/><text x="204" y="128" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="middle" fill="#14181D">Uw Hub</text><line x1="238" y1="84" x2="266" y2="84" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M261,79 L266,84 L261,89" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M243,79 L238,84 L243,89" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="274" y="66" width="38" height="24" rx="3" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="268" y1="96" x2="318" y2="96" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="330" y="60" width="20" height="36" rx="4" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="337" y1="90" x2="343" y2="90" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="312" y="122" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="12" font-weight="500" text-anchor="middle" fill="#2A3138">Uw toestellen</text></svg>
-    <figcaption>Het kastje dat het internet binnenbrengt, en daarnaast de Hub, hier als een klein kastje. Alles wat binnenkomt of buitengaat, passeert de Hub.</figcaption>
-  </figure>
-  <p>Denk aan het kastje dat het internet bij u thuis brengt. Daarnaast staat een tweede kastje, ongeveer even groot. U steekt de stekker er één keer in en daarna vergeet u het, zoals de zekeringkast onder de trap. Het houdt stilletjes in de gaten wat er binnenkomt en wat er buitengaat. Dat tweede kastje is een Hub.</p>
-  <p>Dat kastje bestaat echt, en het heet Semek. In zijn eigen woorden is Semek uw AI-buddy, een vriendelijk doosje dat naast uw router staat. In elke browser in huis herkent het foto's, video's en teksten die door AI zijn gemaakt, en het labelt ze, maakt ze wazig of weigert ze. Alle intelligentie zit in het kastje zelf, bij u thuis, en er gaat niets naar een cloud.</p>
-  <p>Vandaag is de Hub een kastje in een huis. Daar begint het, en er komt meer bij. Een Hub hoeft niet iets te zijn dat u kunt vastnemen. Dezelfde Hub kan draaien op de telefoon in uw zak, voor de uren dat u niet thuis bent. Hij kan draaien in een fabriek of op een kantoor, waar een bedrijf precies dezelfde twee vragen heeft over wat het binnenlaat en wat het buitenlaat. Een gezin, iemand onderweg en een bedrijf willen hier allemaal hetzelfde. Alleen de plek waar de Hub draait verandert, en het werk blijft hetzelfde. Buitenshuis kunnen dezelfde regels met u mee, over een veilige lijn terug naar uw eigen Hub.</p>
-  <p>U beslist wat het weigert en wat het doorlaat. Het is uw Hub, en de instellingen zijn van u.</p>
-  <p>Dat is de helft van wat de Hub doet, en die helft werkt vandaag al. De andere helft, over wat er vertrekt, komt verderop.</p>
-  <p>Semek is een werkend prototype, ontwikkeld door de Chief Product Officer van Freehold. Meer daarover op <a href="https://semek.ai/nl" rel="noopener">semek.ai</a>. Een prototype is een eerste werkende versie, nog een eind van een afgewerkt product dat u in de winkel koopt. Wat het vandaag doet, is het begin van de lijst. Mettertijd komt er meer bij, en daarvoor zorgen is een deel van het werk dat verderop op deze pagina staat.</p>
-</section>
+<section><div class="wrap split">
+<h2 class="label">De Hub</h2>
+<div class="body">
+<p class="lead">Denk aan een tweede kastje naast het kastje dat het internet bij u thuis brengt.</p>
+<p>U steekt de stekker er één keer in en daarna vergeet u het, zoals de zekeringkast onder de trap. Het houdt stilletjes in de gaten wat er binnenkomt en wat er buitengaat. Dat kastje is een Hub.</p>
+<p>Vandaag bestaat het als Semek, een werkend prototype, ontwikkeld door de Chief Product Officer van Freehold. In elke browser in huis herkent het foto's, video's en teksten die door AI zijn gemaakt, en het labelt ze, maakt ze wazig of weigert ze. Er gaat niets naar een cloud. Meer daarover op <a href="https://semek.ai">semek.ai</a>.</p>
+<p>Dezelfde Hub kan draaien op uw telefoon, op een kantoor of in een fabriek. Alleen de plek verandert. Het werk blijft hetzelfde.</p>
+<figure class="device">
+<div class="glow"><img src="img/semek.webp" srcset="img/semek-600.webp 600w, img/semek.webp 1100w" sizes="(max-width:760px) 80vw, 380px" width="1100" height="1413" alt="Semek, een oranje kastje met een scherm dat stand 3 toont, Balanced, Monitoring, met netwerkkabels aangesloten." loading="lazy"></div>
+<figcaption>Semek, het werkende prototype waarop een Hub vandaag draait, op de stand Balanced.</figcaption>
+</figure>
+</div></div></section>
 
-<section id="de-twee-richtingen" aria-labelledby="h-de-twee-richtingen">
-  <h2 id="h-de-twee-richtingen">De twee richtingen</h2>
-  <figure class="fig">
-    <svg viewBox="0 0 460 250" role="img" aria-label="Een deur met een portier die voor u werkt. Naar binnen worden twee stukken rommel geweigerd en komt één goed ding door. Naar buiten stelt een bedrijf een vraag, blijven uw bestanden thuis, en gaat één antwoord terug."><rect x="240" y="10" width="210" height="230" rx="10" fill="rgba(192,138,62,.11)"/><text x="345.0" y="30" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="middle" fill="#14181D">Bij u thuis</text><text x="70" y="30" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="middle" fill="#14181D">Internet</text><rect x="200" y="46" width="40" height="164" rx="6" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="220" cy="107" r="5" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M211,124 C211,114 229,114 229,124" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="220" y1="119" x2="220" y2="142" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="220" y1="142" x2="212" y2="160" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="220" y1="142" x2="228" y2="160" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="208" y1="128" x2="232" y2="128" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="220" y="30" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="middle" fill="#14181D">De Hub</text><text x="70" y="62" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="middle" fill="#0C5347">Naar binnen</text><rect x="28" y="78" width="16" height="16" rx="3" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="31" y1="81" x2="41" y2="91" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="41" y1="81" x2="31" y2="91" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="66" y="78" width="16" height="16" rx="3" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="69" y1="81" x2="79" y2="91" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="79" y1="81" x2="69" y2="91" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="104" y="78" width="16" height="16" rx="3" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="128" y1="86" x2="194" y2="86" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M189,81 L194,86 L189,91" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="262" y="78" width="16" height="16" rx="3" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M266,86 L269,90 L275,82" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="56" y="112" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="11" font-weight="500" text-anchor="middle" fill="#2A3138">rommel, geweigerd</text><text x="300" y="112" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="11" font-weight="500" text-anchor="start" fill="#0C5347">uw tijd waard</text><text x="70" y="152" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="middle" fill="#0C5347">Naar buiten</text><circle cx="50" cy="176" r="11" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="50" y="181" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#14181D">?</text><line x1="66" y1="176" x2="194" y2="176" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M189,171 L194,176 L189,181" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="16" y="204" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="11" font-weight="500" text-anchor="start" fill="#2A3138">een bedrijf vraagt</text><rect x="330" y="158" width="30" height="38" rx="3" fill="#F5F3EE" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="336" y="152" width="30" height="38" rx="3" fill="#F5F3EE" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="342" y="146" width="30" height="38" rx="3" fill="#F5F3EE" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="348" y1="172" x2="364" y2="172" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="348" y1="180" x2="364" y2="180" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="348" y1="188" x2="364" y2="188" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="357" y="214" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="11" font-weight="500" text-anchor="middle" fill="#2A3138">uw bestanden blijven</text><rect x="262" y="198" width="18" height="13" rx="2" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="276" cy="200" r="3" fill="#14796A"/><line x1="254" y1="204" x2="154" y2="204" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M159,199 L154,204 L159,209" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="204" y="224" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="11" font-weight="500" text-anchor="middle" fill="#0C5347">één antwoord gaat terug</text></svg>
-    <figcaption>De portier werkt voor u. Naar binnen wordt de rommel geweigerd en komen de goede dingen door. Naar buiten stelt een bedrijf een vraag, gaat één antwoord terug, en blijven uw bestanden waar ze zijn.</figcaption>
-  </figure>
-  <p>Zie de Hub als een deur met iemand ernaast, en die iemand werkt voor u.</p>
-  <p class="dir"><strong>Naar binnen.</strong> Het internet stuurt u een enorme hoop rommel. Het meeste is onschuldig en gewoon zonde van uw tijd, en u moet erdoor ploeteren om bij het weinige te komen dat de moeite waard is. De Hub zet de goede dingen vooraan. Het kijkt waar iets vandaan komt en of een machine het heeft gemaakt. En het volgt uw regels, wie het ook heeft gestuurd.</p>
-  <p class="dir"><strong>Naar buiten.</strong> Vandaag krijgt een bedrijf uw ruwe gegevens en weet het nog altijd te weinig. De maker van uw airco ziet de temperatuur, maar niet dat uw raam openstaat en er een ventilator draait, en trekt dus de verkeerde conclusie. Met Freehold stuurt het bedrijf zijn vraag naar uw Hub. Uw Hub zoekt het echte antwoord uit, met alles wat het over uw huis weet, en stuurt alleen dat antwoord terug. Het bedrijf krijgt meer dan het ooit kreeg. Uw gegevens blijven waar ze zijn.</p>
-  <p>U draait zelf aan de knop, voor beide richtingen, en een van de standen is uit. Uit mag, en dat blijft zo.</p>
-  <p>Beide richtingen zijn hetzelfde werk, twee keer bekeken: zorgen dat wat u bereikt uw tijd waard is, en dat wat van u vertrekt u iets oplevert.</p>
-</section>
+<section><div class="wrap split">
+<h2 class="label">De twee richtingen</h2>
+<div class="body"><p class="lead">Zie de Hub als een deur met iemand ernaast, en die iemand werkt voor u.</p><p>U draait zelf aan de knop, voor beide richtingen, en een van de standen is uit. Uit mag, en dat blijft zo.</p></div>
+</div>
+<div class="wrap"><div class="cards">
+<div class="card"><span class="tag">In</span><h3>Naar binnen</h3><p>Het internet stuurt u een enorme hoop rommel. De Hub zet de goede dingen vooraan. Het kijkt waar iets vandaan komt en of een machine het heeft gemaakt, en het volgt uw regels, wie het ook heeft gestuurd.</p></div>
+<div class="card"><span class="tag">Uit</span><h3>Naar buiten</h3><p>Vandaag krijgt een bedrijf uw ruwe gegevens en weet het nog altijd te weinig. De maker van uw airco ziet de temperatuur, en mist dat uw raam openstaat. Met Freehold stuurt het zijn vraag naar uw Hub, die het echte antwoord uitzoekt en alleen dat terugstuurt.</p></div>
+</div></div></section>
 
-<section id="het-verzegelde-briefje" aria-labelledby="h-het-verzegelde-briefje">
-  <h2 id="h-het-verzegelde-briefje">Het verzegelde briefje</h2>
-  <figure class="fig">
-    <svg viewBox="0 0 440 196" role="img" aria-label="Een verzegeld briefje met vijf regels: wie het heeft uitgezocht, het antwoord, wie het mag lezen, waarvoor het mag dienen, en wanneer het niet meer telt."><rect x="80" y="14" width="280" height="168" rx="8" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="336" cy="34" r="11" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="331" y1="30" x2="331" y2="38" stroke="#14181D" stroke-width="1.5" stroke-linecap="round" opacity=".45"/><line x1="335" y1="28" x2="335" y2="40" stroke="#14181D" stroke-width="1.5" stroke-linecap="round" opacity=".45"/><path d="M333,34 C336,34 338,33.5 342,34" stroke="#14796A" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="104" cy="41" r="5" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M95,58 C95,48 113,48 113,58" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="96" y="66" width="16" height="12" rx="2" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="100" y1="72" x2="108" y2="72" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M94,100 C99,92 109,92 114,100 C109,108 99,108 94,100 Z" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="104" cy="100" r="3" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="104" cy="128" r="9" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="104" cy="128" r="3" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="104" cy="156" r="9" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M104,151 L104,156 L109,159" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="126" y="48" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="13" font-weight="500" text-anchor="start" fill="#14181D">Wie het heeft uitgezocht</text><text x="126" y="76" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="13" font-weight="500" text-anchor="start" fill="#14181D">Het antwoord</text><text x="126" y="104" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="13" font-weight="500" text-anchor="start" fill="#14181D">Wie het mag lezen</text><text x="126" y="132" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="13" font-weight="500" text-anchor="start" fill="#14181D">Waarvoor het mag dienen</text><text x="126" y="160" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="13" font-weight="500" text-anchor="start" fill="#14181D">Wanneer het niet meer telt</text></svg>
-    <figcaption>Het verzegelde briefje draagt vijf dingen: wie het antwoord heeft uitgezocht, het antwoord zelf, wie het mag lezen, waarvoor het mag dienen, en wanneer het niet meer telt.</figcaption>
-  </figure>
-  <p>Een verzekeraar heeft uw medisch dossier niet nodig. Hij moet één ding weten, bijvoorbeeld of u op dit moment fit genoeg bent om te rijden. Een winkel heeft geen lijst nodig van alles wat u ooit hebt gekocht. Hij moet weten of deze jas uw maat is. In beide gevallen is het antwoord een klein stukje van het geheel, en dat kleine stukje is alles wat ze echt nodig hebben.</p>
-  <p>Het antwoord reist niet alleen. Het reist in een soort verzegeld briefje. Op het briefje staat wie het antwoord heeft uitgezocht, wat het antwoord is, wie het mag lezen, waarvoor ze het mogen gebruiken, en wanneer het niet meer telt.</p>
-  <p>Een rijbewijs werkt ongeveer zo. Het bewijst dat u kunt rijden zonder dat u het examen opnieuw aflegt voor iedereen die het vraagt. Het verschil is dat er elke keer een nieuw briefje wordt geschreven, in plaats van één kaart die tien jaar meegaat.</p>
-</section>
+<section><div class="wrap split">
+<h2 class="label">Het verzegelde briefje</h2>
+<div class="body">
+<p class="lead">Een verzekeraar moet één ding weten, bijvoorbeeld of u op dit moment fit genoeg bent om te rijden. Uw medisch dossier blijft bij u.</p>
+<p>Het antwoord reist in een soort verzegeld briefje. Denk aan een rijbewijs, dat elke keer opnieuw wordt geschreven.</p>
+<ul class="chips" aria-label="Wat het briefje draagt"><li>Wie het heeft uitgezocht</li><li>Het antwoord</li><li>Wie het mag lezen</li><li>Waarvoor het mag dienen</li><li>Wanneer het niet meer telt</li></ul>
+</div></div></section>
 
-<section id="veel-kastjes-samen" aria-labelledby="h-veel-kastjes-samen">
-  <h2 id="h-veel-kastjes-samen">Veel Hubs samen</h2>
-  <figure class="fig">
-    <svg viewBox="0 0 460 236" role="img" aria-label="Programma's van anderen passeren de lijst voor ze het ecosysteem bereiken. Een aparte organisatie beslist wat op de lijst komt. Freehold beheert de lijn van het ecosysteem, en zeven Hubs hangen eraan, op kastjes, telefoons en laptops."><text x="24" y="28" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="start" fill="#14181D">Anderen bouwen er dingen voor</text><rect x="30" y="42" width="18" height="18" rx="4" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="56" y="42" width="18" height="18" rx="4" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="82" y="42" width="18" height="18" rx="4" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="108" y1="51" x2="186" y2="51" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M181,46 L186,51 L181,56" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="190" y="26" width="64" height="80" rx="5" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="210" y="20" width="24" height="10" rx="3" fill="#F5F3EE" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="222" y="48" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#14181D">De lijst</text><path d="M200,62 L204,66 L210,58" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="216" y1="62" x2="244" y2="62" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M200,76 L204,80 L210,72" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="216" y1="76" x2="244" y2="76" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="201" y1="86" x2="209" y2="94" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="209" y1="86" x2="201" y2="94" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="216" y1="90" x2="244" y2="90" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="316" cy="43" r="5" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M307,60 C307,50 325,50 325,60" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="336" cy="43" r="5" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M327,60 C327,50 345,50 345,60" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="356" cy="43" r="5" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M347,60 C347,50 365,50 365,60" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="336" y="80" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="11" font-weight="600" text-anchor="middle" fill="#14181D">Een aparte organisatie</text><text x="336" y="95" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="11" font-weight="500" text-anchor="middle" fill="#2A3138">beslist wat op de lijst komt</text><line x1="300" y1="56" x2="262" y2="56" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M267,51 L262,56 L267,61" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="222" y1="108" x2="222" y2="140" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M217,135 L222,140 L227,135" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M20,150 C160,146 300,154 440,150" stroke="#14796A" stroke-width="2.6" stroke-linecap="round" fill="none"/><text x="440" y="138" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="end" fill="#0C5347">Freehold beheert het ecosysteem</text><line x1="40" y1="150" x2="40" y2="170" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="23" y="170" width="34" height="30" rx="5" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="36" y1="180" x2="36" y2="190" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" opacity=".4"/><path d="M39,185 C43,185 45,184 48,185" stroke="#14796A" stroke-width="2" stroke-linecap="round" fill="none"/><line x1="100" y1="150" x2="100" y2="170" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="90" y="170" width="20" height="32" rx="4" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="97" y1="197" x2="103" y2="197" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="96" y1="180" x2="96" y2="190" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" opacity=".4"/><path d="M99,185 C103,185 105,184 108,185" stroke="#14796A" stroke-width="2" stroke-linecap="round" fill="none"/><line x1="160" y1="150" x2="160" y2="170" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="144" y="172" width="32" height="20" rx="3" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="140" y1="197" x2="180" y2="197" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="156" y1="177" x2="156" y2="187" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" opacity=".4"/><path d="M159,182 C163,182 165,181 168,182" stroke="#14796A" stroke-width="2" stroke-linecap="round" fill="none"/><line x1="220" y1="150" x2="220" y2="170" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="203" y="170" width="34" height="30" rx="5" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="216" y1="180" x2="216" y2="190" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" opacity=".4"/><path d="M219,185 C223,185 225,184 228,185" stroke="#14796A" stroke-width="2" stroke-linecap="round" fill="none"/><line x1="280" y1="150" x2="280" y2="170" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="270" y="170" width="20" height="32" rx="4" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="277" y1="197" x2="283" y2="197" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="276" y1="180" x2="276" y2="190" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" opacity=".4"/><path d="M279,185 C283,185 285,184 288,185" stroke="#14796A" stroke-width="2" stroke-linecap="round" fill="none"/><line x1="340" y1="150" x2="340" y2="170" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="323" y="170" width="34" height="30" rx="5" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="336" y1="180" x2="336" y2="190" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" opacity=".4"/><path d="M339,185 C343,185 345,184 348,185" stroke="#14796A" stroke-width="2" stroke-linecap="round" fill="none"/><line x1="400" y1="150" x2="400" y2="170" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="384" y="172" width="32" height="20" rx="3" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="380" y1="197" x2="420" y2="197" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="396" y1="177" x2="396" y2="187" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" opacity=".4"/><path d="M399,182 C403,182 405,181 408,182" stroke="#14796A" stroke-width="2" stroke-linecap="round" fill="none"/><text x="230" y="226" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="middle" fill="#14181D">Een Hub kan op veel toestellen draaien</text></svg>
-    <figcaption>Freehold beheert het ecosysteem waar elke Hub aan hangt. Een Hub kan op veel toestellen draaien. Anderen bouwen er dingen voor, en niets draait voor het is nagekeken en op de lijst staat, en een aparte organisatie beslist daarover.</figcaption>
-  </figure>
-  <p>Eén Hub in één huis is handig. Een paar miljoen, die allemaal dezelfde taal spreken, is iets veel groters.</p>
-  <p>Denk aan stopcontacten. Iedereen sprak één vorm van stopcontact af. Goed, bijna iedereen, en meestal alleen binnen de eigen grenzen, en daarom betekent een vakantie nog altijd een zak vol reisstekkers. Maar binnen één land hield het stand, en dat bleek genoeg. Daarna kon iedereen een waterkoker, een lamp of een spelconsole maken en weten dat de stekker in de muur paste. De vorm afspreken is het moeilijke deel. Dat is het altijd.</p>
-  <p>De mensen die het elektriciteitsnet beheerden, hebben nooit één waterkoker gemaakt. Zij beheerden het net, en dat was het werk.</p>
-  <p>Freehold werkt op dezelfde manier. Freehold bouwt samen met partners de toestellen waarop een Hub draait. Freehold beheert het ecosysteem waar al die Hubs aan hangen, en laat andere mensen er dingen voor bouwen. Daar horen ook de AI-modellen bij die thuis uw vragen beantwoorden. Freehold hoeft niet het beste model te maken. Het moet de plek maken waar de beste modellen, van wie dan ook, voor u kunnen werken.</p>
-  <p>Beheren houdt twee taken in. De eerste is elke Hub bijhouden, zodat de software in uw Hub niet veroudert terwijl de wereld verder gaat. De tweede is het ecosysteem mettertijd meer waard maken, door er nuttige dingen aan toe te voegen en door anderen hun dingen te laten toevoegen. Een Hub die dit jaar meer voor u kan dan vorig jaar, is de moeite waard. Een Hub die stilstaat, niet.</p>
-  <p>Niet zomaar elk programma mag op uw Hub draaien. Elk programma wordt eerst nagekeken en op een lijst gezet. Staat het niet op de lijst, dan draait het nergens.</p>
-  <p>Wie beslist wat op die lijst komt, heeft veel macht over alle anderen. Dat is te veel macht voor één bedrijf, dus Freehold heeft die macht niet alleen. Een aparte organisatie beslist, met een eigen bestuur, regels die iedereen kan lezen, en een manier om bezwaar te maken als u wordt afgewezen.</p>
-</section>
+<section><div class="wrap split">
+<h2 class="label">Veel Hubs samen</h2>
+<div class="body">
+<p class="lead">Eén Hub in één huis is handig. Een paar miljoen, die allemaal dezelfde taal spreken, is iets veel groters.</p>
+<p>Denk aan stopcontacten. Zodra iedereen één vorm had afgesproken, kon iedereen een waterkoker maken die in de muur paste. De mensen die het elektriciteitsnet beheerden, hebben nooit één waterkoker gemaakt. Freehold beheert het ecosysteem waar elke Hub aan hangt, en laat anderen er dingen voor bouwen, ook AI-modellen.</p>
+<p>Niets draait op uw Hub voor het is nagekeken en op een lijst staat. Wie die lijst bepaalt, heeft veel macht, dus een aparte organisatie beslist, met een eigen bestuur, regels die iedereen kan lezen, en een manier om bezwaar te maken als u wordt afgewezen.</p>
+</div></div></section>
 
-<section id="de-grote-ai-modellen-buiten" aria-labelledby="h-de-grote-ai-modellen-buiten">
-  <h2 id="h-de-grote-ai-modellen-buiten">De grote AI-modellen buiten</h2>
-  <figure class="fig">
-    <svg viewBox="0 0 476 212" role="img" aria-label="Thuis een bestand met één alinea gemarkeerd. Alleen die alinea gaat via de Hub naar een reusachtig AI-systeem buiten, en het antwoord komt terug. Uw naam, de rest van het bestand en de vraag van gisteren blijven thuis."><rect x="10" y="10" width="232" height="192" rx="10" fill="rgba(192,138,62,.11)"/><text x="126.0" y="30" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="middle" fill="#14181D">Bij u thuis</text><rect x="34" y="52" width="72" height="92" rx="4" fill="#F5F3EE" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="46" y1="68" x2="78" y2="68" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="46" y1="80" x2="94" y2="80" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="46" y1="94" x2="94" y2="94" stroke="#14796A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="46" y1="102" x2="94" y2="102" stroke="#14796A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="46" y1="110" x2="94" y2="110" stroke="#14796A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="46" y1="124" x2="94" y2="124" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="46" y1="132" x2="70" y2="132" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="126" y="172" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="11" font-weight="500" text-anchor="middle" fill="#2A3138">uw naam, de rest van het bestand</text><text x="126" y="187" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="11" font-weight="500" text-anchor="middle" fill="#2A3138">en de vraag van gisteren blijven hier</text><line x1="110" y1="102" x2="152" y2="102" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M147,97 L152,102 L147,107" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="154" y="76" width="56" height="52" rx="8" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="168.0" y1="95.0" x2="168.0" y2="109.0" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" opacity="0.32"/><line x1="176.0" y1="89.0" x2="176.0" y2="115.0" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" opacity="0.42"/><line x1="184.0" y1="97.0" x2="184.0" y2="107.0" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" opacity="0.26"/><path d="M176.0,102.0 C184.0,102.0 188.0,101.0 200.0,102.0" stroke="#14796A" stroke-width="2.2" stroke-linecap="round" fill="none"/><text x="182" y="146" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" text-anchor="middle" fill="#14181D">Uw Hub</text><line x1="214" y1="92" x2="306" y2="92" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M301,87 L306,92 L301,97" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="246" y="76" width="18" height="12" rx="2" fill="#F5F3EE" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="250" y1="80" x2="260" y2="80" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><line x1="250" y1="84" x2="258" y2="84" stroke="#14796A" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="262" y="66" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="11" font-weight="500" text-anchor="middle" fill="#0C5347">één alinea</text><line x1="306" y1="120" x2="214" y2="120" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M219,115 L214,120 L219,125" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="262" y="140" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="11" font-weight="500" text-anchor="middle" fill="#2A3138">het antwoord</text><rect x="310" y="40" width="146" height="128" rx="8" stroke="#14181D" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="322" y="52" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="347" y="52" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="372" y="52" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="397" y="52" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="422" y="52" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="322" y="80" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="347" y="80" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="372" y="80" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="397" y="80" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="422" y="80" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="322" y="108" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="347" y="108" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="372" y="108" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="397" y="108" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="422" y="108" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="322" y="136" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="347" y="136" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="372" y="136" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="397" y="136" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="422" y="136" width="20" height="22" rx="2" stroke="#2A3138" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none"/><text x="383" y="190" font-family="Inter Tight,Helvetica,Arial,sans-serif" font-size="11" font-weight="600" text-anchor="middle" fill="#14181D">Een reusachtig AI-systeem, buiten</text></svg>
-    <figcaption>Als een vraag te moeilijk is voor de Hub, gaat één alinea naar een reus en komt het antwoord terug. Uw naam, de rest van het bestand en wat u gisteren vroeg, blijven thuis.</figcaption>
-  </figure>
-  <p>Ergens daarbuiten staan de reusachtige AI-systemen, die een hal vol computers nodig hebben om te draaien. Uw Hub is dat niet en zal het ook nooit zijn.</p>
-  <p>Freehold houdt uw Hub met opzet bij, zodat het naast die reuzen kan blijven werken in plaats van achterop te raken. Wat langs die lijn binnenkomt is software: nieuwe dingen die de Hub kan, en nieuwe controles die het kan uitvoeren. Uw bestanden gaan er nooit langs naar buiten. Het betekent wel dat Freehold een bedrijf is dat u moet blijven vertrouwen, zoals u nu al vertrouwt op wie uw telefoon bijwerkt. De meeste vragen beantwoordt de Hub gewoon zelf, thuis, in een oogwenk. Af en toe is een vraag echt moeilijk, en dan is een van de reuzen er beter in.</p>
-  <p>Als dat gebeurt, is de Hub de portier. Het beslist wat er naar buiten gaat, en het stuurt zo weinig mogelijk. Het stuurt de alinea die gelezen moet worden, en het houdt uw naam, de rest van het bestand en wat u gisteren vroeg voor zich.</p>
-  <p>Hier komt het deel dat telt. De Hub mag een reus gebruiken. Hij mag er nooit een nodig hebben om te denken. Als hij er een nodig had, zou alles weer daarbuiten belanden, en dan waren we terug bij af.</p>
-</section>
+<section><div class="wrap split">
+<h2 class="label">De grote AI-modellen</h2>
+<div class="body">
+<p>De meeste vragen beantwoordt uw Hub gewoon zelf, thuis, in een oogwenk. Af en toe is een vraag echt moeilijk, en dan is een van de reusachtige AI-systemen er beter in. Dan stuurt de Hub zo weinig mogelijk: de alinea die gelezen moet worden. Uw naam, de rest van het bestand en wat u gisteren vroeg, blijven thuis.</p>
+<p class="lead">De Hub mag een reus gebruiken. Hij mag er nooit een nodig hebben om te denken.</p>
+</div></div></section>
 
-<section id="drie-misverstanden" aria-labelledby="h-drie-misverstanden">
-  <h2 id="h-drie-misverstanden">Vier misverstanden</h2>
-  <p>Freehold verkoopt uw gegevens niet. Gegevens kunnen eigenlijk niet verkocht worden. Een kopie kost niets en ziet er precies uit als het origineel, dus er is nooit te weinig van, en zonder tekort komt er nooit een echte prijs. Een antwoord is iets anders. Het is gemaakt voor één persoon, over één vraag, op één moment.</p>
-  <p>Freehold leest uw bestanden niet door. Uw bestanden blijven staan bij elke stand, ook bij de stand waarop u helemaal niets doorlaat. Wat gedeeld wordt is één kort antwoord, nooit het materiaal waaruit het is uitgezocht.</p>
-  <p>Freehold betaalt u niet voor uw gegevens. Wat u terugkrijgt is een betere ruil: het aanbod dat echt bij u past, betere voorwaarden, of een waarschuwing over uw eigen auto, uw eigen verwarmingsketel of uw eigen gezondheid. Dat laatste kan aan niemand anders worden doorverkocht.</p>
-  <p>Freehold is niet het kastje. De Hub is wat beslist, en vandaag draait die toevallig op een kastje. Dezelfde Hub kan draaien op een telefoon, een computer of in een app. Waar u instapt is het ecosysteem.</p>
-</section>
+<section><div class="wrap split">
+<h2 class="label">Vier misverstanden</h2>
+<div class="body"><p class="lead">Wat Freehold niet doet, in vier regels.</p></div>
+</div>
+<div class="wrap"><div class="cards"><div class="card"><h3>Gegevens verkopen</h3><p>Freehold verkoopt uw gegevens niet. Een kopie kost niets, dus gegevens krijgen nooit een echte prijs. Een antwoord is gemaakt voor één persoon, over één vraag, op één moment.</p></div><div class="card"><h3>Bestanden lezen</h3><p>Freehold leest uw bestanden niet door. Ze blijven staan bij elke stand. Wat gedeeld wordt, is één kort antwoord.</p></div><div class="card"><h3>Betalen voor gegevens</h3><p>Freehold betaalt u niet voor uw gegevens. U krijgt een betere ruil: het aanbod dat bij u past, of een waarschuwing over uw eigen verwarmingsketel of uw eigen gezondheid.</p></div><div class="card"><h3>Het kastje</h3><p>Freehold is niet het kastje. De Hub beslist, en vandaag draait die op een kastje. Waar u instapt, is het ecosysteem.</p></div></div></div></section>
 
-<section id="de-naam-en-het-octrooi" aria-labelledby="h-de-naam-en-het-octrooi">
-  <h2 id="h-de-naam-en-het-octrooi">De naam en het octrooi</h2>
-  <p>Freehold is een oud Engels woord voor grond die helemaal van u is. Het tegendeel is grond die u alleen mag gebruiken, zolang u blijft betalen aan wie ze echt bezit. Bijna elke website werkt vandaag op de tweede manier. U mag ze gebruiken, en u betaalt met gegevens over uzelf, het enige wat u nooit terugkrijgt.</p>
-  <p>Een boer die een veld bezit, verkoopt de oogst. Hij verkoopt het veld niet, en hij laat de kopers het niet komen omspitten.</p>
-  <p>De manier waarop dit allemaal werkt, is het onderwerp van een Europese octrooiaanvraag, nummer 26202295.7, met als titel Improved authentication for processing requests, ingediend op 1 september 2026. Freehold Works is het bedrijf dat het Freehold Inzichten Ecosysteem bouwt en beheert. Een aparte stichting waakt over hoe het ecosysteem wordt gebruikt.</p>
-  <p class="contact">Vragen, of een gesprek: <a href="mailto:hello@freehold.works">hello@freehold.works</a></p>
-</section>
+<section class="band"><div class="wrap"><svg class="mark" viewBox="0 0 128 100" aria-hidden="true" focusable="false">
+  <path d="M75,13 C80,32 80,68 75,87" stroke="#2FA891" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <g stroke="#2FA891" stroke-linecap="round" stroke-width="10"><line x1="96" y1="36" x2="96" y2="64"/><line x1="114" y1="42" x2="114" y2="58"/></g>
+  <g stroke="#F5F3EE" stroke-linecap="round" stroke-width="5" opacity=".5"><line x1="30" y1="36" x2="30" y2="64"/><line x1="48" y1="26" x2="48" y2="74"/></g>
+</svg>
+<h2 class="eyebrow" style="color:rgba(255,248,241,.8)">De naam en het octrooi</h2>
+<p class="statement">Een boer die een veld bezit, verkoopt de oogst en houdt het veld.</p>
+<p class="sub">Freehold is een oud Engels woord voor grond die helemaal van u is. De manier waarop dit allemaal werkt, is het onderwerp van Europese octrooiaanvraag 26202295.7, Improved authentication for processing requests, ingediend op 1 september 2026. Een aparte stichting waakt over hoe het wordt gebruikt.</p>
+</div></section>
 
-  </div>
+<section><div class="wrap">
+<div class="next">
+<a href="wat-freehold-doet-volledig.html">De volledige uitleg, met tekeningen</a>
+<a href="voor-de-pers.html">Informatie voor de pers</a>
+</div>
+<p class="quiet">Vragen, of een gesprek: <a href="mailto:hello@freehold.works">hello@freehold.works</a></p>
+</div></section>
 </main>
-
 <footer>
-  <div class="wrap">
-    <span class="entity">Freehold Works</span>
-    <span><a href="nl.html">Startpagina</a></span>
-    <span><a href="mailto:hello@freehold.works">hello@freehold.works</a></span>
-  </div>
+<div class="wrap">
+<p class="big">Inzichten,<br>nooit data.</p>
+<div class="cols">
+  <div><span class="entity">Freehold Works</span><br>Vennootschap in oprichting<br>European patent pending</div>
+  <div><a href="wat-freehold-doet.html">Wat Freehold doet</a><br><a href="voor-de-pers.html">Informatie voor de pers</a></div>
+  <div><a href="index.html" lang="en">English</a><br><a href="fr.html" lang="fr">Français</a><br><a href="es.html" lang="es">Español</a></div>
+  <div><a href="mailto:hello@freehold.works">hello@freehold.works</a></div>
+</div>
+</div>
 </footer>
-
+<nav class="pill" aria-label="Hoofdmenu">
+<a href="nl.html" class="home" aria-label="Freehold, voorpagina"><svg class="mark" viewBox="0 0 128 100" aria-hidden="true" focusable="false">
+  <path d="M75,13 C80,32 80,68 75,87" stroke="#2FA891" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <g stroke="#2FA891" stroke-linecap="round" stroke-width="10"><line x1="96" y1="36" x2="96" y2="64"/><line x1="114" y1="42" x2="114" y2="58"/></g>
+  <g stroke="#F5F3EE" stroke-linecap="round" stroke-width="5" opacity=".5"><line x1="30" y1="36" x2="30" y2="64"/><line x1="48" y1="26" x2="48" y2="74"/></g>
+</svg><span class="opt">Freehold</span></a>
+<a href="wat-freehold-doet.html" class="opt" aria-current="page">Wat Freehold doet</a><a href="voor-de-pers.html" class="opt">Pers</a>
+<a href="mailto:hello@freehold.works" class="cta">Praat met ons</a>
+</nav>
+<script>
+(function(){
+  /* The ember only moves while it is on screen, so it costs nothing elsewhere. */
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ e.target.classList.toggle('paused', !e.isIntersecting); });
+    });
+    [].forEach.call(document.querySelectorAll('.ember'), function(el){ io.observe(el); });
+  }
+})();
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.documentElement.classList.add('js');
+  var els = [].slice.call(document.querySelectorAll('.reveal'));
+  els.forEach(function(el){
+    var words = el.textContent.trim().split(/\s+/);
+    el.setAttribute('aria-label', el.textContent.trim());
+    el.innerHTML = words.map(function(w){return '<span class="w" aria-hidden="true">'+w+'</span>';}).join(' ');
+  });
+  function tick(){
+    var vh = window.innerHeight;
+    els.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      var p = (vh * 0.92 - r.top) / (vh * 0.55 + r.height * 0.5);
+      p = Math.max(0, Math.min(1, p));
+      var ws = el.querySelectorAll('.w'), n = Math.round(p * ws.length);
+      for (var i = 0; i < ws.length; i++) ws[i].classList.toggle('on', i < n);
+    });
+  }
+  addEventListener('scroll', tick, {passive:true});
+  addEventListener('resize', tick);
+  tick();
+})();
+</script>
 </body>
 </html>
