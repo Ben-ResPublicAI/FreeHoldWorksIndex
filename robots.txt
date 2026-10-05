@@ -25,6 +25,7 @@ Disallow: /hoe-het-werkt.html
 Disallow: /map.html
 Disallow: /bank-messages.html
 Disallow: /como-funciona.html
+Disallow: /comment-ca-marche.html
 Disallow: /mas.html
 Disallow: /what-freehold-does-in-full.html
 Disallow: /for-the-press-in-full.html
