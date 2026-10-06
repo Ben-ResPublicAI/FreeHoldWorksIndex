@@ -128,10 +128,9 @@ figure.device figcaption{font-size:14px;color:var(--mute);margin-top:10px;max-wi
 .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
 .portrait .ph{position:absolute;left:12px;top:12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,248,241,.8);background:rgba(15,18,22,.45);padding:5px 9px;border-radius:999px}
 .person h3{font-size:21px;font-weight:500;margin:16px 0 2px}
-/* Below the four, smaller: one person with a title, on Ben's instruction of 5 October 2026. */
-.aide{width:clamp(110px,14vw,150px);margin-top:clamp(28px,3.6vw,44px)}
-.aide h3{font-size:17px;margin-top:12px}
-.aide p{font-size:14px}
+/* Below the four, on a row of its own, the same size as the four, on Ben's
+   instruction of 6 October 2026 (was smaller from 5 October). */
+.aide{grid-column-start:1}
 .person p{font-family:var(--serif);font-size:16px;line-height:1.5;color:#CFCCC4;margin:0}
 
 /* Facts table */
@@ -251,7 +250,7 @@ footer .big{font-size:clamp(40px,8vw,120px);font-weight:500;letter-spacing:-.035
 </div><div class="person">
 <div class="portrait"><img src="img/roel-naessens.webp" srcset="img/roel-naessens-320.webp 320w, img/roel-naessens.webp 400w" sizes="(max-width:760px) 45vw, 260px" width="400" height="500" alt="Portrait of Roel Naessens" loading="lazy"></div>
 <h3>Roel Naessens</h3>
-<p>Development</p>
+<p>Go-to-market</p>
 </div><div class="person">
 <div class="portrait"><img src="img/pieter-paulus-vertongen.webp" srcset="img/pieter-paulus-vertongen-320.webp 320w, img/pieter-paulus-vertongen.webp 400w" sizes="(max-width:760px) 45vw, 260px" width="400" height="500" alt="Portrait of Pieter-Paulus Vertongen" loading="lazy"></div>
 <h3>Pieter-Paulus Vertongen</h3>
@@ -260,11 +259,11 @@ footer .big{font-size:clamp(40px,8vw,120px);font-weight:500;letter-spacing:-.035
 <div class="portrait"><img src="img/ben-broeckx.webp" srcset="img/ben-broeckx-320.webp 320w, img/ben-broeckx.webp 640w" sizes="(max-width:760px) 45vw, 260px" width="640" height="800" alt="Portrait of Ben Broeckx" loading="lazy"></div>
 <h3>Ben Broeckx</h3>
 <p>Operations and Ecosystems</p>
-</div></div><div class="person aide">
-<div class="portrait"><img src="img/lucas-broeckx-320.webp" srcset="img/lucas-broeckx-320.webp 320w, img/lucas-broeckx.webp 400w" sizes="150px" width="400" height="500" alt="Portrait of Lucas Broeckx" loading="lazy"></div>
+</div><div class="person aide">
+<div class="portrait"><img src="img/lucas-broeckx-320.webp" srcset="img/lucas-broeckx-320.webp 320w, img/lucas-broeckx.webp 400w" sizes="(max-width:760px) 45vw, 260px" width="400" height="500" alt="Portrait of Lucas Broeckx" loading="lazy"></div>
 <h3>Lucas Broeckx</h3>
 <p>Chief of Staff to Ruben Verborgh</p>
-</div></div></section>
+</div></div></div></section>
 
 <section><div class="wrap">
 <p class="statement mid reveal">This is not the way the world is right now. But it is the way the world should be, and if it is up to us, the way it will be.</p>

@@ -128,10 +128,9 @@ figure.device figcaption{font-size:14px;color:var(--mute);margin-top:10px;max-wi
 .portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
 .portrait .ph{position:absolute;left:12px;top:12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,248,241,.8);background:rgba(15,18,22,.45);padding:5px 9px;border-radius:999px}
 .person h3{font-size:21px;font-weight:500;margin:16px 0 2px}
-/* Below the four, smaller: one person with a title, on Ben's instruction of 5 October 2026. */
-.aide{width:clamp(110px,14vw,150px);margin-top:clamp(28px,3.6vw,44px)}
-.aide h3{font-size:17px;margin-top:12px}
-.aide p{font-size:14px}
+/* Below the four, on a row of its own, the same size as the four, on Ben's
+   instruction of 6 October 2026 (was smaller from 5 October). */
+.aide{grid-column-start:1}
 .person p{font-family:var(--serif);font-size:16px;line-height:1.5;color:#CFCCC4;margin:0}
 
 /* Facts table */
