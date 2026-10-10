@@ -24,6 +24,7 @@ Disallow: /how-it-works.html
 Disallow: /hoe-het-werkt.html
 Disallow: /map.html
 Disallow: /bank-messages.html
+Disallow: /phishing.html
 Disallow: /como-funciona.html
 Disallow: /comment-ca-marche.html
 Disallow: /mas.html
